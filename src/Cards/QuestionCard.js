@@ -10,28 +10,40 @@ import {
   Typography,
   Card,
 } from "@mui/material";
-import { flexBoxSx, cardFrontSx, cardBackSx } from "../SXstyles";
+import { flexBoxSx, cardFrontSx, cardBackSx, cardOverlay } from "../SXstyles";
 import styled from "styled-components";
 import FlipCard from "./FlipCard";
 import FrontImageCard from "./FrontCards/FrontImageCard";
 import PublicSpeakingCropped from ".././Images/PublicSpeakingCropped.png";
 
-function QuestionCard({ currentQuestion, flip, gameActive, seconds }) {
+function QuestionCard({ currentQuestion, flip, active, seconds }) {
   return (
     <FlipCard
-      height={questionHeight}
-      width={questionWidth}
+      extraSx={extraSx}
       flip={flip}
-      active={gameActive}
-      slideDirection={gameActive ? "down" : "left"}
+      active={active}
+      slideDirection={active ? "down" : "left"}
     >
-      <FrontImageCard image={PublicSpeakingCropped} />
+      <FrontImageCard image={PublicSpeakingCropped}>
+        <Paper elevation={5} sx={cardOverlay} />
+      </FrontImageCard>
 
-      <Box sx={questionCardBackSx}>
+      <Paper elevation={5} sx={questionCardBackSx}>
         <Box sx={breadSx}>{`:${seconds}`}</Box>
-        <Box sx={{ ...flexBoxSx, background: "green" }}>{currentQuestion}</Box>
-        {/* <Box sx={breadSx} /> */}
-      </Box>
+        <Box
+          sx={{
+            ...flexBoxSx,
+            // background: "teal",
+            lineHeight: "1.5",
+            // padding: "0 2rem",
+            textAlign: "left",
+          }}
+        >
+          {currentQuestion}
+        </Box>
+        <Box sx={breadSx} />
+        <Paper elevation={5} sx={cardOverlay} />
+      </Paper>
     </FlipCard>
   );
 }
@@ -43,26 +55,26 @@ const questionCardBackSx = {
   flexDirection: "column",
   justifyContent: "flex-start",
   gap: ".5rem",
-  background: "Red",
-  textAlign: "center",
   cursor: "auto",
-  fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem", lg: "2rem" },
-  padding: { xs: ".75rem", sm: ".75rem", md: "1", lg: "1rem" },
+  fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem", lg: "2.5rem" },
+  padding: { xs: ".75rem", sm: ".75rem", md: "1.5rem", lg: "1rem 2rem" },
 };
 
-const questionHeight = {
-  xs: "150px",
-  sm: "175px",
-  md: "225px",
-  lg: "275px",
-  xl: "325px",
-};
-const questionWidth = {
-  xs: "300px",
-  sm: "350px",
-  md: "450px",
-  lg: "550px",
-  xl: "650px",
+const extraSx = {
+  height: {
+    xs: "150px",
+    sm: "175px",
+    md: "225px",
+    lg: "275px",
+    xl: "400px",
+  },
+  width: {
+    xs: "300px",
+    sm: "350px",
+    md: "450px",
+    lg: "550px",
+    xl: "800px",
+  },
 };
 
 const breadSx = {
@@ -75,5 +87,5 @@ const breadSx = {
     lg: "60px",
   },
   fontWeight: "bold",
-  fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem", lg: "2.5rem" },
+  fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem", lg: "3rem" },
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import { cardFrontSx } from "../../SXstyles";
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
 
-function FrontImageCard({ image }) {
+function FrontImageCard({ image, children }) {
   return (
-    <Box sx={cardFrontSx}>
+    <Paper elevation={5} sx={cardFrontSx}>
       <Box
         sx={{
           width: "95%",
@@ -14,7 +14,8 @@ function FrontImageCard({ image }) {
           backgroundSize: "contain",
         }}
       />
-    </Box>
+      {children}
+    </Paper>
   );
 }
 

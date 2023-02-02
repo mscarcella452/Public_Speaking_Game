@@ -46,7 +46,7 @@ export const questions = [
   "Venture Capitalization and its effect on the civil war",
   "Topics of conversation at the Last Supper",
   "Sparknotes: 'Homer's Odyssey'",
-  "The evolution of the market economy in the souther colonies",
+  "The evolution of the market economy in the southern colonies",
   "The Bay of Pigs and how it all should have went down",
   "19th century Cash Crops",
 ];

@@ -22,7 +22,7 @@ import GameTimer from "../ComponentHelpers/GameTimer";
 import backgroundWords from "../Images/backgroundWords.png";
 import PublicSpeakingCropped from "../Images/PublicSpeakingCropped.png";
 import QuestionCard from "../Cards/QuestionCard";
-import FlipCard from "../Cards/FlipCard";
+import ActionBtnCard from "../Cards/ActionBtnCard";
 
 export default function GamePage() {
   const questionGenerator = useContext(GenerateQuestionProvider);
@@ -30,57 +30,98 @@ export default function GamePage() {
   const [failSpeech, setFailSpeech] = useState("");
   const [timerValue, setTimerValue] = useState(30);
   const [gameActive, toggleGame] = useToggle(true);
+  const [gameStatus, setGameStatus] = useState("preGame");
   const [timerActive, toggleTimer] = useToggle(false);
-  const [flip, toggleFlip] = useToggle(false);
+  const [questionCardFlip, toggleQuestionCardFlip] = useToggle(false);
+  const [btnFlip, toggleBtnFlip] = useToggle(false);
+  const [ready, toggleReady] = useToggle(false);
+  const [rules, toggleRules] = useToggle(false);
   const [seconds, setSeconds] = useState(timerValue);
   const nav = useNavigate();
 
+  // nav("/PublicSpeaking");
+  //  const startRound = () => {
+  //    questionGenerator();
+  //    setTimeout(() => {
+  //      toggleQuestionCardFlip();
+  //    }, 750);
+  //  };
+  console.log(ready);
   useEffect(() => {
-    !flip &&
-      setTimeout(() => {
-        toggleFlip();
-      }, 750);
+    gameActive && questionGenerator();
+    setTimeout(() => {
+      toggleQuestionCardFlip();
+    }, 1500);
   }, [gameActive]);
 
-  // useEffect(() => {
-  //   let interval = null;
+  useEffect(() => {
+    setTimeout(() => {
+      toggleReady();
+    }, 1000);
+    setTimeout(() => {
+      toggleBtnFlip();
+    }, 1500);
+  }, [gameActive, timerActive]);
 
-  //   if (timerActive && gameActive) {
-  //     if (seconds >= 0) {
-  //       interval = setInterval(() => {
-  //         setSeconds(seconds => seconds - 1);
-  //       }, 1000);
-  //     } else {
-  //       clearInterval(interval);
-  //       completedSpeech();
-  //       setSeconds(timerValue);
-  //     }
-  //   }
+  useEffect(() => {
+    let interval = null;
 
-  //   return () => clearInterval(interval);
-  // }, [timerActive, seconds]);
+    if (timerActive && gameActive) {
+      if (seconds >= 0) {
+        interval = setInterval(() => {
+          setSeconds(seconds => seconds - 1);
+        }, 1000);
+      } else {
+        clearInterval(interval);
+        completedSpeech();
+        setSeconds(timerValue);
+      }
+    }
+
+    return () => clearInterval(interval);
+  }, [timerActive, seconds]);
 
   const endRound = () => {
+    // toggleBtnFlip();
+    toggleTimer();
     setSeconds(timerValue);
-    toggleFlip();
-    {
-      flip &&
-        setTimeout(() => {
-          questionGenerator();
-          toggleGame();
-        }, 1000);
-    }
+    toggleGame();
+    // {
+    //   flip &&
+    //     setTimeout(() => {
+    //       questionGenerator();
+    //       toggleGame();
+    //     }, 1000);
+    // }
+  };
+
+  const startSpeech = () => {
+    toggleTimer();
   };
 
   const failedSpeech = () => {
     endRound();
     setFailSpeech(true);
-    toggleTimer();
   };
+
+  const viewTopic = () => {
+    toggleQuestionCardFlip();
+    toggleGame();
+  };
+
   const completedSpeech = () => {
     endRound();
     setFailSpeech(false);
-    toggleTimer();
+  };
+
+  const handleActionBtn = e => {
+    e.target.innerText === "Start Speech"
+      ? startSpeech()
+      : e.target.innerText === "View Topic"
+      ? viewTopic()
+      : failedSpeech();
+    toggleReady();
+    toggleBtnFlip();
   };
 
   return (
@@ -113,14 +154,57 @@ export default function GamePage() {
           backgroundSize: "cover",
         }}
       />
-      <Header
+
+      <Box
+        sx={{
+          ...flexBoxSx,
+          // alignItems: gameActive ? "flex-start" : "flex-end",
+          position: "relative",
+          gap: "1rem",
+          cursor: "pointer",
+          zIndex: 5,
+          // background: "red",
+        }}
+      >
+        <QuestionCard
+          active={gameActive && !rules}
+          seconds={seconds}
+          flip={questionCardFlip}
+          currentQuestion={currentQuestion}
+        />
+      </Box>
+      <Footer
         sx={{
           ...marginSx,
           justifyContent: "space-between",
           height: "100px",
+          // background: "teal",
         }}
       >
-        <Paper
+        <ActionBtnCard
+          handleClick={handleActionBtn}
+          active={ready && gameActive && !timerActive}
+          btnFlip={btnFlip}
+        >
+          Start Speech
+        </ActionBtnCard>
+
+        <ActionBtnCard
+          handleClick={handleActionBtn}
+          active={ready && gameActive && timerActive}
+          btnFlip={btnFlip}
+        >
+          Fail Speech
+        </ActionBtnCard>
+
+        <ActionBtnCard
+          handleClick={handleActionBtn}
+          active={ready && !gameActive}
+          btnFlip={btnFlip}
+        >
+          View Topic
+        </ActionBtnCard>
+        {/* <Paper
           sx={{
             ...flexBoxSx,
             maxHeight: "100%",
@@ -144,81 +228,8 @@ export default function GamePage() {
           >
             {gameActive && !timerActive && "Start Speech"}
           </Box>
-        </Paper>
-        {gameActive && (
-          <Paper
-            sx={{
-              ...flexBoxSx,
-              background: "black",
-              color: "#fff",
-              width: "90px",
-              padding: ".75rem",
-              fontSize: "2.5rem",
-              fontWeight: "bold",
-              borderRadius: "50%",
-            }}
-          >
-            {`:${seconds}`}
-          </Paper>
-        )}
-        {/* <IconButton onClick={() => nav("/")}>
-          <DisabledByDefaultIcon />
-        </IconButton>
-         {!timerActive && <Typography>Timer: 90 seconds</Typography>}
-        <p>{seconds}</p> */}
-      </Header>
-      <Box
-        sx={{
-          ...flexBoxSx,
-          // alignItems: gameActive ? "flex-start" : "flex-end",
-          position: "relative",
-          gap: "1rem",
-          cursor: "pointer",
-          zIndex: 5,
-        }}
-      >
-        <IconButton onClick={failedSpeech}>hi</IconButton>
-        {/* <Paper
-          sx={{
-            ...flexBoxSx,
-            position: gameActive && "absolute",
-            left: gameActive && 0,
-            height: !gameActive ? "auto" : "100%",
-            width: gameActive ? "60px" : "500px",
-            transition: "width ease-in .5s",
-            borderRadius: "20px",
-          }}
-          onClick={failedSpeech}
-        >
-          {!gameActive && <p>{failSpeech ? "You failed" : "Congrats"}</p>}
         </Paper> */}
-
-        <QuestionCard
-          gameActive={gameActive}
-          toggleGame={toggleGame}
-          seconds={seconds}
-          flip={flip}
-        />
-
-        {/* {!gameActive ? (
-          <Pregame
-            toggleGame={toggleGame}
-            currentQuestion={currentQuestion}
-            failSpeech={failSpeech}
-          />
-        ) : (
-          <Game
-            failedSpeech={failedSpeech}
-            completedSpeech={completedSpeech}
-            currentQuestion={currentQuestion}
-            timerActive={timerActive}
-            toggleTimer={toggleTimer}
-          />
-        )} */}
-      </Box>
-      {/* <Footer sx={marginSx}>
-        <Typography>Public Speaking</Typography>
-      </Footer> */}
+      </Footer>
     </Paper>
   );
 }

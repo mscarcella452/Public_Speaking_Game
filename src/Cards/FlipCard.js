@@ -3,19 +3,20 @@ import { Paper, Box, Slide } from "@mui/material";
 import { flexBoxSx } from "../SXstyles";
 import styled from "styled-components";
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
-function FlipCard({ flip, active, slideDirection, height, width, children }) {
+function FlipCard({ flip, active, slideDirection, extraSx, children }) {
   return (
     <Slide direction={slideDirection} in={active} mountOnEnter unmountOnExit>
-      <Box
+      <Paper
+        elevation={!flip && 5}
         sx={{
           ...flexBoxSx,
           position: "relative",
-          height: height,
-          width: width,
           transition: "width ease-in .5s",
           borderRadius: "5px",
           fontSize: "2rem",
           overflow: "hidden",
+          ...extraSx,
+          background: "transparent",
         }}
       >
         <FlipBoxInner
@@ -33,7 +34,7 @@ function FlipCard({ flip, active, slideDirection, height, width, children }) {
         >
           {children}
         </FlipBoxInner>
-      </Box>
+      </Paper>
     </Slide>
   );
 }
