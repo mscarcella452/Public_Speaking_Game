@@ -1,32 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { delay } from "../Helpers/FunctionHelpers";
 import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
 import { Box } from "@mui/material";
 import { flexBoxSx, cardFrontSx, cardBackSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
 import FlipCard from "./FlipCard";
-import FrontImageCard from "./FrontCards/FrontImageCard";
-import PublicSpeakingCropped from ".././Images/PublicSpeakingCropped.png";
 
-function QuestionCard({
-  currentQuestion,
-  showCard,
-  seconds,
-  questionCard,
-  gameCard,
-  finishSpeech,
-}) {
-  // const [active, toggleActive] = useToggle(false);
+function RulesCard({ showCard }) {
   const [flip, toggleFlip] = useToggle(false);
 
   useDidMountEffect(() => {
     delay(toggleFlip, 1500);
   }, [showCard]);
-  // useEffect(() => {
-  //   !showCard && flip && delay(toggleFlip, 1500);
-  //   showCard && delay(toggleFlip, 1500);
-  // }, [showCard]);
-  console.log(currentQuestion);
+
   return (
     <FlipCard
       // extraSx={questionCardBoxSx}
@@ -35,14 +21,10 @@ function QuestionCard({
       active={showCard}
       slideDirection={showCard ? "down" : "left"}
     >
-      {questionCard ? (
-        <FrontImageCard image={PublicSpeakingCropped} />
-      ) : (
-        <Box sx={cardFrontSx}>{finishSpeech ? "Congrats" : "Failure"}</Box>
-      )}
+      <Box sx={cardFrontSx}>Rules</Box>
 
-      <Box sx={questionCardBackSx}>
-        <Box sx={breadSx}>{`:${seconds}`}</Box>
+      <Box sx={rulesCardBackSx}>
+        {/* <Box sx={breadSx}>{`:${seconds}`}</Box> */}
         <Box
           sx={{
             ...flexBoxSx,
@@ -50,17 +32,17 @@ function QuestionCard({
             textAlign: "left",
           }}
         >
-          {currentQuestion}
+          These are the rules
         </Box>
-        <Box sx={breadSx} />
+        {/* <Box sx={breadSx} /> */}
       </Box>
     </FlipCard>
   );
 }
 
-export default QuestionCard;
+export default RulesCard;
 
-const questionCardBackSx = {
+const rulesCardBackSx = {
   ...cardBackSx,
   flexDirection: "column",
   justifyContent: "flex-start",

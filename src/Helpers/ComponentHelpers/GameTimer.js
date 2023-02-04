@@ -5,24 +5,24 @@ import { flexBoxSx } from "../SXstyles";
 export default function GameTimer({ isActive, timerValue, completedSpeech }) {
   const [seconds, setSeconds] = useState(timerValue);
 
-  useEffect(() => {
-    let interval = null;
+  // useEffect(() => {
+  //   let interval = null;
 
-    if (isActive) {
-      if (seconds >= 0) {
-        interval = setInterval(() => {
-          setSeconds(seconds => seconds - 1);
-        }, 1000);
-      } else {
-        clearInterval(interval);
-        completedSpeech();
-        setSeconds(timerValue);
-      }
-    }
-    // console.log(`${(seconds / initialValue) * 100}px`);
+  //   if (isActive) {
+  //     if (seconds >= 0) {
+  //       interval = setInterval(() => {
+  //         setSeconds(seconds => seconds - 1);
+  //       }, 1000);
+  //     } else {
+  //       clearInterval(interval);
+  //       completedSpeech();
+  //       setSeconds(timerValue);
+  //     }
+  //   }
+  //   // console.log(`${(seconds / initialValue) * 100}px`);
 
-    return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  //   return () => clearInterval(interval);
+  // }, [isActive, seconds]);
 
   return (
     <Box

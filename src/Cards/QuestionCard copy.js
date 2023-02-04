@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { delay } from "../Helpers/FunctionHelpers";
-import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
+import { useToggle } from "../CustomHooks";
 import { Box } from "@mui/material";
 import { flexBoxSx, cardFrontSx, cardBackSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
@@ -13,19 +13,18 @@ function QuestionCard({
   showCard,
   seconds,
   questionCard,
-  gameCard,
   finishSpeech,
 }) {
   // const [active, toggleActive] = useToggle(false);
   const [flip, toggleFlip] = useToggle(false);
 
-  useDidMountEffect(() => {
-    delay(toggleFlip, 1500);
-  }, [showCard]);
   // useEffect(() => {
-  //   !showCard && flip && delay(toggleFlip, 1500);
-  //   showCard && delay(toggleFlip, 1500);
+  //   delay(toggleFlip, 1500);
   // }, [showCard]);
+  useEffect(() => {
+    !showCard && flip && delay(toggleFlip, 1500);
+    showCard && delay(toggleFlip, 1500);
+  }, [showCard]);
   console.log(currentQuestion);
   return (
     <FlipCard
@@ -40,6 +39,7 @@ function QuestionCard({
       ) : (
         <Box sx={cardFrontSx}>{finishSpeech ? "Congrats" : "Failure"}</Box>
       )}
+      <FrontImageCard image={PublicSpeakingCropped} />
 
       <Box sx={questionCardBackSx}>
         <Box sx={breadSx}>{`:${seconds}`}</Box>

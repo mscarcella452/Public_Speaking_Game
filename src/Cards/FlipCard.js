@@ -1,13 +1,26 @@
 import React, { useEffect } from "react";
 import { Paper, Box, Slide } from "@mui/material";
-import { flexBoxSx } from "../SXstyles";
+import { flexBoxSx, cardOverlaySx } from "../SXstyles";
 import styled from "styled-components";
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
-function FlipCard({ flip, active, slideDirection, extraSx, children }) {
+
+function FlipCard({
+  flip,
+  active,
+  slideDirection,
+  extraSx,
+  timeout,
+  children,
+}) {
   return (
-    <Slide direction={slideDirection} in={active} mountOnEnter unmountOnExit>
-      <Paper
-        elevation={!flip && 5}
+    <Slide
+      direction={slideDirection}
+      in={active}
+      timeout={timeout}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Box
         sx={{
           ...flexBoxSx,
           position: "relative",
@@ -15,12 +28,11 @@ function FlipCard({ flip, active, slideDirection, extraSx, children }) {
           borderRadius: "5px",
           fontSize: "2rem",
           overflow: "hidden",
-          ...extraSx,
           background: "transparent",
+          ...extraSx,
         }}
       >
         <FlipBoxInner
-          elevation={5}
           sx={{
             width: "100%",
             height: "100%",
@@ -30,11 +42,14 @@ function FlipCard({ flip, active, slideDirection, extraSx, children }) {
             position: "relative",
             transform: flip && "rotateX(180deg)",
             borderRadius: "5px",
+            position: "relative",
+            backgroundColor: "#fff",
           }}
         >
           {children}
+          <Paper elevation={1} sx={cardOverlaySx} />
         </FlipBoxInner>
-      </Paper>
+      </Box>
     </Slide>
   );
 }
@@ -42,4 +57,4 @@ function FlipCard({ flip, active, slideDirection, extraSx, children }) {
 export default FlipCard;
 
 // styled Components--------------------------------------------
-const FlipBoxInner = styled(Paper)``;
+const FlipBoxInner = styled(Box)``;

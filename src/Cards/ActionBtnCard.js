@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useToggle } from "../CustomHooks";
+import { useToggle } from "../Helpers/CustomHooks";
 import FlipCard from "./FlipCard";
 import FrontImageCard from "./FrontCards/FrontImageCard";
 import PublicSpeakingCropped from ".././Images/PublicSpeakingCropped.png";
@@ -36,5 +36,7 @@ const extraSx = {
   height: "100%",
   width: "180px",
   borderRadius: "2.5px",
+  padding: ".5rem",
+  background: "#fff",
 };
 export default ActionBtnCard;

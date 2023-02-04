@@ -1,160 +1,60 @@
 import React, { useState, useEffect, useContext } from "react";
+import { delay } from "../Helpers/FunctionHelpers";
 import { useNavigate } from "react-router-dom";
-import { useToggle } from "../CustomHooks";
+import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
 import {
   GenerateQuestionProvider,
   QuestionProvider,
 } from "../Context/GameContext";
-import Game from "./Game/Game";
-import Pregame from "./Game/Pregame";
-import { pageSx, marginSx, backgroundPageSx, flexBoxSx } from "../SXstyles";
-import styled from "styled-components";
 import {
-  Paper,
-  Box,
-  Slide,
-  FormControlLabel,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import GameTimer from "../ComponentHelpers/GameTimer";
-import backgroundWords from "../Images/backgroundWords.png";
-import PublicSpeakingCropped from "../Images/PublicSpeakingCropped.png";
+  pageSx,
+  marginSx,
+  backgroundPageSx,
+  flexBoxSx,
+  questionCardBoxSx,
+} from "../SXstyles";
+import styled from "styled-components";
+import { Paper, Box, Button } from "@mui/material";
 import QuestionCard from "../Cards/QuestionCard";
 import ActionBtnCard from "../Cards/ActionBtnCard";
+import PostGameCard from "../Cards/PostGameCard";
+import MainCardContainer from "../Helpers/ComponentHelpers/MainCardContainer";
+import MainBackground from "../Helpers/ComponentHelpers/MainBackground";
+import RulesCard from "../Cards/RulesCard";
 
 export default function GamePage() {
   const questionGenerator = useContext(GenerateQuestionProvider);
   const currentQuestion = useContext(QuestionProvider);
-  const [failSpeech, setFailSpeech] = useState("");
-  const [timerValue, setTimerValue] = useState(30);
-  const [gameActive, toggleGame] = useToggle(true);
-  const [gameStatus, setGameStatus] = useState("preGame");
-  const [timerActive, toggleTimer] = useToggle(false);
-  const [questionCardFlip, toggleQuestionCardFlip] = useToggle(false);
-  const [btnFlip, toggleBtnFlip] = useToggle(false);
-  const [ready, toggleReady] = useToggle(false);
-  const [rules, toggleRules] = useToggle(false);
+  const [timerValue, setTimerValue] = useState(5);
   const [seconds, setSeconds] = useState(timerValue);
+  // const [timerActive, toggleTimer] = useToggle(false);
+  const [gameActive, toggleGame] = useToggle(false);
+  const [mainCard, toggleMainCard] = useToggle(false);
+  const [rulesCard, toggleRulesCard] = useToggle(false);
+  const [questionCard, toggleQuestionCard] = useToggle(true);
+
   const nav = useNavigate();
 
-  // nav("/PublicSpeaking");
-  //  const startRound = () => {
-  //    questionGenerator();
-  //    setTimeout(() => {
-  //      toggleQuestionCardFlip();
-  //    }, 750);
-  //  };
-  console.log(ready);
-  useEffect(() => {
-    gameActive && questionGenerator();
-    setTimeout(() => {
-      toggleQuestionCardFlip();
-    }, 1500);
-  }, [gameActive]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      toggleReady();
-    }, 1000);
-    setTimeout(() => {
-      toggleBtnFlip();
-    }, 1500);
-  }, [gameActive, timerActive]);
-
-  useEffect(() => {
-    let interval = null;
-
-    if (timerActive && gameActive) {
-      if (seconds >= 0) {
-        interval = setInterval(() => {
-          setSeconds(seconds => seconds - 1);
-        }, 1000);
+  const togglePowerButton = () => {
+    !gameActive && questionGenerator();
+    !questionCard && toggleQuestionCard();
+    toggleGame();
+    toggleMainCard();
+  };
+  const toggleRules = () => {
+    if (gameActive) {
+      if (mainCard) {
+        toggleMainCard();
+        delay(toggleRulesCard, 1500);
       } else {
-        clearInterval(interval);
-        completedSpeech();
-        setSeconds(timerValue);
+        toggleRulesCard();
+        delay(toggleMainCard, 1500);
       }
-    }
-
-    return () => clearInterval(interval);
-  }, [timerActive, seconds]);
-
-  const endRound = () => {
-    // toggleBtnFlip();
-    toggleTimer();
-    setSeconds(timerValue);
-    toggleGame();
-    // {
-    //   flip &&
-    //     setTimeout(() => {
-    //       questionGenerator();
-    //       toggleGame();
-    //     }, 1000);
-    // }
-  };
-
-  const startSpeech = () => {
-    toggleTimer();
-  };
-
-  const failedSpeech = () => {
-    endRound();
-    setFailSpeech(true);
-  };
-
-  const viewTopic = () => {
-    toggleQuestionCardFlip();
-    toggleGame();
-  };
-
-  const completedSpeech = () => {
-    endRound();
-    setFailSpeech(false);
-  };
-
-  const handleActionBtn = e => {
-    e.target.innerText === "Start Speech"
-      ? startSpeech()
-      : e.target.innerText === "View Topic"
-      ? viewTopic()
-      : failedSpeech();
-    toggleReady();
-    toggleBtnFlip();
+    } else toggleRulesCard();
   };
 
   return (
-    <Paper sx={{ ...backgroundPageSx, gap: ".5rem" }}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: "100%",
-          width: "100%",
-          background: gameActive && "#981010",
-          opacity: seconds / timerValue,
-          zIndex: 0,
-        }}
-      />
-      <Paper
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: "100%",
-          width: "100%",
-          zIndex: 0,
-          background: `url(${backgroundWords}) no-repeat center`,
-          backgroundSize: "cover",
-        }}
-      />
-
+    <MainBackground timerValue={timerValue} seconds={seconds}>
       <Box
         sx={{
           ...flexBoxSx,
@@ -166,71 +66,26 @@ export default function GamePage() {
           // background: "red",
         }}
       >
-        <QuestionCard
-          active={gameActive && !rules}
-          seconds={seconds}
-          flip={questionCardFlip}
-          currentQuestion={currentQuestion}
-        />
+        <MainCardContainer>
+          <QuestionCard
+            showCard={mainCard}
+            questionCard={questionCard}
+            seconds={seconds}
+            finishSpeech={false}
+            currentQuestion={currentQuestion}
+          />
+          <RulesCard showCard={rulesCard} />
+        </MainCardContainer>
       </Box>
-      <Footer
-        sx={{
-          ...marginSx,
-          justifyContent: "space-between",
-          height: "100px",
-          // background: "teal",
-        }}
-      >
-        <ActionBtnCard
-          handleClick={handleActionBtn}
-          active={ready && gameActive && !timerActive}
-          btnFlip={btnFlip}
-        >
-          Start Speech
-        </ActionBtnCard>
-
-        <ActionBtnCard
-          handleClick={handleActionBtn}
-          active={ready && gameActive && timerActive}
-          btnFlip={btnFlip}
-        >
-          Fail Speech
-        </ActionBtnCard>
-
-        <ActionBtnCard
-          handleClick={handleActionBtn}
-          active={ready && !gameActive}
-          btnFlip={btnFlip}
-        >
-          View Topic
-        </ActionBtnCard>
-        {/* <Paper
-          sx={{
-            ...flexBoxSx,
-            maxHeight: "100%",
-            width: "180px",
-            padding: ".5rem",
-            position: "relative",
-            cursor: "pointer",
-          }}
-        >
-          <Box
-            onClick={gameActive && !timerActive && toggleTimer}
-            sx={{
-              ...flexBoxSx,
-              height: "100%",
-              width: "100%",
-              background:
-                !(gameActive && !timerActive) &&
-                `url(${PublicSpeakingCropped}) no-repeat center`,
-              backgroundSize: "contain",
-            }}
-          >
-            {gameActive && !timerActive && "Start Speech"}
-          </Box>
-        </Paper> */}
+      <Footer>
+        <Button variant='contained' onClick={toggleRules}>
+          {questionCard ? "show rules" : "hide rules"}
+        </Button>
+        <Button variant='contained' onClick={togglePowerButton}>
+          {!gameActive ? "PlayGame" : "QuitGame"}
+        </Button>
       </Footer>
-    </Paper>
+    </MainBackground>
   );
 }
 const Header = styled(Box)``;

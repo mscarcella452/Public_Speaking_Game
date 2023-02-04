@@ -27,8 +27,9 @@ function App() {
         sx={{
           height: "100vh",
           overflow: "hidden",
-          background: `url(${backgroundWords}) no-repeat center`,
-          backgroundSize: "cover",
+          background: "#981010",
+          // background: `url(${backgroundWords}) no-repeat center`,
+          // backgroundSize: "cover",
           // fontFamily: "'Solitreo', cursive",
           boxSizing: "border-box",
         }}

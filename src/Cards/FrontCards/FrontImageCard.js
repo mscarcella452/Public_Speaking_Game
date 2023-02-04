@@ -3,7 +3,7 @@ import { Paper, Box } from "@mui/material";
 import { cardFrontSx } from "../../SXstyles";
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
 
-function FrontImageCard({ image, children }) {
+function FrontImageCard({ image }) {
   return (
     <Paper elevation={5} sx={cardFrontSx}>
       <Box
@@ -14,7 +14,6 @@ function FrontImageCard({ image, children }) {
           backgroundSize: "contain",
         }}
       />
-      {children}
     </Paper>
   );
 }
