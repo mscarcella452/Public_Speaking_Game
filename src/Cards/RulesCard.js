@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { delay } from "../Helpers/FunctionHelpers";
 import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
 import { Box } from "@mui/material";
-import { flexBoxSx, cardFrontSx, cardBackSx, breadSx } from "../SXstyles";
+import { flexBoxSx, frontFlipSx, backFlipSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
 import FlipCard from "./FlipCard";
 
@@ -21,7 +21,7 @@ function RulesCard({ showCard }) {
       active={showCard}
       slideDirection={showCard ? "down" : "left"}
     >
-      <Box sx={cardFrontSx}>Rules</Box>
+      <Box sx={frontFlipSx}>Rules</Box>
 
       <Box sx={rulesCardBackSx}>
         {/* <Box sx={breadSx}>{`:${seconds}`}</Box> */}
@@ -43,7 +43,7 @@ function RulesCard({ showCard }) {
 export default RulesCard;
 
 const rulesCardBackSx = {
-  ...cardBackSx,
+  ...backFlipSx,
   flexDirection: "column",
   justifyContent: "flex-start",
   gap: ".5rem",

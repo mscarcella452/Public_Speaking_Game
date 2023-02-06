@@ -2,9 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Paper } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import HomePage from "./Pages/HomePage";
 import GamePage from "./Pages/GamePage";
-import RulesPage from "./Pages/RulesPage";
 import backgroundWords from "./Images/backgroundWords.png";
 import SunnyspellsRegular from "./Fonts/SunnyspellsRegular.otf";
 

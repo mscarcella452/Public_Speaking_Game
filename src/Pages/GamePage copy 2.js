@@ -12,15 +12,16 @@ import {
   backgroundPageSx,
   flexBoxSx,
   questionCardBoxSx,
-  mainFlipContainerSx,
 } from "../SXstyles";
 import styled from "styled-components";
 import { Paper, Box, Button } from "@mui/material";
-import QuestionCard from "../Cards/BackCards/QuestionCard";
-
-import MainBackground from "../ComponentHelpers/MainBackground";
-
-import FlipContainer from "../ComponentHelpers/FlipContainer/FlipContainer";
+import QuestionCard from "../Cards/QuestionCard";
+import ActionBtnCard from "../Cards/ActionBtnCard";
+import MainCardContainer from "../Helpers/ComponentHelpers/MainCardContainer";
+import MainBackground from "../Helpers/ComponentHelpers/MainBackground";
+import RulesCard from "../Cards/RulesCard";
+import Header from "../Helpers/ComponentHelpers/Header";
+import Footer from "../Helpers/ComponentHelpers/Footer";
 
 export default function GamePage() {
   const questionGenerator = useContext(GenerateQuestionProvider);
@@ -32,7 +33,6 @@ export default function GamePage() {
   const [mainCard, toggleMainCard] = useToggle(false);
   const [rulesCard, toggleRulesCard] = useToggle(false);
   const [questionCard, toggleQuestionCard] = useToggle(true);
-  const [flip, toggleFlip] = useToggle(false);
 
   const nav = useNavigate();
   console.log(gameActive);
@@ -56,9 +56,7 @@ export default function GamePage() {
 
   return (
     <MainBackground timerValue={timerValue} seconds={seconds}>
-      <Button variant='contained' onClick={toggleFlip} sx={{ zIndex: 11 }}>
-        {!flip ? "PlayGame" : "QuitGame"}
-      </Button>
+      <Header toggleRules={toggleRules} togglePowerButton={togglePowerButton} />
       <Box
         sx={{
           ...flexBoxSx,
@@ -66,12 +64,11 @@ export default function GamePage() {
           position: "relative",
           gap: "1rem",
           cursor: "pointer",
-          // zIndex: 5,
-
+          zIndex: 5,
           // background: "red",
         }}
       >
-        {/* <MainCardContainer>
+        <MainCardContainer>
           <QuestionCard
             showCard={mainCard}
             questionCard={questionCard}
@@ -80,18 +77,8 @@ export default function GamePage() {
             currentQuestion={currentQuestion}
           />
           <RulesCard showCard={rulesCard} />
-        </MainCardContainer> */}
-        <FlipContainer
-          flip={flip}
-          mainContainer={true}
-          containerSx={mainFlipContainerSx}
-        >
-          <QuestionCard seconds={seconds} currentQuestion={currentQuestion} />
-        </FlipContainer>
+        </MainCardContainer>
       </Box>
-      <Button variant='contained' onClick={toggleFlip} sx={{ zIndex: 11 }}>
-        {!flip ? "PlayGame" : "QuitGame"}
-      </Button>
 
       {/* <Button variant='contained' onClick={toggleRules}>
           {questionCard ? "show rules" : "hide rules"}
@@ -99,6 +86,11 @@ export default function GamePage() {
         <Button variant='contained' onClick={togglePowerButton}>
           {!gameActive ? "PlayGame" : "QuitGame"}
         </Button> */}
+      <Footer
+        gameActve={gameActive}
+        mainCard={mainCard}
+        togglePowerButton={togglePowerButton}
+      />
     </MainBackground>
   );
 }

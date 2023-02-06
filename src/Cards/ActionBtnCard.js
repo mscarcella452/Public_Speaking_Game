@@ -1,42 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { useToggle } from "../Helpers/CustomHooks";
+import { delay } from "../Helpers/FunctionHelpers";
+import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
+import { Box, Button } from "@mui/material";
+import { flexBoxSx, frontFlipSx, backFlipSx, breadSx } from "../SXstyles";
+import styled from "styled-components";
 import FlipCard from "./FlipCard";
 import FrontImageCard from "./FrontCards/FrontImageCard";
 import PublicSpeakingCropped from ".././Images/PublicSpeakingCropped.png";
-import { Box } from "@mui/material";
-import { flexBoxSx, cardFrontSx, cardBackSx } from "../SXstyles";
 
-const text = ["Start Speech", "View Topic", "Fail Speech"];
-const frontText = ["Start Speech", "View Topic", "Fail Speech"];
-const backText = ["Fail Speech", "Start Speech", "View Topic"];
-// const text = [
-//   ["Start Speech", "Fail Speech"],
-//   ["View Topic", "Start Speech"],
-//   ["Fail Speech", "View Topic"],
-// ];
+function ActionBtnCard({ handleClick, showCard, children }) {
+  // const [active, toggleActive] = useToggle(false);
+  const [flip, toggleFlip] = useToggle(false);
 
-function ActionBtnCard({ active, handleClick, btnFlip, children }) {
+  useEffect(() => {
+    delay(toggleFlip, 1500);
+  }, [showCard]);
+  // useDidMountEffect(() => {
+  //   delay(toggleFlip, 1500);
+  // }, [showCard]);
+  // useEffect(() => {
+  //   !showCard && flip && delay(toggleFlip, 1500);
+  //   showCard && delay(toggleFlip, 1500);
+  // }, [showCard]);
+
   return (
     <FlipCard
-      extraSx={extraSx}
-      flip={btnFlip}
-      active={active}
-      slideDirection={active ? "up" : "left"}
+      // extraSx={questionCardBoxSx}
+      flip={flip}
+      timeout={500}
+      active={showCard}
+      slideDirection={showCard ? "up" : "left"}
     >
-      {/* <Box sx={{ ...cardFrontSx, backgroundColor: "black" }}></Box> */}
-      <FrontImageCard image={PublicSpeakingCropped} />
-      <Box sx={cardBackSx} onClick={e => handleClick(e)}>
+      <Box sx={{ ...frontFlipSx, background: "#333" }} />
+
+      <Button sx={questionCardBackSx} onClick={handleClick}>
         {children}
-      </Box>
+      </Button>
     </FlipCard>
   );
 }
 
-const extraSx = {
-  height: "100%",
-  width: "180px",
-  borderRadius: "2.5px",
-  padding: ".5rem",
-  background: "#fff",
-};
 export default ActionBtnCard;
+
+const questionCardBackSx = {
+  ...backFlipSx,
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  gap: ".5rem",
+  cursor: "auto",
+  fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem", lg: "2.5rem" },
+  padding: { xs: ".75rem", sm: ".75rem", md: "1.5rem", lg: "1rem 2rem" },
+};

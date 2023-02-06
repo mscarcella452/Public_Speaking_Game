@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { delay } from "../Helpers/FunctionHelpers";
 import { useToggle, useDidMountEffect } from "../Helpers/CustomHooks";
 import { Box } from "@mui/material";
-import { flexBoxSx, cardFrontSx, cardBackSx, breadSx } from "../SXstyles";
+import { flexBoxSx, frontFlipSx, backFlipSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
 import FlipCard from "./FlipCard";
 import FrontImageCard from "./FrontCards/FrontImageCard";
@@ -38,7 +38,7 @@ function QuestionCard({
       {questionCard ? (
         <FrontImageCard image={PublicSpeakingCropped} />
       ) : (
-        <Box sx={cardFrontSx}>{finishSpeech ? "Congrats" : "Failure"}</Box>
+        <Box sx={frontFlipSx}>{finishSpeech ? "Congrats" : "Failure"}</Box>
       )}
 
       <Box sx={questionCardBackSx}>
@@ -61,7 +61,7 @@ function QuestionCard({
 export default QuestionCard;
 
 const questionCardBackSx = {
-  ...cardBackSx,
+  ...backFlipSx,
   flexDirection: "column",
   justifyContent: "flex-start",
   gap: ".5rem",
