@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
-import { marginSx } from "../../SXstyles";
+import { Box, Button } from "@mui/material";
+import { flexBoxSx, marginSx, smallFlipContainerSx } from "../SXstyles";
+import FlipContainer from "./FlipContainer";
 
-export default function Header({}) {
-  return <Box sx={HeaderSx}></Box>;
+export default function Header({ toggleFlip }) {
+  return (
+    <Box sx={marginSx}>
+      <FlipContainer flip={false} containerSx={smallFlipContainerSx}>
+        <Button onClick={toggleFlip} sx={flexBoxSx}>
+          Flip
+        </Button>
+      </FlipContainer>
+      <FlipContainer flip={false} containerSx={smallFlipContainerSx}>
+        <Button onClick={toggleFlip} sx={flexBoxSx}>
+          Flip
+        </Button>
+      </FlipContainer>
+    </Box>
+  );
 }
 
 const HeaderSx = {

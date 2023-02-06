@@ -14,7 +14,7 @@ function QuestionCard({ currentQuestion, seconds }) {
           textAlign: "left",
         }}
       >
-        {currentQuestion}
+        {/* {currentQuestion} */} question
       </Box>
       <Box sx={breadSx} />
     </Box>

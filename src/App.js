@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Paper } from "@mui/material";
+import { Paper, Box } from "@mui/material";
+import { cardOverlaySx, backgroundWordsOverlaySx } from "./SXstyles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GamePage from "./Pages/GamePage";
 import backgroundWords from "./Images/backgroundWords.png";
@@ -32,6 +33,9 @@ function App() {
           boxSizing: "border-box",
         }}
       >
+        {/* <Box sx={{ ...cardOverlaySx, opacity: 0.2, zIndex: 5 }} />
+        <Box sx={{ ...backgroundWordsOverlaySx, zIndex: 7 }} /> */}
+
         <Routes>
           <Route path='*' element={<GamePage />} />
 

@@ -7,20 +7,21 @@ import {
   QuestionProvider,
 } from "../Context/GameContext";
 import {
-  pageSx,
-  marginSx,
-  backgroundPageSx,
   flexBoxSx,
-  questionCardBoxSx,
   mainFlipContainerSx,
+  cardOverlaySx,
+  backgroundWordsOverlaySx,
 } from "../SXstyles";
 import styled from "styled-components";
 import { Paper, Box, Button } from "@mui/material";
-import QuestionCard from "../BackCards/QuestionCard";
-
+import QuestionCard from "../BackFlip/QuestionCard";
+import Header from "../ComponentHelpers/Header";
+import Footer from "../ComponentHelpers/Footer";
+import FooterOverlay from "../ComponentHelpers/FooterOverlay";
 import MainBackground from "../ComponentHelpers/MainBackground";
 
 import FlipContainer from "../ComponentHelpers/FlipContainer";
+import FlipContainerOverlay from "../ComponentHelpers/FlipContainerOverlay";
 
 export default function GamePage() {
   const questionGenerator = useContext(GenerateQuestionProvider);
@@ -56,49 +57,46 @@ export default function GamePage() {
 
   return (
     <MainBackground timerValue={timerValue} seconds={seconds}>
-      <Button variant='contained' onClick={toggleFlip} sx={{ zIndex: 11 }}>
-        {!flip ? "PlayGame" : "QuitGame"}
-      </Button>
-      <Box
-        sx={{
-          ...flexBoxSx,
-          // alignItems: gameActive ? "flex-start" : "flex-end",
-          position: "relative",
-          gap: "1rem",
-          cursor: "pointer",
-          // zIndex: 5,
-
-          // background: "red",
-        }}
-      >
-        {/* <MainCardContainer>
-          <QuestionCard
-            showCard={mainCard}
-            questionCard={questionCard}
-            seconds={seconds}
-            finishSpeech={false}
-            currentQuestion={currentQuestion}
+      <Box sx={{ ...flexBoxSx, flexDirection: "column" }}>
+        <Box sx={mainBoxSx}>
+          <FlipContainer
+            flip={flip}
+            main={true}
+            containerSx={mainFlipContainerSx}
           />
-          <RulesCard showCard={rulesCard} />
-        </MainCardContainer> */}
-        <FlipContainer
-          flip={flip}
-          mainContainer={true}
-          containerSx={mainFlipContainerSx}
-        >
-          <QuestionCard seconds={seconds} currentQuestion={currentQuestion} />
-        </FlipContainer>
+        </Box>
+        <Footer flip={flip} />
       </Box>
-      <Button variant='contained' onClick={toggleFlip} sx={{ zIndex: 11 }}>
-        {!flip ? "PlayGame" : "QuitGame"}
-      </Button>
-
-      {/* <Button variant='contained' onClick={toggleRules}>
-          {questionCard ? "show rules" : "hide rules"}
-        </Button>
-        <Button variant='contained' onClick={togglePowerButton}>
-          {!gameActive ? "PlayGame" : "QuitGame"}
-        </Button> */}
+      <Box sx={overlayContainerSx}>
+        <Box sx={mainBoxSx}>
+          <FlipContainerOverlay
+            flip={flip}
+            main={true}
+            containerSx={mainFlipContainerSx}
+          >
+            <QuestionCard seconds={seconds} currentQuestion={currentQuestion} />
+          </FlipContainerOverlay>
+        </Box>
+        <FooterOverlay toggleFlip={toggleFlip} flip={flip} />
+      </Box>
+      {/* <Header /> */}
     </MainBackground>
   );
 }
+
+const mainBoxSx = {
+  ...flexBoxSx,
+  position: "relative",
+};
+
+const overlayContainerSx = {
+  ...flexBoxSx,
+  flexDirection: "column",
+  zIndex: 20,
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  padding: "2rem",
+};

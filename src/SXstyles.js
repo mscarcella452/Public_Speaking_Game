@@ -10,25 +10,9 @@ export const flexBoxSx = {
   boxSizing: "border-box",
 };
 
-export const pageSx = {
-  ...flexBoxSx,
-  flexDirection: "column",
-  justifyContent: "space-between",
-  background: "transparent",
-  overflow: "hidden",
-  padding: "1rem",
-};
-
-export const backgroundPageSx = {
-  ...pageSx,
-  background: "#fff",
-  // background: "#981010",
-  position: "relative",
-};
-
 export const backgroundWordsImageSx = {
   background: `url(${backgroundWords}) no-repeat center`,
-  backgroundSize: "1600px",
+  backgroundSize: "cover",
 };
 
 export const backgroundWordsOverlaySx = {
@@ -40,41 +24,25 @@ export const backgroundWordsOverlaySx = {
   bottom: 0,
   height: "100%",
   width: "100%",
-  zIndex: 0,
-};
-
-export const containerSx = {
-  ...flexBoxSx,
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  background: "transparent",
-  padding: "1rem 2rem",
-  overflow: "scroll",
+  zIndex: 7,
 };
 
 export const marginSx = {
   ...flexBoxSx,
   justifyContent: "space-between",
-  alignItems: "flex-start",
-  height: "120px",
+  // alignItems: "flex-start",
+  height: "80px",
   width: "100%",
-  padding: "0 2rem",
   zIndex: 5,
   // background: "teal",
-};
-
-export const homeBottomMarginSx = {
-  ...marginSx,
-  height: "225px",
 };
 
 export const frontFlipSx = {
   ...flexBoxSx,
   position: "absolute",
   backfaceVisibility: "hidden",
-  ...backgroundWordsImageSx,
+  overflow: "hidden",
   padding: "1.5rem",
-  borderRadius: "20px",
 };
 
 export const backFlipSx = {
@@ -82,33 +50,21 @@ export const backFlipSx = {
   padding: 0,
   background: "#fff",
   transform: "rotateX(180deg)",
+  position: "relative",
+  zIndex: 20,
 };
 
-export const cardOverlaySx = {
+export const fabricOverlaySx = {
   background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
   backgroundSize: "cover",
-  // backgroundSize: "cover",
   borderRadius: "5px",
-  opacity: 0.35,
+  opacity: 0.2,
   position: "absolute",
   top: 0,
   bottom: 0,
   left: 0,
   right: 0,
-};
-
-export const cardContainerSx = {
-  ...flexBoxSx,
-  padding: {
-    xs: "1rem",
-    sm: "1rem",
-    md: "1rem",
-    lg: "1rem",
-  },
-  background: "#fff",
-  boxShadow: "1px 2px 7px 1px #474747 inset;",
-  borderRadius: "5px",
-  position: "relative",
+  zIndex: 7,
 };
 
 export const breadSx = {
@@ -139,11 +95,11 @@ export const mainFlipContainerSx = {
     md: "3px",
     lg: "3px",
   },
-  boxShadow: "0px 0px 3px .5px black inset;",
+  boxShadow: "0px 0px 3px .5px #333 inset;",
+  border: "1px solid #333",
   // boxShadow: "1px 2px 7px 1px #474747 inset;",
-  borderRadius: "5px",
   position: "relative",
-  borderRadius: "20px",
+  borderRadius: "10px",
   height: {
     xs: "150px",
     sm: "175px",
@@ -158,5 +114,28 @@ export const mainFlipContainerSx = {
     lg: "550px",
     xl: "800px",
   },
-  background: "#333",
+  background: "rgb(15, 15, 15)",
+};
+
+export const smallFlipContainerSx = {
+  ...mainFlipContainerSx,
+  borderRadius: "5px",
+  height: "100%",
+  width: {
+    xs: "160px",
+    sm: "160px",
+    md: "160px",
+    lg: "160px",
+    xl: "160px",
+  },
+  border: ".25px solid #333",
+};
+
+export const flipBoxInnerSx = {
+  width: "100%",
+  height: "100%",
+  transition: "transform 1.5s",
+  transformStyle: "preserve-3d",
+  position: "relative",
+  backgroundColor: "#981010",
 };

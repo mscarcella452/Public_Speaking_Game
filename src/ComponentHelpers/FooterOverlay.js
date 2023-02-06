@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import { marginSx, flexBoxSx, smallFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
+import FlipContainerOverlay from "./FlipContainerOverlay";
 
-export default function Footer({
+export default function FooterOverlay({
   gameActive,
   mainCard,
   timerActive,
@@ -12,8 +13,14 @@ export default function Footer({
   flip,
 }) {
   return (
-    <Box sx={marginSx}>
-      <FlipContainer
+    <Box
+      sx={{
+        ...marginSx,
+        // background: "teal",
+        // opacity: 0.2,
+      }}
+    >
+      <FlipContainerOverlay
         flip={false}
         containerSx={smallFlipContainerSx}
         position={"left bottom"}
@@ -28,17 +35,17 @@ export default function Footer({
         >
           Flip
         </Button>
-      </FlipContainer>
-      <FlipContainer
+      </FlipContainerOverlay>
+      <FlipContainerOverlay
         flip={true}
         containerSx={smallFlipContainerSx}
         position={"center bottom"}
       >
-        <Button onClick={toggleFlip} sx={flexBoxSx}>
+        <Button onClick={toggleFlip} sx={{ ...flexBoxSx, zIndex: 20 }}>
           Flip
         </Button>
-      </FlipContainer>
-      <FlipContainer
+      </FlipContainerOverlay>
+      <FlipContainerOverlay
         flip={flip}
         containerSx={smallFlipContainerSx}
         position={"right bottom"}
@@ -46,7 +53,7 @@ export default function Footer({
         <Button onClick={toggleFlip} sx={flexBoxSx}>
           Flip
         </Button>
-      </FlipContainer>
+      </FlipContainerOverlay>
     </Box>
   );
 }
