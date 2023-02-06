@@ -16,11 +16,11 @@ import {
 } from "../SXstyles";
 import styled from "styled-components";
 import { Paper, Box, Button } from "@mui/material";
-import QuestionCard from "../Cards/BackCards/QuestionCard";
+import QuestionCard from "../BackCards/QuestionCard";
 
 import MainBackground from "../ComponentHelpers/MainBackground";
 
-import FlipContainer from "../ComponentHelpers/FlipContainer/FlipContainer";
+import FlipContainer from "../ComponentHelpers/FlipContainer";
 
 export default function GamePage() {
   const questionGenerator = useContext(GenerateQuestionProvider);

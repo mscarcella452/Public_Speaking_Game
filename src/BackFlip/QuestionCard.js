@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { flexBoxSx, breadSx } from "../../SXstyles";
+import { flexBoxSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
 
 function QuestionCard({ currentQuestion, seconds }) {
