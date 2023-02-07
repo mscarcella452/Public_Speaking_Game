@@ -5,6 +5,7 @@ import FlipContainer from "./FlipContainer";
 
 export default function Footer({
   gameActive,
+  gameStatus,
   mainCard,
   timerActive,
   togglePowerButton,
@@ -14,39 +15,17 @@ export default function Footer({
   return (
     <Box sx={marginSx}>
       <FlipContainer
-        flip={false}
+        active={gameActive && gameStatus === "topic"}
         containerSx={smallFlipContainerSx}
-        position={"left bottom"}
-      >
-        <Button
-          onClick={toggleFlip}
-          sx={{
-            ...flexBoxSx,
-
-            zIndex: 7,
-          }}
-        >
-          Flip
-        </Button>
-      </FlipContainer>
+      />
       <FlipContainer
-        flip={true}
+        active={gameActive && gameStatus === "speech"}
         containerSx={smallFlipContainerSx}
-        position={"center bottom"}
-      >
-        <Button onClick={toggleFlip} sx={flexBoxSx}>
-          Flip
-        </Button>
-      </FlipContainer>
+      />
       <FlipContainer
-        flip={flip}
+        active={!gameActive || gameStatus === "result"}
         containerSx={smallFlipContainerSx}
-        position={"right bottom"}
-      >
-        <Button onClick={toggleFlip} sx={flexBoxSx}>
-          Flip
-        </Button>
-      </FlipContainer>
+      />
     </Box>
   );
 }

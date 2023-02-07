@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useToggle } from "../Helpers/CustomHooks";
+import { delay } from "../Helpers/FunctionHelpers";
 import { Box, Paper } from "@mui/material";
 import {
   fabricOverlaySx,
@@ -10,7 +12,14 @@ import {
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
 // import backgroundWords from "../../Images/backgroundWords.png";
 
-function FlipContainerOverlay({ main, containerSx, flip, children }) {
+function FlipContainerOverlay({ main, containerSx, active, children }) {
+  const [flip, toggleFlip] = useToggle(false);
+
+  // useEffect(() => {
+  //   !flip && delay(toggleFlip, 1000);
+  //   flip && toggleFlip();
+  // }, [active]);
+
   return (
     <Box
       sx={{
@@ -22,7 +31,7 @@ function FlipContainerOverlay({ main, containerSx, flip, children }) {
       <Box
         sx={{
           ...flipBoxInnerSx,
-          transform: flip && "rotateX(180deg)",
+          transform: active && "rotateX(180deg)",
           background: "transparent",
         }}
       >

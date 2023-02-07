@@ -3,10 +3,10 @@ import { Box } from "@mui/material";
 import { flexBoxSx, breadSx } from "../SXstyles";
 import styled from "styled-components";
 
-function QuestionCard({ currentQuestion, seconds }) {
+function QuestionCard({ currentQuestion, seconds, gameStatus }) {
   return (
     <Box sx={questionCardBackSx}>
-      <Box sx={breadSx}>{`:${seconds}`}</Box>
+      <Box sx={breadSx}>{seconds >= 0 ? `:${seconds}` : ""}</Box>
       <Box
         sx={{
           ...flexBoxSx,
@@ -14,7 +14,9 @@ function QuestionCard({ currentQuestion, seconds }) {
           textAlign: "left",
         }}
       >
-        {/* {currentQuestion} */} question
+        {(gameStatus === "topic" || gameStatus === "speech") && currentQuestion}
+        {gameStatus === "result" && "round over"}
+        {gameStatus === "rules" && "Rules"}
       </Box>
       <Box sx={breadSx} />
     </Box>

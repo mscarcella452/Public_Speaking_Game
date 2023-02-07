@@ -17,7 +17,7 @@ import { Paper, Box, Button } from "@mui/material";
 import QuestionCard from "../BackFlip/QuestionCard";
 import Header from "../ComponentHelpers/Header";
 import Footer from "../ComponentHelpers/Footer";
-import FooterOverlay from "../ComponentHelpers/FooterOverlay";
+import BottomBtnContainer from "../ComponentHelpers/BottomBtnContainer";
 import MainBackground from "../ComponentHelpers/MainBackground";
 
 import FlipContainer from "../ComponentHelpers/FlipContainer";
@@ -28,56 +28,122 @@ export default function GamePage() {
   const currentQuestion = useContext(QuestionProvider);
   const [timerValue, setTimerValue] = useState(5);
   const [seconds, setSeconds] = useState(timerValue);
-  // const [timerActive, toggleTimer] = useToggle(false);
+  const [gameStatus, setGameStatus] = useState("pause");
+  const [timerActive, toggleTimer] = useToggle(false);
   const [gameActive, toggleGame] = useToggle(false);
-  const [mainCard, toggleMainCard] = useToggle(false);
-  const [rulesCard, toggleRulesCard] = useToggle(false);
-  const [questionCard, toggleQuestionCard] = useToggle(true);
-  const [flip, toggleFlip] = useToggle(false);
+
+  // const [mainCard, toggleMainCard] = useToggle(false);
+  // const [rulesCard, toggleRulesCard] = useToggle(false);
+  // const [questionCard, toggleQuestionCard] = useToggle(true);
+  // const [flip, toggleFlip] = useToggle(false);
 
   const nav = useNavigate();
-  console.log(gameActive);
+
+  // const toggleFlip = () => setFlip(prevFlip => !prevFlip);
+
+  useEffect(() => {
+    let interval = null;
+
+    if (timerActive) {
+      if (seconds >= 0) {
+        interval = setInterval(() => {
+          setSeconds(seconds => seconds - 1);
+        }, 1000);
+      } else {
+        clearInterval(interval);
+        // completedSpeech();
+        endRound();
+      }
+    }
+    // console.log(`${(seconds / initialValue) * 100}px`);
+
+    return () => clearInterval(interval);
+  }, [timerActive, seconds]);
+
   const togglePowerButton = () => {
     !gameActive && questionGenerator();
-    !questionCard && toggleQuestionCard();
+    seconds !== timerValue && setSeconds(timerValue);
+    timerActive && toggleTimer();
+    // !questionCard && toggleQuestionCard();
     toggleGame();
-    toggleMainCard();
+    setGameStatus("topic");
+    // toggleMainCard();
   };
-  const toggleRules = () => {
-    if (gameActive) {
-      if (mainCard) {
-        toggleMainCard();
-        delay(toggleRulesCard, 1500);
-      } else {
-        toggleRulesCard();
-        delay(toggleMainCard, 1500);
-      }
-    } else toggleRulesCard();
+
+  const startTimer = () => {
+    setGameStatus("speech");
+    toggleTimer();
   };
+
+  const endRound = () => {
+    setGameStatus("pause");
+    setTimeout(() => {
+      setGameStatus("result");
+    }, 1500);
+    toggleTimer();
+  };
+  const nextRound = () => {
+    setGameStatus("pause");
+    setTimeout(() => {
+      setGameStatus("topic");
+      setSeconds(timerValue);
+      questionGenerator();
+    }, 1500);
+  };
+
+  // const toggleRules = () => {
+  //   if (gameActive) {
+  //     if (mainCard) {
+  //       toggleMainCard();
+  //       delay(toggleRulesCard, 1500);
+  //     } else {
+  //       toggleRulesCard();
+  //       delay(toggleMainCard, 1500);
+  //     }
+  //   } else toggleRulesCard();
+  // };
 
   return (
     <MainBackground timerValue={timerValue} seconds={seconds}>
       <Box sx={{ ...flexBoxSx, flexDirection: "column" }}>
         <Box sx={mainBoxSx}>
           <FlipContainer
-            flip={flip}
+            active={gameActive && gameStatus !== "pause"}
             main={true}
             containerSx={mainFlipContainerSx}
           />
         </Box>
-        <Footer flip={flip} />
+        <Footer gameActive={gameActive} timerActive={timerActive} />
       </Box>
       <Box sx={overlayContainerSx}>
+        <Button
+          onClick={togglePowerButton}
+          sx={{ zIndex: 20, position: "absolute", top: 0 }}
+        >
+          Turn Off
+        </Button>
         <Box sx={mainBoxSx}>
           <FlipContainerOverlay
-            flip={flip}
+            active={gameActive && gameStatus !== "pause"}
             main={true}
+            gameStatus={gameStatus}
             containerSx={mainFlipContainerSx}
           >
-            <QuestionCard seconds={seconds} currentQuestion={currentQuestion} />
+            <QuestionCard
+              seconds={seconds}
+              currentQuestion={currentQuestion}
+              gameStatus={gameStatus}
+            />
           </FlipContainerOverlay>
         </Box>
-        <FooterOverlay toggleFlip={toggleFlip} flip={flip} />
+        <BottomBtnContainer
+          gameActive={gameActive}
+          gameStatus={gameStatus}
+          togglePowerButton={togglePowerButton}
+          startTimer={startTimer}
+          endRound={endRound}
+          nextRound={nextRound}
+        />
       </Box>
       {/* <Header /> */}
     </MainBackground>

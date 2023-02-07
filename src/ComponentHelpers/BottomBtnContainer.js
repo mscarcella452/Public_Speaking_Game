@@ -4,13 +4,13 @@ import { marginSx, flexBoxSx, smallFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import FlipContainerOverlay from "./FlipContainerOverlay";
 
-export default function FooterOverlay({
+export default function BottomBtnContainer({
   gameActive,
-  mainCard,
-  timerActive,
+  gameStatus,
+  startTimer,
+  endRound,
+  nextRound,
   togglePowerButton,
-  toggleFlip,
-  flip,
 }) {
   return (
     <Box
@@ -21,37 +21,27 @@ export default function FooterOverlay({
       }}
     >
       <FlipContainerOverlay
-        flip={false}
+        active={gameActive && gameStatus === "topic"}
         containerSx={smallFlipContainerSx}
-        position={"left bottom"}
       >
-        <Button
-          onClick={toggleFlip}
-          sx={{
-            ...flexBoxSx,
-
-            zIndex: 7,
-          }}
-        >
-          Flip
+        <Button onClick={startTimer} sx={btnSx}>
+          Start Timer
         </Button>
       </FlipContainerOverlay>
       <FlipContainerOverlay
-        flip={true}
+        active={gameActive && gameStatus === "speech"}
         containerSx={smallFlipContainerSx}
-        position={"center bottom"}
       >
-        <Button onClick={toggleFlip} sx={{ ...flexBoxSx, zIndex: 20 }}>
-          Flip
+        <Button onClick={endRound} sx={btnSx}>
+          Fail Speech
         </Button>
       </FlipContainerOverlay>
       <FlipContainerOverlay
-        flip={flip}
+        active={!gameActive || gameStatus === "result"}
         containerSx={smallFlipContainerSx}
-        position={"right bottom"}
       >
-        <Button onClick={toggleFlip} sx={flexBoxSx}>
-          Flip
+        <Button onClick={gameActive ? nextRound : togglePowerButton} sx={btnSx}>
+          {gameActive ? "Next Round" : "Play"}
         </Button>
       </FlipContainerOverlay>
     </Box>
@@ -64,4 +54,9 @@ const btnWidthSx = {
   md: "160px",
   lg: "160px",
   xl: "160px",
+};
+
+const btnSx = {
+  ...flexBoxSx,
+  zIndex: 20,
 };
