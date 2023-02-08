@@ -17,28 +17,25 @@ export default function BottomBtnContainer({
     gameDispatch({ type: "SPEECH" });
   };
 
-  const endRound = () => {
+  const failSpeech = () => {
     gameDispatch({ type: "LOAD" });
     setTimeout(() => {
-      gameDispatch({ type: "RESULT" });
+      gameDispatch({ type: "FAIL" });
       gameDispatch({ type: "LOAD" });
-    }, 1500);
+    }, 1200);
     timerDispatch({ type: "TOGGLE_TIMER" });
-  };
-
-  const failSpeech = () => {
-    endRound();
-    // setFailSpeech
   };
 
   const nextRound = () => {
     gameDispatch({ type: "LOAD" });
     setTimeout(() => {
-      gameDispatch({ type: "TOPIC" });
-      gameDispatch({ type: "LOAD" });
       timerDispatch({ type: "RESET" });
       topicGenerator();
-    }, 1500);
+      setTimeout(() => {
+        gameDispatch({ type: "TOPIC" });
+        gameDispatch({ type: "LOAD" });
+      }, 750);
+    }, 450);
     timerDispatch({ type: "TOGGLE_TIMER" });
   };
 

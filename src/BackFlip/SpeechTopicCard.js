@@ -5,8 +5,9 @@ import { gameContext } from "../Context/GameStatusContext";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
 
-function SpeechTopicCard({ timer }) {
+function SpeechTopicCard() {
   const game = useContext(gameContext);
+  const timer = useContext(timerContext);
   const currentTopic = useContext(topicContext);
 
   return (
@@ -20,7 +21,7 @@ function SpeechTopicCard({ timer }) {
         }}
       >
         {(game.status === "topic" || game.status === "speech") && currentTopic}
-        {game.status === "result" && "round over"}
+        {game.status === "result" && (game.failSpeech ? "fail" : "success")}
         {game.status === "rules" && "Rules"}
       </Box>
       <Box sx={breadSx} />

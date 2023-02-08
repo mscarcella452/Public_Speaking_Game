@@ -17,14 +17,12 @@ function OverlayContainer() {
   const topicGenerator = useContext(generateTopicContext);
 
   const togglePowerButton = () => {
-    console.log(timer.timerOn);
+    game.gameOn && topicGenerator();
     timer.seconds !== timer.startingValue &&
       setTimeout(() => {
         timerDispatch({ type: "RESET" });
-      }, 500);
-
-    game.gameOn && timerDispatch({ type: "TOGGLE_TIMER" });
-
+        game.status !== "topic" && gameDispatch({ type: "TOPIC" });
+      }, 450);
     gameDispatch({ type: "TOGGLE_POWER" });
   };
 
@@ -43,7 +41,7 @@ function OverlayContainer() {
           overlay={true}
           containerSx={mainFlipContainerSx}
         >
-          <SpeechTopicCard timer={timer} />
+          <SpeechTopicCard />
         </FlipContainer>
       </Box>
       <BottomBtnContainer

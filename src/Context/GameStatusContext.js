@@ -1,5 +1,6 @@
 import React, { useReducer, createContext, useContext, useEffect } from "react";
-import { generateTopicContext } from "./TopicContext";
+// import { generateTopicContext } from "./TopicContext";
+import { timerContext, timerDispatchContext } from "./TimerContext";
 
 export const gameContext = createContext();
 export const gameDispatchContext = createContext();
@@ -9,6 +10,7 @@ const intialValue = {
   gameOn: false,
   flip: false,
   fullVersion: false,
+  failSpeech: false,
 };
 
 const gameReducer = (game, action) => {
@@ -18,7 +20,7 @@ const gameReducer = (game, action) => {
         ...game,
         flip: !game.flip,
         gameOn: !game.gameOn,
-        status: !game.gameOn && "topic",
+        // status: !game.gameOn && "topic",
       };
     case "LOAD":
       return { ...game, flip: !game.flip };
@@ -26,8 +28,10 @@ const gameReducer = (game, action) => {
       return { ...game, status: "topic" };
     case "SPEECH":
       return { ...game, status: "speech" };
-    case "RESULT":
-      return { ...game, status: "result" };
+    case "FAIL":
+      return { ...game, failSpeech: true, status: "result" };
+    case "SUCCESS":
+      return { ...game, failSpeech: true, status: "result" };
     case "INTERMISSION":
       return { ...game, status: "intermission" };
     case "BUY":
@@ -39,14 +43,37 @@ const gameReducer = (game, action) => {
 
 function GameStatusProvider({ children }) {
   const [game, gameDispatch] = useReducer(gameReducer, intialValue);
-  const topicGenerator = useContext(generateTopicContext);
+  // const topicGenerator = useContext(generateTopicContext);
+  const timer = useContext(timerContext);
+  const timerDispatch = useContext(timerDispatchContext);
+
+  // useEffect(() => {
+  //   if (game.gameOn) {
+  //     // gameDispatch({ type: "topic" });
+  //     topicGenerator();
+  //   }
+  // }, [game.gameOn]);
+
+  const endRound = () => {
+    gameDispatch({ type: "LOAD" });
+    setTimeout(() => {
+      gameDispatch({ type: "SUCCESS" });
+      gameDispatch({ type: "LOAD" });
+    }, 1200);
+    timerDispatch({ type: "TOGGLE_TIMER" });
+  };
 
   useEffect(() => {
-    if (game.gameOn) {
-      // gameDispatch({ type: "topic" });
-      topicGenerator();
-    }
-  }, [game.gameOn]);
+    timer.seconds === 0 && endRound();
+    // if (timer.seconds === 0) {
+    //   gameDispatch({ type: "LOAD" });
+    //   setTimeout(() => {
+    //     gameDispatch({ type: "SUCCESS" });
+    //     gameDispatch({ type: "LOAD" });
+    //   }, 1200);
+    //   timerDispatch({ type: "TOGGLE_TIMER" });
+    // }
+  }, [timer.seconds]);
 
   return (
     <gameDispatchContext.Provider value={gameDispatch}>
