@@ -1,4 +1,4 @@
-export const questions = [
+export const speechTopics = [
   "Quantum Physics",
   "Commercial Carpentry with a Class B License",
   "President Grover Cleveland’s impact on industrialization",

@@ -114,7 +114,7 @@ export const mainFlipContainerSx = {
     lg: "550px",
     xl: "800px",
   },
-  background: "rgb(15, 15, 15)",
+  // background: "rgb(15, 15, 15)",
 };
 
 export const smallFlipContainerSx = {
@@ -138,4 +138,9 @@ export const flipBoxInnerSx = {
   transformStyle: "preserve-3d",
   position: "relative",
   backgroundColor: "#981010",
+};
+
+export const mainBoxSx = {
+  ...flexBoxSx,
+  position: "relative",
 };

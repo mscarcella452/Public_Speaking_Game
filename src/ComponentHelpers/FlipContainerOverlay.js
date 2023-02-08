@@ -36,9 +36,9 @@ function FlipContainerOverlay({ main, containerSx, active, children }) {
         }}
       >
         {/* FrontFlip */}
-        <Box sx={{ ...frontFlipSx, borderRadius: main ? "10px" : "5px" }}>
+        {/* <Box sx={{ ...frontFlipSx, borderRadius: main ? "10px" : "5px" }}>
           {main && <Box sx={logoImageSx} />}
-        </Box>
+        </Box> */}
         {/* BackFlip */}
         <Box sx={{ ...backFlipSx, borderRadius: main ? "10px" : "5px" }}>
           {/* fabric overlay */}

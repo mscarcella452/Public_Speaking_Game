@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
 import { marginSx, flexBoxSx, smallFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
+import { gameContext } from "../Context/GameStatusContext";
 
-export default function Footer({
-  gameActive,
-  gameStatus,
-  mainCard,
-  timerActive,
-  togglePowerButton,
-  toggleFlip,
-  flip,
-}) {
+export default function Footer() {
+  const game = useContext(gameContext);
+
   return (
     <Box sx={marginSx}>
       <FlipContainer
-        active={gameActive && gameStatus === "topic"}
+        active={game.gameOn && game.flip && game.status === "topic"}
         containerSx={smallFlipContainerSx}
       />
       <FlipContainer
-        active={gameActive && gameStatus === "speech"}
+        active={game.gameOn && game.flip && game.status === "speech"}
         containerSx={smallFlipContainerSx}
       />
       <FlipContainer
-        active={!gameActive || gameStatus === "result"}
+        active={!game.gameOn || (game.flip && game.status === "result")}
         containerSx={smallFlipContainerSx}
       />
     </Box>
