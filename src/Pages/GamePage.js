@@ -28,7 +28,16 @@ export default function GamePage() {
 
   return (
     <MainBackground>
-      <Box sx={{ ...flexBoxSx, flexDirection: "column" }}>
+      <Box
+        sx={{
+          ...flexBoxSx,
+          flexDirection: "column",
+          padding: "1.5rem 2rem",
+          gap: "3rem",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Header />
         <Box sx={mainBoxSx}>
           <FlipContainer
             active={game.gameOn && game.flip}
@@ -39,6 +48,7 @@ export default function GamePage() {
         <Footer />
       </Box>
       <OverlayContainer />
+
       {/* <Header /> */}
     </MainBackground>
   );

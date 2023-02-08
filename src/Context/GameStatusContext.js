@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useContext, useEffect } from "react";
-// import { generateTopicContext } from "./TopicContext";
+import { generateTopicContext } from "./TopicContext";
 import { timerContext, timerDispatchContext } from "./TimerContext";
 
 export const gameContext = createContext();
@@ -43,16 +43,16 @@ const gameReducer = (game, action) => {
 
 function GameStatusProvider({ children }) {
   const [game, gameDispatch] = useReducer(gameReducer, intialValue);
-  // const topicGenerator = useContext(generateTopicContext);
+  const topicGenerator = useContext(generateTopicContext);
   const timer = useContext(timerContext);
   const timerDispatch = useContext(timerDispatchContext);
 
-  // useEffect(() => {
-  //   if (game.gameOn) {
-  //     // gameDispatch({ type: "topic" });
-  //     topicGenerator();
-  //   }
-  // }, [game.gameOn]);
+  useEffect(() => {
+    if (game.gameOn) {
+      // gameDispatch({ type: "topic" });
+      topicGenerator();
+    }
+  }, [game.gameOn]);
 
   const endRound = () => {
     gameDispatch({ type: "LOAD" });

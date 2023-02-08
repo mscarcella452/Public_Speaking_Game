@@ -10,7 +10,7 @@ import { timerContext } from "../Context/TimerContext";
 export default function MainBackground({ children }) {
   const timer = useContext(timerContext);
   return (
-    <Paper sx={{ ...backgroundPageSx, gap: ".5rem" }}>
+    <Paper sx={backgroundPageSx}>
       <Box
         sx={{ ...timerOverlaySx, opacity: timer.seconds / timer.startingValue }}
       />
@@ -24,11 +24,9 @@ export default function MainBackground({ children }) {
 const backgroundPageSx = {
   ...flexBoxSx,
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
   background: "transparent",
   overflow: "hidden",
-  padding: "2rem",
-  background: "#fff",
   position: "relative",
 };
 

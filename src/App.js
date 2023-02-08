@@ -25,8 +25,8 @@ function App() {
       <Paper
         sx={{
           height: "100vh",
-          overflow: "hidden",
-          background: "#981010",
+          overflow: "scroll",
+          // background: "#981010",
           // background: `url(${backgroundWords}) no-repeat center`,
           // backgroundSize: "cover",
           // fontFamily: "'Solitreo', cursive",

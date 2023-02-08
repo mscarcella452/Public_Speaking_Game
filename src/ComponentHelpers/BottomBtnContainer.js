@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { marginSx, flexBoxSx, smallFlipContainerSx } from "../SXstyles";
+import { footerSx, btnSx, BtnFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 
@@ -40,10 +40,10 @@ export default function BottomBtnContainer({
   };
 
   return (
-    <Box sx={marginSx}>
+    <Box sx={footerSx}>
       <FlipContainer
         active={game.gameOn && game.flip && game.status === "topic"}
-        containerSx={smallFlipContainerSx}
+        containerSx={BtnFlipContainerSx}
         overlay={true}
       >
         <Button onClick={startTimer} sx={btnSx}>
@@ -52,7 +52,7 @@ export default function BottomBtnContainer({
       </FlipContainer>
       <FlipContainer
         active={game.gameOn && game.flip && game.status === "speech"}
-        containerSx={smallFlipContainerSx}
+        containerSx={BtnFlipContainerSx}
         overlay={true}
       >
         <Button onClick={failSpeech} sx={btnSx}>
@@ -61,7 +61,7 @@ export default function BottomBtnContainer({
       </FlipContainer>
       <FlipContainer
         active={!game.gameOn || (game.flip && game.status === "result")}
-        containerSx={smallFlipContainerSx}
+        containerSx={BtnFlipContainerSx}
         overlay={true}
       >
         <Button
@@ -81,9 +81,4 @@ const btnWidthSx = {
   md: "160px",
   lg: "160px",
   xl: "160px",
-};
-
-const btnSx = {
-  ...flexBoxSx,
-  zIndex: 20,
 };

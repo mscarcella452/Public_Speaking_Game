@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useToggle } from "../Helpers/CustomHooks";
+import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
 import { flexBoxSx, mainFlipContainerSx, mainBoxSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
+import TopBtnContainer from "./TopBtnContainer";
 import BottomBtnContainer from "./BottomBtnContainer";
 import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
@@ -17,7 +17,7 @@ function OverlayContainer() {
   const topicGenerator = useContext(generateTopicContext);
 
   const togglePowerButton = () => {
-    game.gameOn && topicGenerator();
+    // game.gameOn && topicGenerator();
     timer.seconds !== timer.startingValue &&
       setTimeout(() => {
         timerDispatch({ type: "RESET" });
@@ -28,12 +28,13 @@ function OverlayContainer() {
 
   return (
     <Box sx={overlayContainerSx}>
-      <Button
+      {/* <Button
         onClick={togglePowerButton}
         sx={{ zIndex: 20, position: "absolute", top: 0 }}
       >
         Turn Off
-      </Button>
+      </Button> */}
+      <TopBtnContainer togglePowerButton={togglePowerButton} />
       <Box sx={mainBoxSx}>
         <FlipContainer
           active={game.gameOn && game.flip}
@@ -58,11 +59,13 @@ export default OverlayContainer;
 const overlayContainerSx = {
   ...flexBoxSx,
   flexDirection: "column",
+  justifyContent: "flex-start",
   zIndex: 20,
   position: "absolute",
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  padding: "2rem",
+  padding: "1.5rem 2rem",
+  gap: "3rem",
 };

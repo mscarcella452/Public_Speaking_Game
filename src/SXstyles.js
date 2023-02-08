@@ -27,13 +27,15 @@ export const backgroundWordsOverlaySx = {
   zIndex: 7,
 };
 
-export const marginSx = {
+export const footerSx = {
   ...flexBoxSx,
   justifyContent: "space-between",
-  // alignItems: "flex-start",
   height: "80px",
   width: "100%",
-  zIndex: 5,
+};
+export const HeaderSx = {
+  ...footerSx,
+  height: "40px",
   // background: "teal",
 };
 
@@ -117,7 +119,7 @@ export const mainFlipContainerSx = {
   // background: "rgb(15, 15, 15)",
 };
 
-export const smallFlipContainerSx = {
+export const BtnFlipContainerSx = {
   ...mainFlipContainerSx,
   borderRadius: "5px",
   height: "100%",
@@ -129,6 +131,17 @@ export const smallFlipContainerSx = {
     xl: "160px",
   },
   border: ".25px solid #333",
+};
+export const smallBtnFlipContainerSx = {
+  ...BtnFlipContainerSx,
+  height: "40px",
+  width: {
+    xs: "160px",
+    sm: "160px",
+    md: "160px",
+    lg: "160px",
+    xl: "50px",
+  },
 };
 
 export const flipBoxInnerSx = {
@@ -142,5 +155,11 @@ export const flipBoxInnerSx = {
 
 export const mainBoxSx = {
   ...flexBoxSx,
+  height: "auto",
   position: "relative",
+};
+
+export const btnSx = {
+  ...flexBoxSx,
+  zIndex: 20,
 };
