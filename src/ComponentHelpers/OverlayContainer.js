@@ -1,54 +1,54 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Button } from "@mui/material";
 import { flexBoxSx, mainFlipContainerSx, mainBoxSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import TopBtnContainer from "./TopBtnContainer";
 import BottomBtnContainer from "./BottomBtnContainer";
 import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
+import RulesCard from "../BackFlip/RulesCard";
+import RoundOverCard from "../BackFlip/RoundOverCard";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerContext, timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
 
 function OverlayContainer() {
   const game = useContext(gameContext);
-  const gameDispatch = useContext(gameDispatchContext);
   const timer = useContext(timerContext);
-  const timerDispatch = useContext(timerDispatchContext);
-  const topicGenerator = useContext(generateTopicContext);
+  const [thirdBtnTitle, setThirdBtn] = useState("Play");
 
-  const togglePowerButton = () => {
-    // game.gameOn && topicGenerator();
-    timer.seconds !== timer.startingValue &&
-      setTimeout(() => {
-        timerDispatch({ type: "RESET" });
-        game.status !== "topic" && gameDispatch({ type: "TOPIC" });
-      }, 450);
-    gameDispatch({ type: "TOGGLE_POWER" });
+  const changeThirdBtnTitle = title => {
+    setTimeout(() => {
+      setThirdBtn(title);
+    }, 500);
   };
 
   return (
     <Box sx={overlayContainerSx}>
-      {/* <Button
-        onClick={togglePowerButton}
-        sx={{ zIndex: 20, position: "absolute", top: 0 }}
-      >
-        Turn Off
-      </Button> */}
-      <TopBtnContainer togglePowerButton={togglePowerButton} />
+      <TopBtnContainer changeThirdBtnTitle={changeThirdBtnTitle} />
       <Box sx={mainBoxSx}>
         <FlipContainer
-          active={game.gameOn && game.flip}
+          active={
+            (game.flip &&
+              (game.status === "topic" ||
+                game.status === "result" ||
+                game.rules)) ||
+            (game.status === "speech" && timer.On)
+          }
           main={true}
           overlay={true}
           containerSx={mainFlipContainerSx}
         >
-          <SpeechTopicCard />
+          {!game.rules &&
+            (game.status === "topic" || game.status === "speech") && (
+              <SpeechTopicCard />
+            )}
+          {!game.rules && game.status === "result" && <RoundOverCard />}
+          {game.rules && <RulesCard />}
         </FlipContainer>
       </Box>
       <BottomBtnContainer
-        togglePowerButton={togglePowerButton}
-        timerDispatch={timerDispatch}
-        topicGenerator={topicGenerator}
+        thirdBtnTitle={thirdBtnTitle}
+        changeThirdBtnTitle={changeThirdBtnTitle}
       />
     </Box>
   );

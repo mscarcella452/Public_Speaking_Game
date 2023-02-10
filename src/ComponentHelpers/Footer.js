@@ -10,15 +10,20 @@ export default function Footer() {
   return (
     <Box sx={footerSx}>
       <FlipContainer
-        active={game.gameOn && game.flip && game.status === "topic"}
+        active={game.flip && (game.status === "topic" || game.rules)}
         containerSx={BtnFlipContainerSx}
       />
       <FlipContainer
-        active={game.gameOn && game.flip && game.status === "speech"}
+        active={game.flip && (game.status === "speech" || game.rules)}
         containerSx={BtnFlipContainerSx}
       />
       <FlipContainer
-        active={!game.gameOn || (game.flip && game.status === "result")}
+        active={
+          game.flip &&
+          (game.status === "off" || game.rules || game.status === "result")
+          // (!game.flip && !game.rules) ||
+          // (game.flip && (game.status === "result" || game.rules))
+        }
         containerSx={BtnFlipContainerSx}
       />
     </Box>

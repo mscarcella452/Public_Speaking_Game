@@ -6,22 +6,28 @@ export const gameContext = createContext();
 export const gameDispatchContext = createContext();
 
 const intialValue = {
-  status: "topic",
-  gameOn: false,
+  status: "off",
+  // On: false,
   flip: false,
   fullVersion: false,
   failSpeech: false,
+  rules: false,
+  intermission: false,
 };
 
 const gameReducer = (game, action) => {
   switch (action.type) {
-    case "TOGGLE_POWER":
-      return {
-        ...game,
-        flip: !game.flip,
-        gameOn: !game.gameOn,
-        // status: !game.gameOn && "topic",
-      };
+    // case "TOGGLE_POWER":
+    //   return {
+    //     ...game,
+    //     flip: !game.flip,
+    //     On: !game.On,
+    //     // status: !game.On && "topic",
+    //   };
+    case "GAME_OFF":
+      return { ...intialValue, fullVersion: game.fullVersion };
+    case "GAME_ON":
+      return { ...game, status: "topic" };
     case "LOAD":
       return { ...game, flip: !game.flip };
     case "TOPIC":
@@ -31,9 +37,11 @@ const gameReducer = (game, action) => {
     case "FAIL":
       return { ...game, failSpeech: true, status: "result" };
     case "SUCCESS":
-      return { ...game, failSpeech: true, status: "result" };
-    case "INTERMISSION":
-      return { ...game, status: "intermission" };
+      return { ...game, failSpeech: false, status: "result" };
+    case "TOGGLE_RULES":
+      return { ...game, rules: !game.rules };
+    case "TOGGLE_INTERMISSION":
+      return { ...game, intermission: !game.intermission };
     case "BUY":
       return { ...game, fullVersion: true };
     default:
@@ -47,19 +55,36 @@ function GameStatusProvider({ children }) {
   const timer = useContext(timerContext);
   const timerDispatch = useContext(timerDispatchContext);
 
+  // useEffect(() => {
+  //   if (game.On) {
+  //     // gameDispatch({ type: "topic" });
+
+  //     topicGenerator();
+  //   }
+  // }, [game.On]);
   useEffect(() => {
-    if (game.gameOn) {
-      // gameDispatch({ type: "topic" });
-      topicGenerator();
-    }
-  }, [game.gameOn]);
+    setTimeout(() => {
+      gameDispatch({ type: "LOAD" });
+    }, 1000);
+    // if (game.status === "off") {
+    //   setTimeout(() => {
+    //     gameDispatch({ type: "LOAD" });
+    //   }, 500);
+    // } else {
+    //   gameDispatch({ type: "LOAD" });
+    //   setTimeout(() => {
+    //     gameDispatch({ type: "LOAD" });
+    //   }, 500);
+    // }
+  }, [game.status]);
 
   const endRound = () => {
     gameDispatch({ type: "LOAD" });
-    setTimeout(() => {
-      gameDispatch({ type: "SUCCESS" });
-      gameDispatch({ type: "LOAD" });
-    }, 1200);
+    gameDispatch({ type: "SUCCESS" });
+    // setTimeout(() => {
+    //   gameDispatch({ type: "SUCCESS" });
+    //   gameDispatch({ type: "LOAD" });
+    // }, 1200);
     timerDispatch({ type: "TOGGLE_TIMER" });
   };
 

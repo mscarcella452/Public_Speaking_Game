@@ -7,7 +7,7 @@ export const timerDispatchContext = createContext();
 const initialTimerValue = {
   startingValue: 5,
   seconds: 5,
-  timerOn: false,
+  On: false,
 };
 
 const TimerReducer = (timer, action) => {
@@ -22,7 +22,7 @@ const TimerReducer = (timer, action) => {
       return initialTimerValue;
 
     case "TOGGLE_TIMER":
-      return { ...timer, timerOn: !timer.timerOn };
+      return { ...timer, On: !timer.On };
 
     case "SET_STARTING_VALUE":
       return { ...timer, startingValue: action.payload };
@@ -37,7 +37,7 @@ function TimerContextProvider({ children }) {
 
   // let interval = null;
 
-  // if (timer.timerOn) {
+  // if (timer.On) {
   //   if (timer.seconds >= 0) {
   //     interval = useInterval(() => {
   //       seconds - 1;
@@ -47,14 +47,14 @@ function TimerContextProvider({ children }) {
   //   }
   // }
 
-  // timer.timerOn && timer.seconds >= 0
+  // timer.On && timer.seconds >= 0
   //   ? (interval = useInterval(() => {
   //       timer.seconds - 1;
   //     }, 1000))
   //   : clearInterval(interval);
 
   useInterval(() => {
-    if (!timer.timerOn) return;
+    if (!timer.On) return;
     timerDispatch({
       type: "SET_SECONDS",
       payload: timer.seconds === 0 ? 0 : timer.seconds - 1,

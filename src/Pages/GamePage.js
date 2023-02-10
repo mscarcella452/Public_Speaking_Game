@@ -20,9 +20,11 @@ import FlipContainer from "../ComponentHelpers/FlipContainer";
 import OverlayContainer from "../ComponentHelpers/OverlayContainer";
 
 import { gameContext } from "../Context/GameStatusContext";
+import { timerContext } from "../Context/TimerContext";
 
 export default function GamePage() {
   const game = useContext(gameContext);
+  const timer = useContext(timerContext);
 
   const nav = useNavigate();
 
@@ -40,7 +42,13 @@ export default function GamePage() {
         <Header />
         <Box sx={mainBoxSx}>
           <FlipContainer
-            active={game.gameOn && game.flip}
+            active={
+              (game.flip &&
+                (game.status === "topic" ||
+                  game.status === "result" ||
+                  game.rules)) ||
+              (game.status === "speech" && timer.On)
+            }
             main={true}
             containerSx={mainFlipContainerSx}
           />

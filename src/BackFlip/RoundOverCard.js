@@ -5,7 +5,7 @@ import { gameContext } from "../Context/GameStatusContext";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
 
-function SpeechTopicCard() {
+function RoundOverCard() {
   const game = useContext(gameContext);
   const timer = useContext(timerContext);
   const currentTopic = useContext(topicContext);
@@ -20,14 +20,14 @@ function SpeechTopicCard() {
           textAlign: "left",
         }}
       >
-        {currentTopic}
+        {game.failSpeech ? "fail" : "success"}
       </Box>
       <Box sx={breadSx} />
     </Box>
   );
 }
 
-export default SpeechTopicCard;
+export default RoundOverCard;
 
 const speechTopicCardSx = {
   ...flexBoxSx,

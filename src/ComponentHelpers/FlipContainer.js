@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useToggle } from "../Helpers/CustomHooks";
 import { delay } from "../Helpers/FunctionHelpers";
 import { Box, Paper } from "@mui/material";
+import { gameContext } from "../Context/GameStatusContext";
 import {
   frontFlipSx,
   flipBoxInnerSx,
@@ -11,6 +12,23 @@ import {
 } from "../SXstyles";
 
 function FlipContainer({ main, containerSx, active, overlay, children }) {
+  const game = useContext(gameContext);
+  const [flip, setFlip] = useState(false);
+  // useEffect(() => {
+  //   if (active) {
+  //     setTimeout(() => {
+  //       setFlip(true);
+  //     }, 500);
+  //   } else setFlip(false);
+  // }, [active]);
+  // useEffect(() => {
+  //   if (active) {
+  //     setFlip(false);
+  //     setTimeout(() => {
+  //       setFlip(true);
+  //     }, 1200);
+  //   }
+  // }, [game.flip]);
   return (
     <Box
       sx={{
