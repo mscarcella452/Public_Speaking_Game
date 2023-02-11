@@ -9,55 +9,60 @@ import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
-export default function TopBtnContainer({ changeThirdBtnTitle }) {
+export default function TopBtnContainer({
+  changeThirdBtnTitle,
+  toggleQuitBtn,
+  quitBtn,
+  rulesBtnActive,
+  toggleRulesBtnActive,
+}) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const timerDispatch = useContext(timerDispatchContext);
-  const [rulesBtnActive, toggleRulesBtnActive] = useToggle(false);
 
   const [rulesBtnIcon, setRulesBtnIcon] = useState(<HelpCenterIcon />);
 
-  useEffect(() => {
-    rulesBtnActive && toggleRulesBtnActive();
+  const toggleRules = () => {
+    toggleRulesBtnActive();
     setTimeout(() => {
       toggleRulesBtnActive();
-    }, 1000);
-  }, [game.rules]);
-
-  const changeRulesBtnIcon = icon => {
-    setTimeout(() => {
-      setRulesBtnIcon(icon);
-    }, 1000);
-  };
-
-  const toggleRules = () => {
-    gameDispatch({ type: "LOAD" });
-    setTimeout(() => {
-      gameDispatch({ type: "TOGGLE_RULES" });
+      game.rules
+        ? setRulesBtnIcon(<HelpCenterIcon />)
+        : setRulesBtnIcon(<KeyboardReturnIcon />);
+    }, 1200);
+    if (game.status === "off") {
+      !game.rules
+        ? gameDispatch({ type: "TOGGLE_RULES" })
+        : gameDispatch({ type: "LOAD" });
       setTimeout(() => {
+        !game.rules
+          ? gameDispatch({ type: "LOAD" })
+          : gameDispatch({ type: "TOGGLE_RULES" });
+      }, 1200);
+    } else {
+      gameDispatch({ type: "LOAD" });
+      setTimeout(() => {
+        gameDispatch({ type: "TOGGLE_RULES" });
         gameDispatch({ type: "LOAD" });
-      }, 1000);
-    }, 500);
-    game.rules
-      ? changeRulesBtnIcon(<HelpCenterIcon />)
-      : changeRulesBtnIcon(<KeyboardReturnIcon />);
+      }, 1200);
+    }
   };
 
   const handleQuit = () => {
-    gameDispatch({ type: "LOAD" });
+    toggleRulesBtnActive();
     changeThirdBtnTitle("Play");
+    toggleQuitBtn();
+    gameDispatch({ type: "LOAD" });
     setTimeout(() => {
       gameDispatch({ type: "GAME_OFF" });
       timerDispatch({ type: "RESET" });
-    }, 500);
+    }, 1200);
   };
 
   return (
     <Box sx={HeaderSx}>
       <FlipContainer
-        active={!game.rules && game.status !== "off"}
-        // active={!game.rules && game.status !== "off" && game.flip}
-
+        active={!game.rules && quitBtn}
         containerSx={smallBtnFlipContainerSx}
         overlay={true}
       >

@@ -27,17 +27,17 @@ const gameReducer = (game, action) => {
     case "GAME_OFF":
       return { ...intialValue, fullVersion: game.fullVersion };
     case "GAME_ON":
-      return { ...game, status: "topic" };
+      return { ...game, flip: true, status: "topic" };
     case "LOAD":
       return { ...game, flip: !game.flip };
     case "TOPIC":
-      return { ...game, status: "topic" };
+      return { ...game, flip: true, status: "topic" };
     case "SPEECH":
       return { ...game, status: "speech" };
     case "FAIL":
-      return { ...game, failSpeech: true, status: "result" };
+      return { ...game, failSpeech: true, flip: true, status: "result" };
     case "SUCCESS":
-      return { ...game, failSpeech: false, status: "result" };
+      return { ...game, failSpeech: false, flip: true, status: "result" };
     case "TOGGLE_RULES":
       return { ...game, rules: !game.rules };
     case "TOGGLE_INTERMISSION":
@@ -62,21 +62,21 @@ function GameStatusProvider({ children }) {
   //     topicGenerator();
   //   }
   // }, [game.On]);
-  useEffect(() => {
-    setTimeout(() => {
-      gameDispatch({ type: "LOAD" });
-    }, 1000);
-    // if (game.status === "off") {
-    //   setTimeout(() => {
-    //     gameDispatch({ type: "LOAD" });
-    //   }, 500);
-    // } else {
-    //   gameDispatch({ type: "LOAD" });
-    //   setTimeout(() => {
-    //     gameDispatch({ type: "LOAD" });
-    //   }, 500);
-    // }
-  }, [game.status]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     gameDispatch({ type: "LOAD" });
+  //   }, 1000);
+  //   // if (game.status === "off") {
+  //   //   setTimeout(() => {
+  //   //     gameDispatch({ type: "LOAD" });
+  //   //   }, 500);
+  //   // } else {
+  //   //   gameDispatch({ type: "LOAD" });
+  //   //   setTimeout(() => {
+  //   //     gameDispatch({ type: "LOAD" });
+  //   //   }, 500);
+  //   // }
+  // }, [game.status]);
 
   const endRound = () => {
     gameDispatch({ type: "LOAD" });

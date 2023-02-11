@@ -4,7 +4,7 @@ import { footerSx, flexBoxSx, BtnFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import { gameContext } from "../Context/GameStatusContext";
 
-export default function Footer() {
+export default function Footer({ playBtnActive }) {
   const game = useContext(gameContext);
 
   return (
@@ -19,10 +19,9 @@ export default function Footer() {
       />
       <FlipContainer
         active={
-          game.flip &&
-          (game.status === "off" || game.rules || game.status === "result")
-          // (!game.flip && !game.rules) ||
-          // (game.flip && (game.status === "result" || game.rules))
+          (!game.rules && playBtnActive) ||
+          (game.rules && game.flip) ||
+          (game.status === "result" && game.flip)
         }
         containerSx={BtnFlipContainerSx}
       />

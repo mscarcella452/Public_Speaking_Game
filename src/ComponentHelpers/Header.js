@@ -7,22 +7,14 @@ import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import { useToggle } from "../Helpers/CustomHooks";
 
-export default function Header({ toggleFlip }) {
+export default function Header({ rulesBtnActive, quitBtn }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
-  const [rulesBtnActive, toggleRulesBtnActive] = useToggle(false);
-
-  useEffect(() => {
-    rulesBtnActive && toggleRulesBtnActive();
-    setTimeout(() => {
-      toggleRulesBtnActive();
-    }, 1000);
-  }, [game.rules]);
 
   return (
     <Box sx={HeaderSx}>
       <FlipContainer
-        active={!game.rules && game.status !== "off"}
+        active={!game.rules && quitBtn}
         containerSx={smallBtnFlipContainerSx}
       />
 

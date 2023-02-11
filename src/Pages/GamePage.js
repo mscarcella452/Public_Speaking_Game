@@ -25,8 +25,20 @@ import { timerContext } from "../Context/TimerContext";
 export default function GamePage() {
   const game = useContext(gameContext);
   const timer = useContext(timerContext);
+  const [quitBtn, toggleQuitBtn] = useToggle(false);
+  const [rulesBtnActive, toggleRulesBtnActive] = useToggle(false);
+  const [playBtnActive, togglePlayBtnActive] = useToggle(false);
 
-  const nav = useNavigate();
+  // const nav = useNavigate();
+
+  useEffect(() => {
+    if (game.status === "off") {
+      setTimeout(() => {
+        toggleRulesBtnActive();
+        togglePlayBtnActive();
+      }, 200);
+    }
+  }, [game.status]);
 
   return (
     <MainBackground>
@@ -39,23 +51,31 @@ export default function GamePage() {
           justifyContent: "flex-start",
         }}
       >
-        <Header />
+        <Header quitBtn={quitBtn} rulesBtnActive={rulesBtnActive} />
         <Box sx={mainBoxSx}>
           <FlipContainer
-            active={
-              (game.flip &&
-                (game.status === "topic" ||
-                  game.status === "result" ||
-                  game.rules)) ||
-              (game.status === "speech" && timer.On)
-            }
+            // active={
+            //   (game.flip &&
+            //     (game.status === "topic" ||
+            //       game.status === "result" ||
+            //       game.rules)) ||
+            //   (game.status === "speech" && timer.On)
+            // }
+            active={game.flip}
             main={true}
             containerSx={mainFlipContainerSx}
           />
         </Box>
-        <Footer />
+        <Footer playBtnActive={playBtnActive} />
       </Box>
-      <OverlayContainer />
+      <OverlayContainer
+        toggleQuitBtn={toggleQuitBtn}
+        quitBtn={quitBtn}
+        rulesBtnActive={rulesBtnActive}
+        toggleRulesBtnActive={toggleRulesBtnActive}
+        playBtnActive={playBtnActive}
+        togglePlayBtnActive={togglePlayBtnActive}
+      />
 
       {/* <Header /> */}
     </MainBackground>

@@ -11,7 +11,14 @@ import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerContext, timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
 
-function OverlayContainer() {
+function OverlayContainer({
+  toggleQuitBtn,
+  quitBtn,
+  rulesBtnActive,
+  toggleRulesBtnActive,
+  playBtnActive,
+  togglePlayBtnActive,
+}) {
   const game = useContext(gameContext);
   const timer = useContext(timerContext);
   const [thirdBtnTitle, setThirdBtn] = useState("Play");
@@ -24,16 +31,16 @@ function OverlayContainer() {
 
   return (
     <Box sx={overlayContainerSx}>
-      <TopBtnContainer changeThirdBtnTitle={changeThirdBtnTitle} />
+      <TopBtnContainer
+        changeThirdBtnTitle={changeThirdBtnTitle}
+        toggleQuitBtn={toggleQuitBtn}
+        quitBtn={quitBtn}
+        rulesBtnActive={rulesBtnActive}
+        toggleRulesBtnActive={toggleRulesBtnActive}
+      />
       <Box sx={mainBoxSx}>
         <FlipContainer
-          active={
-            (game.flip &&
-              (game.status === "topic" ||
-                game.status === "result" ||
-                game.rules)) ||
-            (game.status === "speech" && timer.On)
-          }
+          active={game.flip}
           main={true}
           overlay={true}
           containerSx={mainFlipContainerSx}
@@ -49,6 +56,9 @@ function OverlayContainer() {
       <BottomBtnContainer
         thirdBtnTitle={thirdBtnTitle}
         changeThirdBtnTitle={changeThirdBtnTitle}
+        toggleQuitBtn={toggleQuitBtn}
+        playBtnActive={playBtnActive}
+        togglePlayBtnActive={togglePlayBtnActive}
       />
     </Box>
   );

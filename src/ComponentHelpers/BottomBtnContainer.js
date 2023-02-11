@@ -9,6 +9,9 @@ import { generateTopicContext } from "../Context/TopicContext";
 export default function BottomBtnContainer({
   changeThirdBtnTitle,
   thirdBtnTitle,
+  toggleQuitBtn,
+  playBtnActive,
+  togglePlayBtnActive,
 }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
@@ -16,48 +19,35 @@ export default function BottomBtnContainer({
   const topicGenerator = useContext(generateTopicContext);
 
   const startTimer = () => {
-    gameDispatch({ type: "LOAD" });
     timerDispatch({ type: "TOGGLE_TIMER" });
     gameDispatch({ type: "SPEECH" });
   };
-  console.log(game.status, game.flip);
+
   const failSpeech = () => {
     gameDispatch({ type: "LOAD" });
     setTimeout(() => {
       gameDispatch({ type: "FAIL" });
-    }, 500);
-
-    // setTimeout(() => {
-    //   gameDispatch({ type: "FAIL" });
-    //   gameDispatch({ type: "LOAD" });
-    // }, 1200);
-    timerDispatch({ type: "TOGGLE_TIMER" });
+      timerDispatch({ type: "TOGGLE_TIMER" });
+    }, 1200);
   };
 
   const nextRound = () => {
     gameDispatch({ type: "LOAD" });
-
     setTimeout(() => {
       gameDispatch({ type: "TOPIC" });
       timerDispatch({ type: "RESET" });
       topicGenerator();
-    }, 500);
-
-    // setTimeout(() => {
-    //   timerDispatch({ type: "RESET" });
-    //   topicGenerator();
-    //   // setTimeout(() => {
-    //   //   gameDispatch({ type: "TOPIC" });
-    //   //   gameDispatch({ type: "LOAD" });
-    //   // }, 750);
-    // }, 450);
-    // timerDispatch({ type: "TOGGLE_TIMER" });
+    }, 1200);
   };
+
   const handleStart = () => {
-    gameDispatch({ type: "LOAD" });
+    togglePlayBtnActive();
+    toggleQuitBtn();
     gameDispatch({ type: "GAME_ON" });
-    changeThirdBtnTitle("NextRound");
     topicGenerator();
+    setTimeout(() => {
+      changeThirdBtnTitle("NextRound");
+    }, 100);
   };
   return (
     <Box sx={footerSx}>
@@ -89,10 +79,9 @@ export default function BottomBtnContainer({
       </FlipContainer>
       <FlipContainer
         active={
-          game.flip &&
-          (game.status === "off" || game.rules || game.status === "result")
-          // (!game.flip && !game.rules) ||
-          // (game.flip && (game.status === "result" || game.rules))
+          (!game.rules && playBtnActive) ||
+          (game.rules && game.flip) ||
+          (game.status === "result" && game.flip)
         }
         containerSx={BtnFlipContainerSx}
         overlay={true}
