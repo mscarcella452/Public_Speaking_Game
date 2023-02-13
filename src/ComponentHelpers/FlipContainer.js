@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useToggle } from "../Helpers/CustomHooks";
-import { delay } from "../Helpers/FunctionHelpers";
+import React from "react";
 import { Box, Paper } from "@mui/material";
-import { gameContext } from "../Context/GameStatusContext";
 import {
   frontFlipSx,
   flipBoxInnerSx,
@@ -12,9 +9,6 @@ import {
 } from "../SXstyles";
 
 function FlipContainer({ main, containerSx, active, overlay, children }) {
-  const game = useContext(gameContext);
-  const [flip, toggleFlip] = useToggle(false);
-
   return (
     <Box
       sx={{

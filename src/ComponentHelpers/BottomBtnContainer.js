@@ -5,18 +5,15 @@ import FlipContainer from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
+import { buttonContext, buttonDispatchContext } from "../Context/ButtonContext";
 
-export default function BottomBtnContainer({
-  changeThirdBtnTitle,
-  thirdBtnTitle,
-  toggleQuitBtn,
-  playBtnActive,
-  togglePlayBtnActive,
-}) {
+export default function BottomBtnContainer() {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const timerDispatch = useContext(timerDispatchContext);
   const topicGenerator = useContext(generateTopicContext);
+  const btn = useContext(buttonContext);
+  const btnDispatch = useContext(buttonDispatchContext);
 
   const startTimer = () => {
     timerDispatch({ type: "TOGGLE_TIMER" });
@@ -41,14 +38,15 @@ export default function BottomBtnContainer({
   };
 
   const handleStart = () => {
-    togglePlayBtnActive();
-    toggleQuitBtn();
+    btnDispatch({ type: "TOGGLE_PLAY_BTN" });
+    btnDispatch({ type: "TOGGLE_QUIT_BTN" });
     gameDispatch({ type: "GAME_ON" });
     topicGenerator();
     setTimeout(() => {
-      changeThirdBtnTitle("NextRound");
-    }, 100);
+      btnDispatch({ type: "THIRD_BTN_TITLE", payload: "Next Round" });
+    }, 500);
   };
+
   return (
     <Box sx={footerSx}>
       <FlipContainer
@@ -79,7 +77,7 @@ export default function BottomBtnContainer({
       </FlipContainer>
       <FlipContainer
         active={
-          (!game.rules && playBtnActive) ||
+          (!game.rules && btn.playBtnActive) ||
           (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }
@@ -93,7 +91,7 @@ export default function BottomBtnContainer({
             onClick={game.status === "off" ? handleStart : nextRound}
             sx={btnSx}
           >
-            {thirdBtnTitle}
+            {btn.thirdBtnTitle}
           </Button>
         )}
       </FlipContainer>

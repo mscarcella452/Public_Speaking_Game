@@ -55,41 +55,16 @@ function GameStatusProvider({ children }) {
   const timer = useContext(timerContext);
   const timerDispatch = useContext(timerDispatchContext);
 
-  // useEffect(() => {
-  //   if (game.On) {
-  //     // gameDispatch({ type: "topic" });
-
-  //     topicGenerator();
-  //   }
-  // }, [game.On]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     gameDispatch({ type: "LOAD" });
-  //   }, 1000);
-  //   // if (game.status === "off") {
-  //   //   setTimeout(() => {
-  //   //     gameDispatch({ type: "LOAD" });
-  //   //   }, 500);
-  //   // } else {
-  //   //   gameDispatch({ type: "LOAD" });
-  //   //   setTimeout(() => {
-  //   //     gameDispatch({ type: "LOAD" });
-  //   //   }, 500);
-  //   // }
-  // }, [game.status]);
-
-  const endRound = () => {
+  const completedSpeech = () => {
     gameDispatch({ type: "LOAD" });
-    gameDispatch({ type: "SUCCESS" });
-    // setTimeout(() => {
-    //   gameDispatch({ type: "SUCCESS" });
-    //   gameDispatch({ type: "LOAD" });
-    // }, 1200);
-    timerDispatch({ type: "TOGGLE_TIMER" });
+    setTimeout(() => {
+      gameDispatch({ type: "SUCCESS" });
+      timerDispatch({ type: "TOGGLE_TIMER" });
+    }, 1200);
   };
 
   useEffect(() => {
-    timer.seconds === 0 && endRound();
+    timer.seconds === 0 && completedSpeech();
     // if (timer.seconds === 0) {
     //   gameDispatch({ type: "LOAD" });
     //   setTimeout(() => {

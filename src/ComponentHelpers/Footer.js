@@ -3,9 +3,11 @@ import { Box, Button } from "@mui/material";
 import { footerSx, flexBoxSx, BtnFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import { gameContext } from "../Context/GameStatusContext";
+import { buttonContext } from "../Context/ButtonContext";
 
-export default function Footer({ playBtnActive }) {
+export default function Footer() {
   const game = useContext(gameContext);
+  const btn = useContext(buttonContext);
 
   return (
     <Box sx={footerSx}>
@@ -19,7 +21,7 @@ export default function Footer({ playBtnActive }) {
       />
       <FlipContainer
         active={
-          (!game.rules && playBtnActive) ||
+          (!game.rules && btn.playBtnActive) ||
           (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }

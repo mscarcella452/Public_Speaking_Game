@@ -3,6 +3,7 @@ import { useToggle } from "../Helpers/CustomHooks";
 import GameStatusProvider from "./GameStatusContext";
 import TopicContextProvider from "./TopicContext";
 import TimerContextProvider from "./TimerContext";
+import ButtonContextProvider from "./ButtonContext";
 
 // export const gameActiveContext = createContext();
 // export const toggleGameContext = createContext();
@@ -14,12 +15,14 @@ function GameContext({ children }) {
     <TimerContextProvider>
       <TopicContextProvider>
         <GameStatusProvider>
-          {children}
-          {/* <toggleGameContext.Provider value={toggleGame}>
+          <ButtonContextProvider>
+            {children}
+            {/* <toggleGameContext.Provider value={toggleGame}>
             <gameActiveContext.Provider value={gameActive}>
               {children}
             </gameActiveContext.Provider>
           </toggleGameContext.Provider> */}
+          </ButtonContextProvider>
         </GameStatusProvider>
       </TopicContextProvider>
     </TimerContextProvider>

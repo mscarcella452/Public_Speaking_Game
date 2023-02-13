@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Box, Button } from "@mui/material";
+import React, { useContext } from "react";
+import { Box } from "@mui/material";
 import { flexBoxSx, mainFlipContainerSx, mainBoxSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
 import TopBtnContainer from "./TopBtnContainer";
@@ -7,37 +7,20 @@ import BottomBtnContainer from "./BottomBtnContainer";
 import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
 import RulesCard from "../BackFlip/RulesCard";
 import RoundOverCard from "../BackFlip/RoundOverCard";
-import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
-import { timerContext, timerDispatchContext } from "../Context/TimerContext";
-import { generateTopicContext } from "../Context/TopicContext";
+import { gameContext } from "../Context/GameStatusContext";
 
-function OverlayContainer({
-  toggleQuitBtn,
-  quitBtn,
-  rulesBtnActive,
-  toggleRulesBtnActive,
-  playBtnActive,
-  togglePlayBtnActive,
-}) {
+function OverlayContainer() {
   const game = useContext(gameContext);
-  const timer = useContext(timerContext);
-  const [thirdBtnTitle, setThirdBtn] = useState("Play");
 
-  const changeThirdBtnTitle = title => {
-    setTimeout(() => {
-      setThirdBtn(title);
-    }, 500);
-  };
+  // const changeThirdBtnTitle = title => {
+  //   setTimeout(() => {
+  //     setThirdBtn(title);
+  //   }, 500);
+  // };
 
   return (
     <Box sx={overlayContainerSx}>
-      <TopBtnContainer
-        changeThirdBtnTitle={changeThirdBtnTitle}
-        toggleQuitBtn={toggleQuitBtn}
-        quitBtn={quitBtn}
-        rulesBtnActive={rulesBtnActive}
-        toggleRulesBtnActive={toggleRulesBtnActive}
-      />
+      <TopBtnContainer />
       <Box sx={mainBoxSx}>
         <FlipContainer
           active={game.flip}
@@ -53,13 +36,7 @@ function OverlayContainer({
           {game.rules && <RulesCard />}
         </FlipContainer>
       </Box>
-      <BottomBtnContainer
-        thirdBtnTitle={thirdBtnTitle}
-        changeThirdBtnTitle={changeThirdBtnTitle}
-        toggleQuitBtn={toggleQuitBtn}
-        playBtnActive={playBtnActive}
-        togglePlayBtnActive={togglePlayBtnActive}
-      />
+      <BottomBtnContainer />
     </Box>
   );
 }

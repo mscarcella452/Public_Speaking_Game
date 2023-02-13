@@ -54,13 +54,6 @@ export default function GamePage() {
         <Header quitBtn={quitBtn} rulesBtnActive={rulesBtnActive} />
         <Box sx={mainBoxSx}>
           <FlipContainer
-            // active={
-            //   (game.flip &&
-            //     (game.status === "topic" ||
-            //       game.status === "result" ||
-            //       game.rules)) ||
-            //   (game.status === "speech" && timer.On)
-            // }
             active={game.flip}
             main={true}
             containerSx={mainFlipContainerSx}

@@ -1,25 +1,23 @@
-import React, { useContext, useEffect } from "react";
-import { Box, Button } from "@mui/material";
-import { flexBoxSx, HeaderSx, smallBtnFlipContainerSx } from "../SXstyles";
+import React, { useContext } from "react";
+import { Box } from "@mui/material";
+import { HeaderSx, smallBtnFlipContainerSx } from "../SXstyles";
 import FlipContainer from "./FlipContainer";
-import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import HelpCenterIcon from "@mui/icons-material/HelpCenter";
-import { useToggle } from "../Helpers/CustomHooks";
+import { gameContext } from "../Context/GameStatusContext";
+import { buttonContext } from "../Context/ButtonContext";
 
-export default function Header({ rulesBtnActive, quitBtn }) {
+export default function Header() {
   const game = useContext(gameContext);
-  const gameDispatch = useContext(gameDispatchContext);
+  const btn = useContext(buttonContext);
 
   return (
     <Box sx={HeaderSx}>
       <FlipContainer
-        active={!game.rules && quitBtn}
+        active={!game.rules && btn.quitBtnActive}
         containerSx={smallBtnFlipContainerSx}
       />
 
       <FlipContainer
-        active={rulesBtnActive}
+        active={btn.rulesBtnActive}
         containerSx={smallBtnFlipContainerSx}
       />
     </Box>
