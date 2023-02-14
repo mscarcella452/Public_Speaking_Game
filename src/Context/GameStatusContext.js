@@ -17,13 +17,6 @@ const intialValue = {
 
 const gameReducer = (game, action) => {
   switch (action.type) {
-    // case "TOGGLE_POWER":
-    //   return {
-    //     ...game,
-    //     flip: !game.flip,
-    //     On: !game.On,
-    //     // status: !game.On && "topic",
-    //   };
     case "GAME_OFF":
       return { ...intialValue, fullVersion: game.fullVersion };
     case "GAME_ON":

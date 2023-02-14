@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {
+  Sx,
   flexBoxSx,
   fabricOverlaySx,
   backgroundWordsOverlaySx,
@@ -12,7 +13,10 @@ export default function MainBackground({ children }) {
   return (
     <Paper sx={backgroundPageSx}>
       <Box
-        sx={{ ...timerOverlaySx, opacity: timer.seconds / timer.startingValue }}
+        sx={{
+          ...timerOverlaySx,
+          opacity: timer.seconds / timer.startingValue,
+        }}
       />
       <Box sx={fabricOverlaySx} />
       <Box sx={backgroundWordsOverlaySx} />
@@ -38,5 +42,5 @@ const timerOverlaySx = {
   bottom: 0,
   height: "100%",
   width: "100%",
-  background: "#981010",
+  backgroundColor: Sx.color.primary,
 };

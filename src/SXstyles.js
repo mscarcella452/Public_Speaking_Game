@@ -1,6 +1,16 @@
 import backgroundWords from "./Images/backgroundWords.png";
 import PublicSpeakingCropped from "./Images/PublicSpeakingCropped.png";
 
+export const Sx = {
+  font: {
+    display: "'Sunny Spells Basic', sans-serif",
+    card: "'Comic Marker Deluxe', sans-serif",
+  },
+  color: {
+    primary: "#981010",
+  },
+};
+
 export const flexBoxSx = {
   height: "100%",
   width: "100%",
@@ -50,7 +60,7 @@ export const frontFlipSx = {
 export const backFlipSx = {
   ...frontFlipSx,
   padding: 0,
-  background: "#fff",
+  backgroundColor: "#fff",
   transform: "rotateX(180deg)",
   position: "relative",
   zIndex: 20,
@@ -80,6 +90,8 @@ export const breadSx = {
   },
   fontWeight: "bold",
   fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem", lg: "3rem" },
+  fontFamily: Sx.font.display,
+  color: Sx.color.primary,
 };
 
 export const logoImageSx = {
@@ -150,7 +162,7 @@ export const flipBoxInnerSx = {
   transition: "transform 1.5s",
   transformStyle: "preserve-3d",
   position: "relative",
-  backgroundColor: "#981010",
+  backgroundColor: Sx.color.primary,
 };
 
 export const mainBoxSx = {
@@ -162,4 +174,7 @@ export const mainBoxSx = {
 export const btnSx = {
   ...flexBoxSx,
   zIndex: 20,
+  fontFamily: Sx.font.display,
+  color: Sx.color.primary,
+  fontSize: "2rem",
 };
