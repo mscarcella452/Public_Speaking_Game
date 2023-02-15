@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import { flexBoxSx } from "../SXstyles";
+import { flexBoxSx } from "../Styles/SXstyles";
 
 export default function GameTimer({ isActive, timerValue, completedSpeech }) {
   const [seconds, setSeconds] = useState(timerValue);

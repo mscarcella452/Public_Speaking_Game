@@ -31,7 +31,7 @@ export const speechTopics = [
   'The rise and fall of the American rock band, "The Eagles"',
   "Canada's most prized export: Celine Dion",
   'The "Titanic" floating door scene',
-  "Squaders Rights",
+  "Squatters Rights",
   "The French and Indian War",
   "Any speech by Abraham Lincoln that's not the 'Gettysburg Address'",
   "Why the concept of taxation with plenty of representation would never have worked in 1776",

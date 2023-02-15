@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { flexBoxSx, breadSx } from "../SXstyles";
+import { flexBoxSx, breadSx } from "../Styles/SXstyles";
 import { gameContext } from "../Context/GameStatusContext";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
@@ -17,7 +17,8 @@ function SpeechTopicCard() {
         sx={{
           ...flexBoxSx,
           lineHeight: "1.5",
-          textAlign: "left",
+          // textAlign: "left",
+          textAlign: "center",
         }}
       >
         {currentTopic}

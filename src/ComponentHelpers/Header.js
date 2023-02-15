@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { HeaderSx, smallBtnFlipContainerSx } from "../SXstyles";
-import FlipContainer from "./FlipContainer";
+import { HeaderSx, smallBtnFlipContainerSx } from "../Styles/SXstyles";
+import { SmallBtnFlipContainer } from "./FlipContainer";
 import { gameContext } from "../Context/GameStatusContext";
 import { buttonContext } from "../Context/ButtonContext";
 
@@ -11,15 +11,9 @@ export default function Header() {
 
   return (
     <Box sx={HeaderSx}>
-      <FlipContainer
-        active={!game.rules && btn.quitBtnActive}
-        containerSx={smallBtnFlipContainerSx}
-      />
+      <SmallBtnFlipContainer active={!game.rules && btn.quitBtnActive} />
 
-      <FlipContainer
-        active={btn.rulesBtnActive}
-        containerSx={smallBtnFlipContainerSx}
-      />
+      <SmallBtnFlipContainer active={btn.rulesBtnActive} />
     </Box>
   );
 }

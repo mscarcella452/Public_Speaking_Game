@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useToggle } from "../Helpers/CustomHooks";
 import { Box, Button } from "@mui/material";
-import { btnSx, HeaderSx, smallBtnFlipContainerSx } from "../SXstyles";
-import FlipContainer from "./FlipContainer";
+import { btnSx, HeaderSx, smallBtnFlipContainerSx } from "../Styles/SXstyles";
+import { SmallBtnFlipContainerOverlay } from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
@@ -72,24 +72,16 @@ export default function TopBtnContainer() {
 
   return (
     <Box sx={HeaderSx}>
-      <FlipContainer
-        active={!game.rules && btn.quitBtnActive}
-        containerSx={smallBtnFlipContainerSx}
-        overlay={true}
-      >
+      <SmallBtnFlipContainerOverlay active={!game.rules && btn.quitBtnActive}>
         <Button onClick={handleQuit} sx={btnSx}>
           <CancelPresentationIcon />
         </Button>
-      </FlipContainer>
-      <FlipContainer
-        active={btn.rulesBtnActive}
-        containerSx={smallBtnFlipContainerSx}
-        overlay={true}
-      >
+      </SmallBtnFlipContainerOverlay>
+      <SmallBtnFlipContainerOverlay active={btn.rulesBtnActive}>
         <Button onClick={toggleRules} sx={btnSx}>
           {rulesBtnIcon}
         </Button>
-      </FlipContainer>
+      </SmallBtnFlipContainerOverlay>
     </Box>
   );
 }

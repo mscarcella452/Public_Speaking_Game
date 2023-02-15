@@ -1,7 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Paper, Box } from "@mui/material";
-import { Sx, cardOverlaySx, backgroundWordsOverlaySx } from "./SXstyles";
+import {
+  Sx,
+  cardOverlaySx,
+  fabricOverlaySx,
+  backgroundWordsOverlaySx,
+} from "./Styles/SXstyles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GamePage from "./Pages/GamePage";
 import backgroundWords from "./Images/backgroundWords.png";
@@ -25,11 +30,14 @@ function App() {
       <Paper
         sx={{
           height: "100vh",
-          overflow: "scroll",
           boxSizing: "border-box",
           fontFamily: Sx.font.card,
+          // padding: Sx.padding.main,
+          overflow: "scroll",
         }}
       >
+        <Box sx={fabricOverlaySx} />
+        <Box sx={backgroundWordsOverlaySx} />
         <Routes>
           <Route path='*' element={<GamePage />} />
 

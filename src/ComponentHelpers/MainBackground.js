@@ -4,22 +4,25 @@ import {
   flexBoxSx,
   fabricOverlaySx,
   backgroundWordsOverlaySx,
-} from "../SXstyles";
+  HeaderSx,
+  mainBoxSx,
+  footerSx,
+} from "../Styles/SXstyles";
 import { Paper, Box } from "@mui/material";
 import { timerContext } from "../Context/TimerContext";
 
 export default function MainBackground({ children }) {
   const timer = useContext(timerContext);
   return (
-    <Paper sx={backgroundPageSx}>
+    <Paper sx={{ ...backgroundPageSx }}>
       <Box
         sx={{
           ...timerOverlaySx,
           opacity: timer.seconds / timer.startingValue,
+          overflow: "scroll",
         }}
       />
-      <Box sx={fabricOverlaySx} />
-      <Box sx={backgroundWordsOverlaySx} />
+
       {children}
     </Paper>
   );
@@ -27,11 +30,12 @@ export default function MainBackground({ children }) {
 
 const backgroundPageSx = {
   ...flexBoxSx,
-  flexDirection: "column",
-  justifyContent: "flex-start",
+  height: "100%",
   background: "transparent",
-  overflow: "hidden",
   position: "relative",
+  // background: Sx.color.primary,
+  overflow: "scroll",
+  padding: Sx.padding.main,
 };
 
 const timerOverlaySx = {

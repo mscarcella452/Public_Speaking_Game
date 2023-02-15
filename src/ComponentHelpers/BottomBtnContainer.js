@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { footerSx, btnSx, BtnFlipContainerSx } from "../SXstyles";
-import FlipContainer from "./FlipContainer";
+import { footerSx, btnSx, BtnFlipContainerSx } from "../Styles/SXstyles";
+import { BtnFlipContainerOverlay } from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
@@ -49,10 +49,8 @@ export default function BottomBtnContainer() {
 
   return (
     <Box sx={footerSx}>
-      <FlipContainer
+      <BtnFlipContainerOverlay
         active={game.flip && (game.status === "topic" || game.rules)}
-        containerSx={BtnFlipContainerSx}
-        overlay={true}
       >
         {game.rules ? (
           <Box sx={btnSx}>Rules # 1</Box>
@@ -61,11 +59,9 @@ export default function BottomBtnContainer() {
             Start Timer
           </Button>
         )}
-      </FlipContainer>
-      <FlipContainer
+      </BtnFlipContainerOverlay>
+      <BtnFlipContainerOverlay
         active={game.flip && (game.status === "speech" || game.rules)}
-        containerSx={BtnFlipContainerSx}
-        overlay={true}
       >
         {game.rules ? (
           <Box sx={btnSx}>Rules # 2</Box>
@@ -74,15 +70,13 @@ export default function BottomBtnContainer() {
             Fail Speech
           </Button>
         )}
-      </FlipContainer>
-      <FlipContainer
+      </BtnFlipContainerOverlay>
+      <BtnFlipContainerOverlay
         active={
           (!game.rules && btn.playBtnActive) ||
           (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }
-        containerSx={BtnFlipContainerSx}
-        overlay={true}
       >
         {game.rules ? (
           <Box sx={btnSx}>Rules # 3</Box>
@@ -94,7 +88,7 @@ export default function BottomBtnContainer() {
             {btn.thirdBtnTitle}
           </Button>
         )}
-      </FlipContainer>
+      </BtnFlipContainerOverlay>
     </Box>
   );
 }

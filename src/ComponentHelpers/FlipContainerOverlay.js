@@ -8,7 +8,7 @@ import {
   backFlipSx,
   flipBoxInnerSx,
   logoImageSx,
-} from "../SXstyles";
+} from "../Styles/SXstyles";
 // import PublicSpeakingCropped from "../../Images/PublicSpeakingCropped.png";
 // import backgroundWords from "../../Images/backgroundWords.png";
 

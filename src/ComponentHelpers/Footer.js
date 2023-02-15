@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { footerSx, flexBoxSx, BtnFlipContainerSx } from "../SXstyles";
-import FlipContainer from "./FlipContainer";
+import { footerSx, flexBoxSx, BtnFlipContainerSx } from "../Styles/SXstyles";
+import { BtnFlipContainer } from "./FlipContainer";
 import { gameContext } from "../Context/GameStatusContext";
 import { buttonContext } from "../Context/ButtonContext";
 
@@ -11,21 +11,18 @@ export default function Footer() {
 
   return (
     <Box sx={footerSx}>
-      <FlipContainer
+      <BtnFlipContainer
         active={game.flip && (game.status === "topic" || game.rules)}
-        containerSx={BtnFlipContainerSx}
       />
-      <FlipContainer
+      <BtnFlipContainer
         active={game.flip && (game.status === "speech" || game.rules)}
-        containerSx={BtnFlipContainerSx}
       />
-      <FlipContainer
+      <BtnFlipContainer
         active={
           (!game.rules && btn.playBtnActive) ||
           (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }
-        containerSx={BtnFlipContainerSx}
       />
     </Box>
   );

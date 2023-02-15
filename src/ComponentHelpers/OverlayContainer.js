@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { flexBoxSx, mainFlipContainerSx, mainBoxSx } from "../SXstyles";
-import FlipContainer from "./FlipContainer";
+import {
+  Sx,
+  flexBoxSx,
+  mainFlipContainerSx,
+  mainBoxSx,
+} from "../Styles/SXstyles";
+import { MainFlipContainerOverlay } from "./FlipContainer";
 import TopBtnContainer from "./TopBtnContainer";
 import BottomBtnContainer from "./BottomBtnContainer";
 import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
@@ -22,19 +27,14 @@ function OverlayContainer() {
     <Box sx={overlayContainerSx}>
       <TopBtnContainer />
       <Box sx={mainBoxSx}>
-        <FlipContainer
-          active={game.flip}
-          main={true}
-          overlay={true}
-          containerSx={mainFlipContainerSx}
-        >
+        <MainFlipContainerOverlay active={game.flip}>
           {!game.rules &&
             (game.status === "topic" || game.status === "speech") && (
               <SpeechTopicCard />
             )}
           {!game.rules && game.status === "result" && <RoundOverCard />}
           {game.rules && <RulesCard />}
-        </FlipContainer>
+        </MainFlipContainerOverlay>
       </Box>
       <BottomBtnContainer />
     </Box>
@@ -45,14 +45,17 @@ export default OverlayContainer;
 
 const overlayContainerSx = {
   ...flexBoxSx,
+  // height: "100vh",
   flexDirection: "column",
-  justifyContent: "flex-start",
+  // justifyContent: "flex-start",
+  justifyContent: "space-between",
   zIndex: 20,
   position: "absolute",
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  padding: "1.5rem 2rem",
-  gap: "3rem",
+  padding: Sx.padding.main,
+  gap: Sx.gap.main,
+  // overflow: "scroll",
 };
