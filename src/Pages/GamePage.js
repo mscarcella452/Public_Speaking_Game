@@ -36,15 +36,16 @@ export default function GamePage() {
           flexDirection: "column",
           // padding: Sx.padding.main,
           // gap: Sx.gap.main,
-          justifyContent: "space-between",
-          // justifyContent: "flex-start",
+          // justifyContent: "space-between",
+          justifyContent: Sx.justifyContent,
           gap: Sx.gap.main,
+          background: "teal",
           // padding: Sx.padding.main,
         }}
       >
         <Header />
         {/* height: maxHeight ? "140px" : "100%"  */}
-        <Box sx={{ ...mainBoxSx }}>
+        <Box sx={mainBoxSx}>
           <MainFlipContainer active={game.flip} />
         </Box>
         {/* <Box

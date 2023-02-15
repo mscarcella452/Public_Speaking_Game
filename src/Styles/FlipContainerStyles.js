@@ -3,13 +3,15 @@ import { flexBoxSx, Sx, fabricOverlaySx } from "./SXstyles";
 const borderRadius = {
   main: { xs: "5px", sm: "5px", md: "5px", lg: "5px", xl: "5px" },
   btn: { xs: "5px", sm: "5px", md: "5px", lg: "5px", xl: "5px" },
-  smBtn: { xs: "2.5px", sm: "2.5px", md: "2.5px", lg: "2.5px", xl: "2.5px" },
+  smBtn: { xs: "3px", sm: "3px", md: "3px", lg: "3px", xl: "3px" },
 };
 
 const containerSx = {
   ...flexBoxSx,
   padding: { xs: "3px", sm: "3px", md: "3px", lg: "3px" },
-  boxShadow: "0px 0px 3px .5px #333 inset;",
+  boxShadow:
+    "-1px -1px 0 #000 inset, 1px -1px 0 #000 inset, -1px 1px 0 #000 inset, 1px 1px 0 #000 inset",
+  // boxShadow: "0px 0px 3px .5px #333 inset",
   position: "relative",
   background: "rgb(15, 15, 15)",
 };
@@ -21,6 +23,8 @@ const flipBoxInnerSx = {
   transformStyle: "preserve-3d",
   position: "relative",
   backgroundColor: Sx.color.primary,
+  boxShadow:
+    "-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1.5px 0 #333",
 };
 
 const frontFlipSx = {
@@ -47,27 +51,33 @@ export const flipContainerSx = {
       ...containerSx,
       border: "1px solid #333",
       borderRadius: borderRadius.main,
-      maxHeight: "100%",
+      maxHeight: {
+        xs: "400px",
+        sm: "350px",
+        md: "100%",
+        lg: "100%",
+        xl: "100%",
+      },
       height: {
-        xs: "150px",
-        sm: "400px",
+        xs: "100%",
+        sm: "100%",
         md: "200px",
         lg: "275px",
-        xl: "400px",
+        xl: "425px",
       },
       width: {
-        xs: "300px",
-        sm: "300px",
+        xs: "100%",
+        sm: "100%",
         md: "450px",
         lg: "550px",
-        xl: "800px",
+        xl: "900px",
       },
     },
     btn: {
       ...containerSx,
       width: {
-        xs: "100px",
-        sm: "160px",
+        xs: "33%",
+        sm: "33%",
         md: "160px",
         lg: "160px",
         xl: "160px",

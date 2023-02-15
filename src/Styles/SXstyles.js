@@ -27,6 +27,7 @@ export const Sx = {
       xl: "1rem",
     },
   },
+  justifyContent: { xs: "flex-start", sm: "flex-start", md: "space-between" },
 };
 
 export const flexBoxSx = {
@@ -62,16 +63,12 @@ export const backgroundWordsOverlaySx = {
 };
 
 export const footerSx = {
-  // ...flexBoxSx,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  minHeight: "80px",
-  maxHeight: "80px",
-  // maxHeight: { xs: "50px", sm: "50px", md: "50px", lg: "80px", xl: "80px" },
-
-  // border: "1px solid black",
+  minHeight: { xs: "50px", sm: "60px", md: "50px", lg: "80px", xl: "80px" },
+  height: { xs: "50px", sm: "60px", md: "10%", lg: "80px", xl: "80px" },
   gap: "1rem",
 };
 export const HeaderSx = {
@@ -79,7 +76,6 @@ export const HeaderSx = {
   justifyContent: "space-between",
   minHeight: "40px",
   maxHeight: "40px",
-  // border: "1px solid black",
 };
 
 export const fabricOverlaySx = {
@@ -119,12 +115,19 @@ export const logoImageSx = {
 export const mainBoxSx = {
   ...flexBoxSx,
   height: "100%",
+  // background: {
+  //   xs: "teal",
+  //   sm: "yellow",
+  //   md: "red",
+  //   lg: "green",
+  //   xl: "blue",
+  // },
   maxHeight: {
-    xs: "150px",
-    sm: "400px",
+    xs: "500px",
+    sm: "300px",
     md: "auto",
     lg: "275px",
-    xl: "400px",
+    xl: "500px",
   },
   position: "relative",
   // border: "1px solid black",

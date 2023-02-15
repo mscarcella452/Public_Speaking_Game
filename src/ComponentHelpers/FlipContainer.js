@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Paper } from "@mui/material";
 import { flipContainerSx } from "../Styles/FlipContainerStyles";
 import { logoImageSx } from "../Styles/SXstyles";
+import LogoImage from "./LogoImage";
 
 // container background: overlay ? "transparent" : "rgb(15, 15, 15)"
 // inner   background: overlay && "transparent",
@@ -38,7 +39,8 @@ export function MainFlipContainerOverlay({ active, children }) {
       >
         {/* FrontFlip */}
         <Box sx={flipContainerSx.front.main}>
-          <Box sx={logoImageSx} />
+          {/* <Box sx={logoImageSx} /> */}
+          <LogoImage />
         </Box>
 
         {/* BackFlip */}

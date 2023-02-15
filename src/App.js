@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Paper, Box } from "@mui/material";
 import {
   Sx,
-  cardOverlaySx,
+  flexBoxSx,
   fabricOverlaySx,
   backgroundWordsOverlaySx,
 } from "./Styles/SXstyles";
@@ -29,9 +29,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <Paper
         sx={{
+          ...flexBoxSx,
           height: "100vh",
           boxSizing: "border-box",
           fontFamily: Sx.font.card,
+          // background: Sx.color.primary,
           // padding: Sx.padding.main,
           overflow: "scroll",
         }}
