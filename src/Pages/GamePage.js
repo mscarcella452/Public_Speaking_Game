@@ -39,7 +39,7 @@ export default function GamePage() {
           // justifyContent: "space-between",
           justifyContent: Sx.justifyContent,
           gap: Sx.gap.main,
-          background: "teal",
+          // background: "teal",
           // padding: Sx.padding.main,
         }}
       >

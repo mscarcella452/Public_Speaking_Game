@@ -12,22 +12,26 @@ export const Sx = {
   padding: {
     main: {
       xs: "1.5rem 1rem",
-      sm: "1.5rem 1.25rem",
-      md: ".5rem 1rem",
-      lg: "1.5rem 2rem",
+      sm: "1rem 1.25rem",
+      md: "1rem 1.5rem",
+      lg: "1rem 2rem",
       xl: "1.5rem 2rem",
     },
   },
   gap: {
     main: {
-      xs: "1rem",
+      xs: "3rem",
       sm: "1rem",
-      md: ".5rem",
-      lg: "1rem",
-      xl: "1rem",
+      md: "1.25rem",
+      lg: "2rem",
+      xl: "2rem",
     },
   },
-  justifyContent: { xs: "flex-start", sm: "flex-start", md: "space-between" },
+  justifyContent: {
+    xs: "space-around",
+    sm: "space-around",
+    md: "space-around",
+  },
 };
 
 export const flexBoxSx = {
@@ -67,21 +71,21 @@ export const footerSx = {
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  minHeight: { xs: "50px", sm: "60px", md: "50px", lg: "80px", xl: "80px" },
-  height: { xs: "50px", sm: "60px", md: "10%", lg: "80px", xl: "80px" },
+  minHeight: { xs: "40px", sm: "40px", md: "40px", lg: "50px", xl: "70px" },
+  height: { xs: "50px", sm: "50px", md: "50px", lg: "70px", xl: "80px" },
   gap: "1rem",
 };
 export const HeaderSx = {
   ...flexBoxSx,
   justifyContent: "space-between",
-  minHeight: "40px",
-  maxHeight: "40px",
+  minHeight: { xs: "30px", sm: "30px", md: "30px", lg: "30px", xl: "40px" },
+  height: { xs: "40px", sm: "40px", md: "40px", lg: "40px", xl: "40px" },
 };
 
 export const fabricOverlaySx = {
   background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
   backgroundSize: "cover",
-  opacity: 0.2,
+  opacity: 0.4,
   position: "absolute",
   top: 0,
   bottom: 0,
@@ -122,12 +126,26 @@ export const mainBoxSx = {
   //   lg: "green",
   //   xl: "blue",
   // },
-  maxHeight: {
-    xs: "500px",
+  minHeight: {
+    xs: "300px",
     sm: "300px",
-    md: "auto",
-    lg: "275px",
-    xl: "500px",
+    md: "150px",
+    lg: "250px",
+    xl: "300px",
+  },
+  maxHeight: {
+    xs: "65%",
+    sm: "450px",
+    md: "350px",
+    lg: "525px",
+    xl: "450px",
+  },
+  maxWidth: {
+    xs: "100%",
+    sm: "100%",
+    md: "600px",
+    lg: "800px",
+    xl: "950px",
   },
   position: "relative",
   // border: "1px solid black",

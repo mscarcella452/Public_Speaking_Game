@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { footerSx, btnSx, BtnFlipContainerSx } from "../Styles/SXstyles";
+import { footerSx, btnSx } from "../Styles/SXstyles";
 import { BtnFlipContainerOverlay } from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
@@ -92,11 +92,3 @@ export default function BottomBtnContainer() {
     </Box>
   );
 }
-
-const btnWidthSx = {
-  xs: "160px",
-  sm: "160px",
-  md: "160px",
-  lg: "160px",
-  xl: "160px",
-};

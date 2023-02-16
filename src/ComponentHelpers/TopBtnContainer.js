@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useToggle } from "../Helpers/CustomHooks";
+import React, { useState, useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { btnSx, HeaderSx, smallBtnFlipContainerSx } from "../Styles/SXstyles";
+import { btnSx, HeaderSx } from "../Styles/SXstyles";
 import { SmallBtnFlipContainerOverlay } from "./FlipContainer";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
-import { timerDispatchContext } from "../Context/TimerContext";
+import { timerContext, timerDispatchContext } from "../Context/TimerContext";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
@@ -13,11 +12,20 @@ import { buttonContext, buttonDispatchContext } from "../Context/ButtonContext";
 export default function TopBtnContainer() {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
+  const timer = useContext(timerContext);
   const timerDispatch = useContext(timerDispatchContext);
   const btn = useContext(buttonContext);
   const btnDispatch = useContext(buttonDispatchContext);
 
   const [rulesBtnIcon, setRulesBtnIcon] = useState(<HelpCenterIcon />);
+
+  const toggleTimer = () => {
+    timer.On
+      ? timerDispatch({ type: "TOGGLE_TIMER" })
+      : setTimeout(() => {
+          timerDispatch({ type: "TOGGLE_TIMER" });
+        }, 1200);
+  };
 
   const toggleRulesBtnIcon = () => {
     btnDispatch({ type: "TOGGLE_RULES_BTN" });
@@ -35,8 +43,9 @@ export default function TopBtnContainer() {
     if (game.status === "off") {
       // if game is off && rules are off
       if (!game.rules) {
-        gameDispatch({ type: "TOGGLE_RULES" });
+        btnDispatch({ type: "TOGGLE_PLAY_BTN" });
         setTimeout(() => {
+          gameDispatch({ type: "TOGGLE_RULES" });
           gameDispatch({ type: "LOAD" });
         }, 1200);
         // if game is off && rules are on
@@ -44,10 +53,12 @@ export default function TopBtnContainer() {
         gameDispatch({ type: "LOAD" });
         setTimeout(() => {
           gameDispatch({ type: "TOGGLE_RULES" });
+          btnDispatch({ type: "TOGGLE_PLAY_BTN" });
         }, 1200);
       }
       // if game is on-----------------------
     } else {
+      game.status === "speech" && toggleTimer();
       btnDispatch({ type: "TOGGLE_QUIT_BTN" });
       gameDispatch({ type: "LOAD" });
       setTimeout(() => {
@@ -85,21 +96,3 @@ export default function TopBtnContainer() {
     </Box>
   );
 }
-
-const HeaderSx2 = {
-  height: {
-    xs: "50px",
-    sm: "50px",
-    md: "50px",
-    lg: "50px",
-    xl: "50px",
-  },
-};
-
-const smallBtnWidthSx = {
-  xs: "55px",
-  sm: "55px",
-  md: "55px",
-  lg: "55px",
-  xl: "55px",
-};

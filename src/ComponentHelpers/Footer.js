@@ -27,11 +27,3 @@ export default function Footer() {
     </Box>
   );
 }
-
-const btnWidthSx = {
-  xs: "160px",
-  sm: "160px",
-  md: "160px",
-  lg: "160px",
-  xl: "160px",
-};

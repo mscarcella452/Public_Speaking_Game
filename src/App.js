@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Paper, Box } from "@mui/material";
+import { Paper, Box, useMediaQuery } from "@mui/material";
 import {
   Sx,
   flexBoxSx,

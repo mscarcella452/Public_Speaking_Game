@@ -1,15 +1,17 @@
 import React from "react";
 import head from "../Images/head.png";
-import { Paper, Box } from "@mui/material";
-import { flexBoxSx, Sx } from "../Styles/SXstyles";
+import { Paper, Box, useMediaQuery } from "@mui/material";
+import { flexBoxSx, Sx, fabricOverlaySx } from "../Styles/SXstyles";
 
 function LogoImage() {
+  const smallScreen = useMediaQuery("(max-height: 450px)");
   return (
     <Paper
       elevation={0}
       sx={{
         ...flexBoxSx,
         background: "transparent",
+        position: "relative",
         // background: `url(${head}) no-repeat center`,
         // backgroundSize: "contain",
       }}
@@ -18,7 +20,14 @@ function LogoImage() {
         sx={{
           ...flexBoxSx,
           fontFamily: Sx.font.display,
-          fontSize: "10rem",
+          fontSize: "14vw",
+          fontSize: {
+            xs: "25vw",
+            sm: "25vw",
+            md: "15vw",
+            lg: "18vh",
+            xl: "25vh",
+          },
           color: "#fff",
           //   textDecoration: "underline",
           textAlign: "center",

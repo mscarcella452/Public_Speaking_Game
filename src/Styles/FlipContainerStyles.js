@@ -53,24 +53,24 @@ export const flipContainerSx = {
       borderRadius: borderRadius.main,
       maxHeight: {
         xs: "400px",
-        sm: "350px",
+        sm: "100%",
         md: "100%",
         lg: "100%",
         xl: "100%",
       },
-      height: {
+      minHeight: {
         xs: "100%",
-        sm: "100%",
-        md: "200px",
-        lg: "275px",
+        sm: "300px",
+        md: "150px",
+        lg: "200px",
         xl: "425px",
       },
       width: {
         xs: "100%",
         sm: "100%",
-        md: "450px",
-        lg: "550px",
-        xl: "900px",
+        md: "100%",
+        lg: "950px",
+        xl: "1000px",
       },
     },
     btn: {
