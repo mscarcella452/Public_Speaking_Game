@@ -4,7 +4,8 @@ import PublicSpeakingCropped from "../Images/PublicSpeakingCropped.png";
 export const Sx = {
   font: {
     display: "'Sunny Spells Basic', sans-serif",
-    card: "'Comic Marker Deluxe', sans-serif",
+    card: "'Rowdies', cursive",
+    // card: "'Comic Marker Deluxe', sans-serif",
   },
   color: {
     primary: "#981010",
@@ -81,10 +82,12 @@ export const HeaderSx = {
   minHeight: { xs: "30px", sm: "30px", md: "30px", lg: "30px", xl: "40px" },
   height: { xs: "40px", sm: "40px", md: "40px", lg: "40px", xl: "40px" },
 };
-
-export const fabricOverlaySx = {
+export const fabricBackgroundSx = {
   background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
   backgroundSize: "cover",
+};
+export const fabricOverlaySx = {
+  ...fabricBackgroundSx,
   opacity: 0.4,
   position: "absolute",
   top: 0,

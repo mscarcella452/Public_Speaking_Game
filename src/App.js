@@ -33,13 +33,11 @@ function App() {
           height: "100vh",
           boxSizing: "border-box",
           fontFamily: Sx.font.card,
-          // background: Sx.color.primary,
+          background: Sx.color.primary,
           // padding: Sx.padding.main,
           overflow: "scroll",
         }}
       >
-        <Box sx={fabricOverlaySx} />
-        <Box sx={backgroundWordsOverlaySx} />
         <Routes>
           <Route path='*' element={<GamePage />} />
 
@@ -48,6 +46,8 @@ function App() {
             <Route path=':Rules' element={<RulesPage />} />
           </Route> */}
         </Routes>
+        <Box sx={fabricOverlaySx} />
+        <Box sx={backgroundWordsOverlaySx} />
       </Paper>
     </ThemeProvider>
   );

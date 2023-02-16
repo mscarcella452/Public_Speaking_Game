@@ -15,13 +15,13 @@ export default function MainBackground({ children }) {
   const timer = useContext(timerContext);
   return (
     <Paper sx={{ ...backgroundPageSx }}>
-      <Box
+      {/* <Box
         sx={{
           ...timerOverlaySx,
           opacity: timer.seconds / timer.startingValue,
           overflow: "scroll",
         }}
-      />
+      /> */}
 
       {children}
     </Paper>

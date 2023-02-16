@@ -32,12 +32,12 @@ const frontFlipSx = {
   position: "absolute",
   backfaceVisibility: "hidden",
   overflow: "hidden",
-  padding: "1.5rem",
 };
 
 const backFlipSx = {
   ...frontFlipSx,
   padding: 0,
+  background: "transparent",
   backgroundColor: "#fff",
   transform: "rotateX(180deg)",
   position: "relative",
@@ -128,6 +128,7 @@ export const flipContainerSx = {
     main: {
       ...frontFlipSx,
       borderRadius: borderRadius.main,
+      padding: "1.5rem",
     },
     btn: {
       ...frontFlipSx,
@@ -135,7 +136,7 @@ export const flipContainerSx = {
     },
     smBtn: {
       ...frontFlipSx,
-      borderRadius: borderRadius.maismBtnn,
+      borderRadius: borderRadius.smBtn,
     },
   },
   // back------------------------------

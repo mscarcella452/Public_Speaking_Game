@@ -19,8 +19,7 @@ export function MainFlipContainer({ active, children }) {
         }}
       >
         {/* FrontFlip */}
-        <Box sx={flipContainerSx.front.main} />
-
+        <Box sx={{ ...flipContainerSx.front.main, zIndex: 10 }} />
         {/* BackFlip */}
         <Box sx={flipContainerSx.back.main}>{children}</Box>
       </Box>
