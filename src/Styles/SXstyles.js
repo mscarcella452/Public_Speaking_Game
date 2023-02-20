@@ -4,14 +4,22 @@ import PublicSpeakingCropped from "../Images/PublicSpeakingCropped.png";
 export const Sx = {
   font: {
     display: "'Sunny Spells Basic', sans-serif",
-    card: "'Rowdies', cursive",
-    // card: "'Comic Marker Deluxe', sans-serif",
+    // display: "'Bevan', cursive",
+    // card: "'Shantell Sans', cursive",
+    card: "'Averia Libre', cursive",
+    // card: "'Boogaloo', cursive",
+    // card: "'Cabin Sketch', cursive",
+    // card: "'Sriracha', cursive",
+    // card: "'Rowdies', cursive",
   },
   color: {
+    // primary: "teal",
     primary: "#981010",
   },
   padding: {
     main: {
+      galaxyFold: "1.5rem 1rem",
+      mobile: "1.5rem 1rem",
       xs: "1.5rem 1rem",
       sm: "1rem 1.25rem",
       md: "1rem 1.5rem",
@@ -21,14 +29,18 @@ export const Sx = {
   },
   gap: {
     main: {
-      xs: "3rem",
+      galaxyFold: "1rem",
+      mobile: "1rem",
+      xs: "1rem",
       sm: "1rem",
-      md: "1.25rem",
+      md: "1rem",
       lg: "2rem",
       xl: "2rem",
     },
   },
   justifyContent: {
+    galaxyFold: "space-around",
+    mobile: "space-around",
     xs: "space-around",
     sm: "space-around",
     md: "space-around",
@@ -72,15 +84,15 @@ export const footerSx = {
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  minHeight: { xs: "40px", sm: "40px", md: "40px", lg: "50px", xl: "70px" },
-  height: { xs: "50px", sm: "50px", md: "50px", lg: "70px", xl: "80px" },
-  gap: "1rem",
+  minHeight: { galaxyFold: "40px", lg: "50px", xl: "70px" },
+  height: { galaxyFold: "50px", lg: "70px", xl: "80px" },
+  gap: { galaxyFold: ".75rem", mobile: ".75rem", xs: "1rem" },
 };
 export const HeaderSx = {
   ...flexBoxSx,
   justifyContent: "space-between",
-  minHeight: { xs: "30px", sm: "30px", md: "30px", lg: "30px", xl: "40px" },
-  height: { xs: "40px", sm: "40px", md: "40px", lg: "40px", xl: "40px" },
+  height: "40px",
+  minHeight: { galaxyFold: "30px", xl: "40px" },
 };
 export const fabricBackgroundSx = {
   background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
@@ -101,13 +113,22 @@ export const breadSx = {
   ...flexBoxSx,
   justifyContent: "flex-end",
   height: {
+    galaxyFold: "20px",
+    mobile: "20px",
     xs: "20px",
     sm: "30px",
     md: "50px",
     lg: "60px",
   },
   fontWeight: "bold",
-  fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem", lg: "3rem" },
+  fontSize: {
+    galaxyFold: "1.25rem",
+    mobile: "1.25rem",
+    xs: "1.25rem",
+    sm: "1.5rem",
+    md: "2rem",
+    lg: "3rem",
+  },
   fontFamily: Sx.font.display,
   color: Sx.color.primary,
 };
@@ -121,37 +142,50 @@ export const logoImageSx = {
 
 export const mainBoxSx = {
   ...flexBoxSx,
-  height: "100%",
+  minHeight: "100px",
+  height: {
+    galaxyFold: "100%",
+    mobile: "550px",
+    xs: "650px",
+    sm: "475px",
+    md: "475px",
+    lg: "475px",
+    xl: "475px",
+  },
+  maxHeight: "100%",
+  maxWidth: {
+    galaxyFold: "100%",
+    mobile: "100%",
+    xs: "500px",
+    sm: "600px",
+    md: "700px",
+    lg: "950px",
+    xl: "1050px",
+  },
+  "@media (min-height: 1024px)": {
+    height: { xs: "100%", sm: "750px", md: "650px", lg: "650px", xl: "650px" },
+    maxWidth: {
+      xs: "100%",
+      sm: "650px",
+      md: "800px",
+      lg: "850px",
+      xl: "1250px",
+    },
+  },
+  "@media (min-height: 1250px)": {
+    height: { xs: "100%", sm: "100%", md: "500px", lg: "850px", xl: "650px" },
+  },
   // background: {
+  //   galaxyFold: "purple",
+  //   mobile: "silver",
   //   xs: "teal",
   //   sm: "yellow",
   //   md: "red",
   //   lg: "green",
   //   xl: "blue",
   // },
-  minHeight: {
-    xs: "300px",
-    sm: "300px",
-    md: "150px",
-    lg: "250px",
-    xl: "300px",
-  },
-  maxHeight: {
-    xs: "65%",
-    sm: "450px",
-    md: "350px",
-    lg: "525px",
-    xl: "450px",
-  },
-  maxWidth: {
-    xs: "100%",
-    sm: "100%",
-    md: "600px",
-    lg: "800px",
-    xl: "950px",
-  },
+
   position: "relative",
-  // border: "1px solid black",
 };
 
 export const btnSx = {

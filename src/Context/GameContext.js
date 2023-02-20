@@ -4,6 +4,7 @@ import GameStatusProvider from "./GameStatusContext";
 import TopicContextProvider from "./TopicContext";
 import TimerContextProvider from "./TimerContext";
 import ButtonContextProvider from "./ButtonContext";
+import ThemeContextProvider from "./ThemeContext";
 
 // export const gameActiveContext = createContext();
 // export const toggleGameContext = createContext();
@@ -12,20 +13,22 @@ function GameContext({ children }) {
   // const [gameActive, toggleGame] = useToggle(false);
 
   return (
-    <TimerContextProvider>
-      <TopicContextProvider>
-        <GameStatusProvider>
-          <ButtonContextProvider>
-            {children}
-            {/* <toggleGameContext.Provider value={toggleGame}>
+    <ThemeContextProvider>
+      <TimerContextProvider>
+        <TopicContextProvider>
+          <GameStatusProvider>
+            <ButtonContextProvider>
+              {children}
+              {/* <toggleGameContext.Provider value={toggleGame}>
             <gameActiveContext.Provider value={gameActive}>
               {children}
             </gameActiveContext.Provider>
           </toggleGameContext.Provider> */}
-          </ButtonContextProvider>
-        </GameStatusProvider>
-      </TopicContextProvider>
-    </TimerContextProvider>
+            </ButtonContextProvider>
+          </GameStatusProvider>
+        </TopicContextProvider>
+      </TimerContextProvider>
+    </ThemeContextProvider>
   );
 }
 

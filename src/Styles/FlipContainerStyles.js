@@ -1,14 +1,45 @@
 import { flexBoxSx, Sx, fabricOverlaySx } from "./SXstyles";
 
 const borderRadius = {
-  main: { xs: "5px", sm: "5px", md: "5px", lg: "5px", xl: "5px" },
-  btn: { xs: "5px", sm: "5px", md: "5px", lg: "5px", xl: "5px" },
-  smBtn: { xs: "3px", sm: "3px", md: "3px", lg: "3px", xl: "3px" },
+  main: {
+    galaxyFold: "5px",
+    mobile: "5px",
+    xs: "5px",
+    sm: "5px",
+    md: "5px",
+    lg: "5px",
+    xl: "5px",
+  },
+  btn: {
+    galaxyFold: "5px",
+    mobile: "5px",
+    xs: "5px",
+    sm: "5px",
+    md: "5px",
+    lg: "5px",
+    xl: "5px",
+  },
+  smBtn: {
+    galaxyFold: "3px",
+    mobile: "3px",
+    xs: "3px",
+    sm: "3px",
+    md: "3px",
+    lg: "3px",
+    xl: "3px",
+  },
 };
 
 const containerSx = {
   ...flexBoxSx,
-  padding: { xs: "3px", sm: "3px", md: "3px", lg: "3px" },
+  padding: {
+    galaxyFold: "2px",
+    mobile: "2x",
+    xs: "3px",
+    sm: "3px",
+    md: "3px",
+    lg: "3px",
+  },
   boxShadow:
     "-1px -1px 0 #000 inset, 1px -1px 0 #000 inset, -1px 1px 0 #000 inset, 1px 1px 0 #000 inset",
   // boxShadow: "0px 0px 3px .5px #333 inset",
@@ -32,11 +63,12 @@ const frontFlipSx = {
   position: "absolute",
   backfaceVisibility: "hidden",
   overflow: "hidden",
+  // border: ".1px solid gold",
 };
 
 const backFlipSx = {
   ...frontFlipSx,
-  padding: 0,
+  // padding: { galaxyFold: ".5rem", mobile: ".75rem", sm: "1rem" },
   background: "transparent",
   backgroundColor: "#fff",
   transform: "rotateX(180deg)",
@@ -51,31 +83,26 @@ export const flipContainerSx = {
       ...containerSx,
       border: "1px solid #333",
       borderRadius: borderRadius.main,
-      maxHeight: {
-        xs: "400px",
-        sm: "100%",
-        md: "100%",
-        lg: "100%",
-        xl: "100%",
-      },
-      minHeight: {
-        xs: "100%",
-        sm: "300px",
-        md: "150px",
-        lg: "200px",
-        xl: "425px",
-      },
-      width: {
-        xs: "100%",
-        sm: "100%",
-        md: "100%",
-        lg: "950px",
-        xl: "1000px",
-      },
+      // maxHeight: {
+      //   xs: "400px",
+      //   sm: "100%",
+      //   md: "100%",
+      //   lg: "100%",
+      //   xl: "100%",
+      // },
+      // minHeight: {
+      //   xs: "100%",
+      //   sm: "300px",
+      //   md: "150px",
+      //   lg: "200px",
+      //   xl: "425px",
+      // },
     },
     btn: {
       ...containerSx,
       width: {
+        galaxyFold: "30%",
+        mobile: "33%",
         xs: "33%",
         sm: "33%",
         md: "160px",
@@ -88,6 +115,8 @@ export const flipContainerSx = {
     smBtn: {
       ...containerSx,
       width: {
+        galaxyFold: "50px",
+        mobile: "50px",
         xs: "50px",
         sm: "50px",
         md: "50px",

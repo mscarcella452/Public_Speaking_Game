@@ -31,7 +31,7 @@ export default function MainBackground({ children }) {
 const backgroundPageSx = {
   ...flexBoxSx,
   height: "100%",
-  maxHeight: "900px",
+  // maxHeight: "900px",
   // minHeight: {
   //   xs: "300px",
   //   sm: "300px",

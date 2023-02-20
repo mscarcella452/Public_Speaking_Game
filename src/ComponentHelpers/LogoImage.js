@@ -20,8 +20,9 @@ function LogoImage() {
         sx={{
           ...flexBoxSx,
           fontFamily: Sx.font.display,
-          fontSize: "14vw",
           fontSize: {
+            galaxyFold: "25vw",
+            mobile: "25vw",
             xs: "25vw",
             sm: "25vw",
             md: "15vw",
@@ -33,7 +34,7 @@ function LogoImage() {
           textAlign: "center",
           lineHeight: "1",
           textShadow:
-            "-1px -3px 0 #981010, 1px -3px 0 #000, -1px 3px 0 #981010, 1px 5px 0 #000",
+            "-1px -3px 0 gold, 1px -3px 0 #000, -1px 3px 0 #981010, 1px 5px 0 #000",
           //   textShadow: `2px 2px black`,
         }}
       >

@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Sx, flexBoxSx, mainBoxSx } from "../Styles/SXstyles";
+import {
+  Sx,
+  flexBoxSx,
+  mainBoxSx,
+  fabricOverlaySx,
+  backgroundWordsOverlaySx,
+} from "../Styles/SXstyles";
 import { Paper, Box, Button, useMediaQuery } from "@mui/material";
 import Header from "../ComponentHelpers/Header";
 import Footer from "../ComponentHelpers/Footer";
@@ -32,6 +38,8 @@ export default function GamePage() {
         </Box>
         <Footer />
       </Box>
+      <Box sx={fabricOverlaySx} />
+      <Box sx={backgroundWordsOverlaySx} />
       <OverlayContainer />
     </MainBackground>
   );

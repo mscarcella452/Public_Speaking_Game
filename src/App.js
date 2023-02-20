@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Paper, Box, useMediaQuery } from "@mui/material";
 import {
@@ -11,20 +11,24 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GamePage from "./Pages/GamePage";
 import backgroundWords from "./Images/backgroundWords.png";
 import SunnyspellsRegular from "./Fonts/SunnyspellsRegular.otf";
+import { themeContext } from "./Context/ThemeContext";
 
 export const theme = createTheme({
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 450,
-      md: 600,
-      lg: 900,
+      galaxyFold: 0,
+      mobile: 300,
+      xs: 389,
+      sm: 625,
+      md: 715,
+      lg: 875,
       xl: 1200,
     },
   },
 });
 
 function App() {
+  const gameTheme = useContext(themeContext);
   return (
     <ThemeProvider theme={theme}>
       <Paper
@@ -32,7 +36,7 @@ function App() {
           ...flexBoxSx,
           height: "100vh",
           boxSizing: "border-box",
-          fontFamily: Sx.font.card,
+          fontFamily: Sx.font.display,
           background: Sx.color.primary,
           // padding: Sx.padding.main,
           overflow: "scroll",
@@ -46,8 +50,6 @@ function App() {
             <Route path=':Rules' element={<RulesPage />} />
           </Route> */}
         </Routes>
-        <Box sx={fabricOverlaySx} />
-        <Box sx={backgroundWordsOverlaySx} />
       </Paper>
     </ThemeProvider>
   );
