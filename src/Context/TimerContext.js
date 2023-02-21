@@ -5,8 +5,8 @@ export const timerContext = createContext();
 export const timerDispatchContext = createContext();
 
 const initialTimerValue = {
-  startingValue: 5,
-  seconds: 5,
+  startingValue: 40,
+  seconds: 40,
   On: false,
 };
 

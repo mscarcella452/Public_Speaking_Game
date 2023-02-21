@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Box, Button } from "@mui/material";
-import { footerSx, btnSx } from "../Styles/SXstyles";
+import { Paper, Box, Button } from "@mui/material";
+import { footerSx } from "../Styles/SXstyles";
 import { BtnFlipContainerOverlay } from "./FlipContainer";
+import { BottomBtnFabric } from "./BtnFabric";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
@@ -42,43 +43,56 @@ export default function BottomBtnContainer() {
     btnDispatch({ type: "TOGGLE_QUIT_BTN" });
     gameDispatch({ type: "GAME_ON" });
     topicGenerator();
-    setTimeout(() => {
-      btnDispatch({ type: "THIRD_BTN_TITLE", payload: "Next Round" });
-    }, 500);
+    btn.thirdBtnTitle === "Play" &&
+      setTimeout(() => {
+        btnDispatch({
+          type: "THIRD_BTN_TITLE",
+          payload: "Next",
+        });
+      }, 500);
   };
 
   return (
     <Box sx={footerSx}>
       <BtnFlipContainerOverlay
-        active={game.flip && (game.status === "topic" || game.rules)}
+        active={game.flip && game.status === "topic" && !game.rules}
+        // active={game.flip && (game.status === "topic" || game.rules)}
       >
-        {game.rules ? (
+        <BottomBtnFabric onClick={startTimer}>Start</BottomBtnFabric>
+        {/* {game.rules ? (
           <Box sx={btnSx}>Rules # 1</Box>
         ) : (
           <Button onClick={startTimer} sx={btnSx}>
             Start Timer
           </Button>
-        )}
+        )} */}
       </BtnFlipContainerOverlay>
       <BtnFlipContainerOverlay
-        active={game.flip && (game.status === "speech" || game.rules)}
+        active={game.flip && game.status === "speech" && !game.rules}
+        // active={game.flip && (game.status === "speech" || game.rules)}
       >
-        {game.rules ? (
+        <BottomBtnFabric onClick={failSpeech}>Fail</BottomBtnFabric>
+        {/* {game.rules ? (
           <Box sx={btnSx}>Rules # 2</Box>
         ) : (
           <Button onClick={failSpeech} sx={btnSx}>
             Fail Speech
           </Button>
-        )}
+        )} */}
       </BtnFlipContainerOverlay>
       <BtnFlipContainerOverlay
         active={
           (!game.rules && btn.playBtnActive) ||
-          (game.rules && game.flip) ||
+          // (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }
       >
-        {game.rules ? (
+        <BottomBtnFabric
+          onClick={game.status === "off" ? handleStart : nextRound}
+        >
+          {btn.thirdBtnTitle}
+        </BottomBtnFabric>
+        {/* {game.rules ? (
           <Box sx={btnSx}>Rules # 3</Box>
         ) : (
           <Button
@@ -87,7 +101,7 @@ export default function BottomBtnContainer() {
           >
             {btn.thirdBtnTitle}
           </Button>
-        )}
+        )} */}
       </BtnFlipContainerOverlay>
     </Box>
   );

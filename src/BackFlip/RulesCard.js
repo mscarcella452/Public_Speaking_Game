@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Paper, useMediaQuery } from "@mui/material";
 import { flexBoxSx, breadSx, Sx, fabricBackgroundSx } from "../Styles/SXstyles";
+import RulesBox from "../ComponentHelpers/RulesBox";
 import { gameContext } from "../Context/GameStatusContext";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
@@ -23,19 +24,15 @@ function RulesCard() {
           gap: {
             galaxyFold: "1.25rem",
             mobile: "1rem",
-            xs: "1.25rem",
+            xs: "1rem",
             sm: "1.5rem",
-            md: "1.5rem",
-            lg: "1.5rem",
-            xl: "2.5rem",
+            lg: "1.75rem",
           },
-          fontWeight: "bold",
-          textAlign: "left",
           fontSize: {
             galaxyFold: "14px",
-            mobile: "15px",
-            xs: "19.5px",
-            sm: "20px",
+            mobile: "17px",
+            xs: "20px",
+            sm: "21px",
             md: "22px",
             lg: "23px",
             xl: "25px",
@@ -46,30 +43,54 @@ function RulesCard() {
               sm: "25px",
               md: "25px",
               lg: "25px",
-              xl: "30px",
+              xl: "28px",
             },
-            gap: {
-              md: "2rem",
-              lg: "2.5rem",
-              xl: "2.75rem",
-            },
+            gap: "2.5rem",
           },
           "@media (min-height: 1300px)": {
             fontSize: "30px",
+            gap: "3.5rem",
           },
 
-          "@media (max-height: 540px)": {
+          "@media (max-height: 668px)": {
             fontSize: {
               galaxyFold: "14px",
               mobile: "15px",
-              xs: "13px",
-              sm: "15px",
-              md: "15px",
-              lg: "20px",
+              xs: "14px",
+              sm: "14px",
+              md: "15.5px",
             },
           },
+          "@media (max-Width: 414px)": {
+            gap: "1rem",
+            fontSize: {
+              galaxyFold: "14px",
+              mobile: "15.5px",
+              xs: "17px",
+              sm: "20px",
+              md: "20px",
+              lg: "22px",
+            },
+          },
+          "@media (max-height: 375px)": {
+            fontSize: {
+              galaxyFold: "14px",
+              mobile: "15px",
+              xs: "14px",
+              sm: "13px",
+              md: "14.5px",
+              lg: "16px",
+            },
+            gap: {
+              galaxyFold: "1.25rem",
+              mobile: "1rem",
+              xs: "1.25rem",
+              md: ".75rem",
+            },
+          },
+          fontWeight: "bold",
+          textAlign: "left",
 
-          // fontWeight: "",
           fontFamily: Sx.font.card,
         }}
       >
@@ -79,23 +100,30 @@ function RulesCard() {
             lineHeight: {
               galaxyFold: "1rem",
               mobile: "1.5rem",
-              xs: "1.5rem",
               sm: "1.75rem",
               md: "2rem",
-              lg: "2.25rem",
               xl: "2.5rem",
             },
             "@media (min-height: 1024px)": {
               lineHeight: { md: "2.25rem", lg: "3rem" },
             },
-            "@media (max-height: 414px)": {
+
+            "@media (max-height: 668px)": {
+              lineHeight: { md: "1.65rem" },
+            },
+            "@media (max-height: 414px) and (max-width: 915px)": {
               lineHeight: {
-                sm: "1.4rem",
-                md: "1.5rem",
-                lg: "2.1rem",
+                sm: "1.25rem",
+                md: "1.25rem",
+                lg: "1.5rem",
                 xl: "3rem",
               },
             },
+            "@media (max-width: 414px)": {
+              lineHeight: { xs: "1.95rem" },
+            },
+
+            textAlign: "justify",
           }}
         >
           When it's your turn, you will give a 40 second improptu speech on a
@@ -105,15 +133,15 @@ function RulesCard() {
           topic or if the story you're asked to tell never happened to you...
         </Box>
         <Box
-          style={{
+          sx={{
             ...flexBoxSx,
             height: "auto",
             flexDirection: "column",
             justifyContent: "flex-start",
-            margin: "0",
             borderRadius: "5px",
             fontWeight: "500",
             gap: "1.25rem",
+            "@media (max-height: 414px)": { gap: ".75rem" },
             fontWeight: "bold",
           }}
         >
@@ -129,43 +157,33 @@ function RulesCard() {
           <Box
             sx={{
               ...flexBoxSx,
-              // background: {
-              //   xs: "red",
-              //   sm: "yellow",
-              //   md: "teal",
-              //   lg: "green",
-              //   xl: "blue",
-              // },
-              flexDirection: {
-                galaxyFold: "column",
-                mobile: "column",
-                xs: "column",
-                sm: "column",
-                md: "row",
-                lg: "row",
-                xl: "row",
-              },
+              flexDirection: { galaxyFold: "column", md: "row" },
               "@media (min-height: 1024px)": {
-                flexDirection: { md: "column", lg: "row" },
+                flexDirection: "column",
                 gap: "2rem",
                 marginTop: "1rem",
+              },
+              "@media (max-height: 414px)": {
+                flexDirection: "row",
+                maxWidth: {
+                  galaxyFold: "100%",
+                  md: "650px",
+                  lg: "100%",
+                },
               },
               padding: {
                 galaxyFold: "0 .5rem",
                 mobile: "0",
-                xs: "0",
                 sm: "0 .25rem",
-                md: "0 2rem",
+                md: "0 1rem",
                 lg: "0 1rem",
-                xl: "0 2rem",
+                xl: "0 1.5rem",
               },
               maxWidth: {
                 galaxyFold: "100%",
                 xs: "400px",
                 sm: "525px",
                 md: "100%",
-                // lg: "750px",
-                // xl: "100%",
               },
               height: "auto",
               alignItems: "flex-start",
@@ -177,28 +195,13 @@ function RulesCard() {
               // background: "Red",
             }}
           >
-            <Paper elevation={2} sx={rulesBoxesSx}>
-              1. Your speech must last the full 40 seconds.
-            </Paper>
-            <Paper elevation={2} sx={rulesBoxesSx}>
+            <RulesBox>1. Your speech must last the full 40 seconds.</RulesBox>
+            <RulesBox>
               2. You must attempt to stay relevant to the topic.
-              {/* 2. You must stay relevant to the topic. (best of your ability) */}
-            </Paper>
-            <Paper elevation={2} sx={rulesBoxesSx}>
+            </RulesBox>
+            <RulesBox>
               3. No pausing, hesitating, saying 'Umm', 'Uhh', etc.
-            </Paper>
-
-            {/* <div style={{ width: "auto", background: "blue" }}>
-              <p style={{ width: "100%", background: "Red" }}>
-                - No Pausing. No Hesitating. No saying Umm, Uhh, etc
-              </p>
-              <p style={{ width: "100%", background: "Red" }}>
-                - No Heistating
-              </p>
-              <p style={{ width: "100%", background: "Red" }}>
-                - No saying Umm, Uhh, etc
-              </p>
-            </div> */}
+            </RulesBox>
           </Box>
         </Box>
         <Box
@@ -209,7 +212,7 @@ function RulesCard() {
             // maxWidth: { galaxyFold: "100%", sm: "400px", md: "100%" },
           }}
         >
-          Tap the{" "}
+          If not, tap the{" "}
           <span
             style={{
               fontWeight: "bold",
@@ -217,9 +220,9 @@ function RulesCard() {
               textDecoration: "underline",
             }}
           >
-            'FAILED SPEECH'
+            'FAIL'
           </span>{" "}
-          button if you fail to follow the rules.
+          button.
         </Box>
       </Box>
       {/* <Box sx={breadSx} /> */}
@@ -232,17 +235,11 @@ export default RulesCard;
 const speechTopicCardSx = {
   ...flexBoxSx,
   flexDirection: "column",
-  justifyContent: "flex-start",
+  // justifyContent: "flex-start",
   gap: ".5rem",
   cursor: "auto",
-  padding: {
-    galaxyFold: ".75rem",
-    mobile: ".75rem",
-    xs: ".75rem",
-    sm: ".75rem",
-    md: ".75rem",
-    lg: "1rem 2rem",
-  },
+  padding: { galaxyFold: ".75rem", lg: "1rem 2rem" },
+  "@media (max-height: 414px)": { padding: { lg: "1rem" } },
   zIndex: 10,
 };
 
@@ -251,6 +248,7 @@ const rulesBoxesSx = {
   padding: ".5rem",
   borderRadius: "5px",
   ...fabricBackgroundSx,
-  backgroundColor: "gold",
-  // color: "#fff",
+  backgroundColor: Sx.color.secondary,
+  color: "#fff",
+  fontWeight: "100",
 };

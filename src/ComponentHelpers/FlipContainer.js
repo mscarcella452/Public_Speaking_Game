@@ -46,8 +46,8 @@ export function MainFlipContainerOverlay({ active, children }) {
         {/* BackFlip */}
         <Box sx={flipContainerSx.back.main}>
           {/* fabric overlay */}
-          <Paper elevation={1} sx={flipContainerSx.fabric.main} />
           {children}
+          <Paper elevation={1} sx={flipContainerSx.fabric.main} />
         </Box>
       </Box>
     </Box>

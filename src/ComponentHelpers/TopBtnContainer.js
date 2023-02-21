@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { btnSx, HeaderSx } from "../Styles/SXstyles";
+import { btnSx, HeaderSx, Sx } from "../Styles/SXstyles";
 import { SmallBtnFlipContainerOverlay } from "./FlipContainer";
+import { TopBtnFabric } from "./BtnFabric";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerContext, timerDispatchContext } from "../Context/TimerContext";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { buttonContext, buttonDispatchContext } from "../Context/ButtonContext";
@@ -17,7 +19,9 @@ export default function TopBtnContainer() {
   const btn = useContext(buttonContext);
   const btnDispatch = useContext(buttonDispatchContext);
 
-  const [rulesBtnIcon, setRulesBtnIcon] = useState(<HelpCenterIcon />);
+  const [rulesBtnIcon, setRulesBtnIcon] = useState(
+    <HelpCenterIcon sx={topButtonIconSx} />
+  );
 
   const toggleTimer = () => {
     timer.On
@@ -32,8 +36,8 @@ export default function TopBtnContainer() {
     setTimeout(() => {
       btnDispatch({ type: "TOGGLE_RULES_BTN" });
       game.rules
-        ? setRulesBtnIcon(<HelpCenterIcon />)
-        : setRulesBtnIcon(<KeyboardReturnIcon />);
+        ? setRulesBtnIcon(<HelpCenterIcon sx={topButtonIconSx} />)
+        : setRulesBtnIcon(<KeyboardReturnIcon sx={topButtonIconSx} />);
     }, 1200);
   };
 
@@ -84,15 +88,33 @@ export default function TopBtnContainer() {
   return (
     <Box sx={HeaderSx}>
       <SmallBtnFlipContainerOverlay active={!game.rules && btn.quitBtnActive}>
-        <Button onClick={handleQuit} sx={btnSx}>
-          <CancelPresentationIcon />
-        </Button>
+        <TopBtnFabric onClick={handleQuit}>
+          <DisabledByDefaultIcon sx={topButtonIconSx} />
+          {/* <Box sx={topBtnSx}>X</Box> */}
+        </TopBtnFabric>
+        {/* <Button
+          onClick={handleQuit}
+          sx={{ ...btnSx, color: Sx.color.secondary }}
+        >
+          <CancelPresentationIcon sx={topButtonIconSx} />
+        </Button> */}
       </SmallBtnFlipContainerOverlay>
       <SmallBtnFlipContainerOverlay active={btn.rulesBtnActive}>
-        <Button onClick={toggleRules} sx={btnSx}>
+        <TopBtnFabric onClick={toggleRules}>
           {rulesBtnIcon}
-        </Button>
+          {/* <Box sx={topBtnSx}>?</Box> */}
+        </TopBtnFabric>
+        {/* <Button
+          onClick={toggleRules}
+          sx={{ ...btnSx, color: Sx.color.secondary }}
+        >
+          {rulesBtnIcon}
+        </Button> */}
       </SmallBtnFlipContainerOverlay>
     </Box>
   );
 }
+
+const topButtonIconSx = {
+  "@media (min-height: 1024px)": { fontSize: "40px" },
+};

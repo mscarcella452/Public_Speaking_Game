@@ -12,7 +12,7 @@ function RoundOverCard() {
 
   return (
     <Box sx={speechTopicCardSx}>
-      <Box sx={breadSx}>{timer.seconds >= 0 ? `:${timer.seconds}` : ""}</Box>
+      {/* <Box sx={breadSx}>{timer.seconds >= 0 ? `:${timer.seconds}` : ""}</Box> */}
       <Box
         sx={{
           ...flexBoxSx,
@@ -22,7 +22,7 @@ function RoundOverCard() {
       >
         {game.failSpeech ? "fail" : "success"}
       </Box>
-      <Box sx={breadSx} />
+      {/* <Box sx={breadSx} /> */}
     </Box>
   );
 }

@@ -12,15 +12,17 @@ export default function Footer() {
   return (
     <Box sx={footerSx}>
       <BtnFlipContainer
-        active={game.flip && (game.status === "topic" || game.rules)}
+        active={game.flip && game.status === "topic" && !game.rules}
+        // active={game.flip && (game.status === "topic" || game.rules)}
       />
       <BtnFlipContainer
-        active={game.flip && (game.status === "speech" || game.rules)}
+        active={game.flip && game.status === "speech" && !game.rules}
+        // active={game.flip && (game.status === "speech" || game.rules)}
       />
       <BtnFlipContainer
         active={
           (!game.rules && btn.playBtnActive) ||
-          (game.rules && game.flip) ||
+          // (game.rules && game.flip) ||
           (game.status === "result" && game.flip)
         }
       />

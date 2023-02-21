@@ -27,7 +27,7 @@ export default function GamePage() {
           ...flexBoxSx,
           flexDirection: "column",
           justifyContent: Sx.justifyContent,
-          gap: Sx.gap.main,
+          ...Sx.gap.main,
         }}
       >
         <Header />

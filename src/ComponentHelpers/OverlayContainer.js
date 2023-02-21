@@ -56,6 +56,6 @@ const overlayContainerSx = {
   right: 0,
   bottom: 0,
   padding: Sx.padding.main,
-  gap: Sx.gap.main,
+  ...Sx.gap.main,
   // overflow: "scroll",
 };
