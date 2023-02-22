@@ -41,7 +41,7 @@ const containerSx = {
     lg: "3px",
   },
   boxShadow:
-    "-1px -1px 0 #000 inset, 1px -1px 0 #000 inset, -1px 1px 0 #000 inset, 1px 1px 0 #000 inset",
+    "-3px -3px 0 #000 inset, 3px -3px 0 #000 inset, -3px 3px 0 #000 inset, 3px 3px 0 #000 inset",
   // boxShadow: "0px 0px 3px .5px #333 inset",
   position: "relative",
   background: "rgb(15, 15, 15)",
@@ -56,6 +56,7 @@ const flipBoxInnerSx = {
   backgroundColor: Sx.color.primary,
   boxShadow:
     "-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1.5px 0 #333",
+  // border: ".25px solid #333",
 };
 
 const frontFlipSx = {
@@ -81,7 +82,7 @@ export const flipContainerSx = {
   container: {
     main: {
       ...containerSx,
-      border: "1px solid #333",
+      border: ".25px solid #333",
       borderRadius: borderRadius.main,
     },
     btn: {
@@ -136,7 +137,6 @@ export const flipContainerSx = {
     main: {
       ...frontFlipSx,
       borderRadius: borderRadius.main,
-      padding: "1.5rem",
     },
     btn: {
       ...frontFlipSx,
@@ -170,12 +170,12 @@ export const flipContainerSx = {
       opacity: 0.3,
     },
     btn: {
-      ...fabricOverlaySx,
+      // ...fabricOverlaySx,
       borderRadius: borderRadius.btn,
       opacity: 0.5,
     },
     smBtn: {
-      ...fabricOverlaySx,
+      // ...fabricOverlaySx,
       borderRadius: borderRadius.smBtn,
       opacity: 0.3,
     },

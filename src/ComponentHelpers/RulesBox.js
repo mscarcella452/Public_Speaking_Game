@@ -10,12 +10,13 @@ function RulesBox({ children }) {
         position: "relative",
         backgroundColor: Sx.color.secondary,
         color: "#fff",
-        padding: ".5rem",
+        padding: { galaxyFold: ".5rem", xl: "1rem" },
         borderRadius: "5px",
         fontWeight: "100",
+        // fontFamily: Sx.font.secondary,
       }}
     >
-      <Paper sx={{ ...fabricOverlaySx, opacity: 0.8 }} />
+      <Paper sx={{ ...fabricOverlaySx }} />
       {children}
     </Paper>
   );
@@ -31,4 +32,6 @@ const rulesBoxesSx = {
   backgroundColor: Sx.color.secondary,
   color: "#fff",
   fontWeight: "100",
+  textShadow:
+    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
 };

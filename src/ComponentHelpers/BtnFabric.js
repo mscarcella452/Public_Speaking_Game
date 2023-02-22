@@ -6,7 +6,7 @@ export function TopBtnFabric({ onClick, children }) {
   return (
     <Button onClick={onClick} sx={topBtnSx}>
       <Paper sx={fabricContainerSx}>
-        <Paper sx={{ ...fabricOverlaySx, opacity: 1 }} />
+        <Paper sx={topFabricOverlaySx} />
         {children}
       </Paper>
     </Button>
@@ -16,7 +16,7 @@ export function BottomBtnFabric({ onClick, children }) {
   return (
     <Button onClick={onClick} sx={bottomBtnSx}>
       <Paper sx={fabricContainerSx}>
-        <Paper sx={{ ...fabricOverlaySx, opacity: 1 }} />
+        <Paper sx={bottomFabricOverlaySx} />
         {children}
       </Paper>
     </Button>
@@ -70,4 +70,13 @@ const bottomBtnSx = {
     lg: "35px",
     xl: "35px",
   },
+};
+
+const topFabricOverlaySx = {
+  ...fabricOverlaySx,
+  backgroundSize: "10px",
+};
+const bottomFabricOverlaySx = {
+  ...fabricOverlaySx,
+  backgroundSize: { galaxyFold: "10px", lg: "50%" },
 };

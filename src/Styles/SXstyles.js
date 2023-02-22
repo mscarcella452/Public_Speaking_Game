@@ -4,18 +4,24 @@ import PublicSpeakingCropped from "../Images/PublicSpeakingCropped.png";
 export const Sx = {
   font: {
     display: "'Sunny Spells Basic', sans-serif",
-    // display: "'Bevan', cursive",
+    secondary: "'Averia Libre', cursive",
+    // rules: "'Averia Libre', cursive",
+    rules: "'Neucha', cursive",
+    card: "'Neucha', cursive",
+    // display: "'Neucha', cursive",
+    // card: "'Edu TAS Beginner', cursive",
     // card: "'Shantell Sans', cursive",
-    card: "'Averia Libre', cursive",
-    // card: "'Boogaloo', cursive",
-    // card: "'Cabin Sketch', cursive",
+
     // card: "'Sriracha', cursive",
-    // card: "'Rowdies', cursive",
+    // card: "'Averia Libre', cursive",
+    // display: "'Sriracha', cursive",
   },
   color: {
     // primary: "#981010",
     primary: "#457b9d",
     secondary: "#be2f3a",
+    success: "#0ead69",
+    fail: "#981010",
     // secondary: "#e63946",
   },
   padding: {
@@ -51,27 +57,46 @@ export const Sx = {
     logo: {
       fontSize: {
         galaxyFold: "4.5rem",
-        mobile: "6rem",
-        xs: "9rem",
-        sm: "10rem",
+        mobile: "500%",
+        xs: "145px",
+        sm: "180px",
       },
 
-      "@media (min-height: 1024px)": {
-        fontSize: "12rem",
-      },
+      "@media (min-height: 1024px)": { fontSize: "12rem" },
+      "@media (min-height: 1300px)": { fontSize: "15rem" },
 
-      "@media (max-height: 540px)": {
+      "@media (max-height: 512px) ": {
         fontSize: {
           galaxyFold: "4.5rem",
+          mobile: "500%",
         },
       },
       "@media (max-Width: 414px)": {
         fontSize: {
           galaxyFold: "4.5rem",
-          mobile: "5rem",
-          xs: "7rem",
+          mobile: "550%",
+          xs: "110px",
         },
       },
+      "@media (max-Height: 414px)": {
+        fontSize: {
+          galaxyFold: "4.5rem",
+          mobile: "100px",
+          xs: "500%",
+          sm: "110px",
+          md: "125px",
+          lg: "130px",
+        },
+      },
+      // "@media (max-Height: 390px)": {
+      //   fontSize: {
+      //     galaxyFold: "4.5rem",
+      //     mobile: "100px",
+      //     xs: "95px",
+      //     sm: "105px",
+      //     lg: "130px",
+      //   },
+      // },
     },
   },
 };
@@ -127,8 +152,14 @@ export const HeaderSx = {
   "@media (min-height: 1024px)": { height: "60px" },
 };
 export const fabricBackgroundSx = {
-  background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
-  backgroundSize: "cover",
+  // background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
+  // backgroundSize: "cover",
+  // background: `url("https://www.transparenttextures.com/patterns/old-wall.png") repeat center`,
+  // backgroundSize: "1%",
+  background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
+  backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
+  // background: `url("https://www.transparenttextures.com/patterns/woven-light.png") repeat center`,
+  // backgroundSize: ".5%",
 };
 export const fabricOverlaySx = {
   ...fabricBackgroundSx,
@@ -183,7 +214,7 @@ export const mainBoxSx = {
   "@media (min-height: 1250px)": {
     height: { xs: "100%", sm: "100%", md: "500px", lg: "850px", xl: "650px" },
   },
-  // "@media (max-height: 414px)": { maxWidth: "100%" },
+  "@media (max-height: 414px)": { maxWidth: "100%" },
   // background: {
   //   galaxyFold: "purple",
   //   mobile: "silver",

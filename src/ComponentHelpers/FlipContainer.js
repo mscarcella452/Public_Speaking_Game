@@ -1,16 +1,11 @@
 import React from "react";
 import { Box, Paper } from "@mui/material";
 import { flipContainerSx } from "../Styles/FlipContainerStyles";
-import { logoImageSx } from "../Styles/SXstyles";
-import LogoImage from "./LogoImage";
+import Logo from "./LogoImage";
 
-// container background: overlay ? "transparent" : "rgb(15, 15, 15)"
-// inner   background: overlay && "transparent",
-// {overlay && main ? <Box sx={logoImageSx} /> : null}
-//  {overlay && <Paper elevation={1} sx={flipContainerSx.fabric.main} />}
 export function MainFlipContainer({ active, children }) {
   return (
-    <Box sx={flipContainerSx.container.main}>
+    <Box sx={{ ...flipContainerSx.container.main, background: "#000" }}>
       {/* FlipBox Inner */}
       <Box
         sx={{
@@ -39,7 +34,7 @@ export function MainFlipContainerOverlay({ active, children }) {
         {/* FrontFlip */}
         <Box sx={flipContainerSx.front.main}>
           {/* <Box sx={logoImageSx} /> */}
-          <LogoImage />
+          <Logo />
           <Paper elevation={1} sx={flipContainerSx.fabric.main} />
         </Box>
 

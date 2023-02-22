@@ -38,6 +38,19 @@ export default function GamePage() {
         </Box>
         <Footer />
       </Box>
+      {/* <Box
+        sx={{
+          background: `url("https://clipground.com/images/anxiety-fear-clipart-1.png") repeat center`,
+          backgroundSize: "200px",
+          opacity: 0.5,
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 7,
+        }}
+      /> */}
       <Box sx={fabricOverlaySx} />
       <Box sx={backgroundWordsOverlaySx} />
       <OverlayContainer />

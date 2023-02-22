@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Paper, Box } from "@mui/material";
-import { flexBoxSx, Sx, fabricBackgroundSx } from "../Styles/SXstyles";
+import { flexBoxSx, Sx, fabricOverlaySx } from "../Styles/SXstyles";
 import { gameContext } from "../Context/GameStatusContext";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
@@ -15,6 +15,7 @@ function SpeechTopicCard() {
       <Box sx={SpeechMarginSx}>
         <Box sx={{ opacity: 0.5 }}>Speech Topic:</Box>
         <Paper sx={timerSx}>
+          <Paper sx={{ ...fabricOverlaySx, backgroundSize: "10px" }} />
           {timer.seconds >= 0 ? `:${timer.seconds}` : ""}
         </Paper>
       </Box>
@@ -132,7 +133,7 @@ const timerSx = {
   },
   padding: ".5rem",
   borderRadius: "5px",
-  ...fabricBackgroundSx,
+  position: "relative",
   backgroundColor: Sx.color.primary,
   color: "#fff",
   fontSize: {
