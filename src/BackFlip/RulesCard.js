@@ -1,11 +1,12 @@
 import React from "react";
-import { Box } from "@mui/material";
-import { flexBoxSx, Sx } from "../Styles/SXstyles";
+import { Paper, Box } from "@mui/material";
+import { flexBoxSx, Sx, fabricOverlaySx } from "../Styles/SXstyles";
 import RulesBox from "../ComponentHelpers/RulesBox";
 
 function RulesCard() {
   return (
-    <Box sx={speechTopicCardSx}>
+    <Box sx={rulesCardSx}>
+      <Paper sx={{ ...fabricOverlaySx, zIndex: -1 }} />
       <Box sx={rulesCardContainerSx}>
         <Box sx={{ width: "100%", textAlign: "justify" }}>
           When it's your turn, you will give a 40 second improptu speech on a
@@ -50,8 +51,9 @@ export default RulesCard;
 
 // style
 
-const speechTopicCardSx = {
+const rulesCardSx = {
   ...flexBoxSx,
+  background: "#fff",
   flexDirection: "column",
   // justifyContent: "flex-start",
   gap: ".5rem",
@@ -67,7 +69,7 @@ const rulesCardContainerSx = {
   justifyContent: "space-between",
   overflow: "scroll",
   textAlign: "left",
-  fontFamily: Sx.font.rules,
+  fontFamily: Sx.font.card,
   gap: {
     galaxyFold: "1.25rem",
     mobile: "1rem",

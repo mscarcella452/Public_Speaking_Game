@@ -10,8 +10,6 @@ import {
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GamePage from "./Pages/GamePage";
 import backgroundWords from "./Images/backgroundWords.png";
-import SunnyspellsRegular from "./Fonts/SunnyspellsRegular.otf";
-import { themeContext } from "./Context/ThemeContext";
 
 export const theme = createTheme({
   breakpoints: {
@@ -28,7 +26,6 @@ export const theme = createTheme({
 });
 
 function App() {
-  const gameTheme = useContext(themeContext);
   return (
     <ThemeProvider theme={theme}>
       <Paper
@@ -38,7 +35,6 @@ function App() {
           boxSizing: "border-box",
           fontFamily: Sx.font.display,
           background: Sx.color.primary,
-          // padding: Sx.padding.main,
           overflow: "scroll",
         }}
       >

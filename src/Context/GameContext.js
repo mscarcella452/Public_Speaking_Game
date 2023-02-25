@@ -1,10 +1,9 @@
 import React, { createContext } from "react";
-import { useToggle } from "../Helpers/CustomHooks";
 import GameStatusProvider from "./GameStatusContext";
 import TopicContextProvider from "./TopicContext";
 import TimerContextProvider from "./TimerContext";
 import ButtonContextProvider from "./ButtonContext";
-import ThemeContextProvider from "./ThemeContext";
+import MediaQueryContextProvider from "./mediaQueryContext";
 
 // export const gameActiveContext = createContext();
 // export const toggleGameContext = createContext();
@@ -13,7 +12,7 @@ function GameContext({ children }) {
   // const [gameActive, toggleGame] = useToggle(false);
 
   return (
-    <ThemeContextProvider>
+    <MediaQueryContextProvider>
       <TimerContextProvider>
         <TopicContextProvider>
           <GameStatusProvider>
@@ -28,7 +27,7 @@ function GameContext({ children }) {
           </GameStatusProvider>
         </TopicContextProvider>
       </TimerContextProvider>
-    </ThemeContextProvider>
+    </MediaQueryContextProvider>
   );
 }
 

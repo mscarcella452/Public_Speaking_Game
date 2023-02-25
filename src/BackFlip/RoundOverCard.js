@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { Paper, Box } from "@mui/material";
-import { flexBoxSx, fabricOverlaySx, Sx } from "../Styles/SXstyles";
+import FitText from "@plutonium-js/react-fit-text";
+import { Paper, Box, useMediaQuery } from "@mui/material";
+import { flexBoxSx, fabricOverlaySx, Sx, mainTextSx } from "../Styles/SXstyles";
 import { gameContext } from "../Context/GameStatusContext";
-import { topicContext } from "../Context/TopicContext";
-import { timerContext } from "../Context/TimerContext";
+import { mediaQueryContext } from "../Context/mediaQueryContext";
 
 function RoundOverCard() {
   const game = useContext(gameContext);
-  const timer = useContext(timerContext);
-  const currentTopic = useContext(topicContext);
+  const screen = useContext(mediaQueryContext);
 
   return (
     <Paper
@@ -20,12 +19,27 @@ function RoundOverCard() {
       }}
     >
       <Paper sx={fabricOverlaySx} />
-      {/* {game.failSpeech ? "fail" : "success"} */}
-      <Box sx={{ ...flexBoxSx, background: "transparent" }}>
+      <FitText
+        minSize={0}
+        maxSize={
+          screen.lg ? 65 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
+        }
+        updateOnResize={{ delay: 0 }}
+        style={{
+          ...mainTextSx,
+          textAlign: screen.justify ? "justify" : "center",
+          textShadow:
+            screen.lg || screen.md
+              ? `-2px 2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000`
+              : screen.sm
+              ? `-1.5px 1.5px 0 #000, 1px -1.5px 0 #000, -1px 1.5px 0 #000, 1px 1.5px 0 #000`
+              : `-1.25px 1.25px 0 #000, 1px -1.25px 0 #000, -1px 1.25px 0 #000, 1px 1.25px 0 #000`,
+        }}
+      >
         {game.failSpeech
           ? "You don't speak too good."
           : "You said something good with your words."}
-      </Box>
+      </FitText>
     </Paper>
   );
 }
@@ -34,11 +48,6 @@ export default RoundOverCard;
 
 const RoundOverCardSx = {
   ...flexBoxSx,
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  gap: ".5rem",
-  cursor: "auto",
-  fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem", lg: "2.5rem" },
   padding: { xs: ".75rem", sm: ".75rem", md: "1.5rem", lg: "1rem 2rem" },
   zIndex: 10,
   position: "relative",

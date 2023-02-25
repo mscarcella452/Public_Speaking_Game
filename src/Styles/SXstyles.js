@@ -5,24 +5,14 @@ export const Sx = {
   font: {
     display: "'Sunny Spells Basic', sans-serif",
     secondary: "'Averia Libre', cursive",
-    // rules: "'Averia Libre', cursive",
-    rules: "'Neucha', cursive",
+    number: "'Tilt Neon', cursive",
     card: "'Neucha', cursive",
-    // display: "'Neucha', cursive",
-    // card: "'Edu TAS Beginner', cursive",
-    // card: "'Shantell Sans', cursive",
-
-    // card: "'Sriracha', cursive",
-    // card: "'Averia Libre', cursive",
-    // display: "'Sriracha', cursive",
   },
   color: {
-    // primary: "#981010",
     primary: "#457b9d",
     secondary: "#be2f3a",
     success: "#0ead69",
     fail: "#981010",
-    // secondary: "#e63946",
   },
   padding: {
     main: {
@@ -226,4 +216,94 @@ export const mainBoxSx = {
   // },
 
   position: "relative",
+};
+
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+// Main Text Font Size with @media screens
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+export const mainTextSx = {
+  ...flexBoxSx,
+  lineHeight: 1.5,
+  color: "#fff",
+  // ...flexBoxSx,
+  // lineHeight: "1.75",
+  // textAlign: "center",
+  // color: "#fff",
+  // textShadow: `-2px 2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000`,
+  // fontSize: {
+  //   galaxyFold: "25px",
+  //   mobile: "30px",
+  //   xs: "38px",
+  //   sm: "40px",
+  //   md: "42px",
+  //   lg: "44px",
+  //   xl: "46px",
+  // },
+  // // max 1024h
+  // "@media (min-height: 1024px)": {
+  //   fontSize: { sm: "48px", md: "50px", lg: "52px", xl: "54px" },
+  //   textAlign: "justify",
+  // },
+
+  // // max 1300h
+  // "@media (min-height: 1300px)": {
+  //   fontSize: "60px",
+  // },
+
+  // // max 700w
+  // "@media (max-height: 700px)": {
+  //   fontSize: {
+  //     galaxyFold: "26px",
+  //     mobile: "26px",
+  //     xs: "30px",
+  //     md: "32px",
+  //     lg: "36px",
+  //   },
+  //   textAlign: "justify",
+  // },
+
+  // // max 411w
+  // "@media (max-Width: 414px)": {
+  //   fontSize: { galaxyFold: "28px", mobile: "32px", xs: "34px", md: "36px" },
+  //   textAlign: "justify",
+  //   textShadow: `-1.5px 1.5px 0 #000, 1px -1.5px 0 #000, -1px 1.5px 0 #000, 1px 1.5px 0 #000`,
+  // },
+
+  // // max 414h
+  // "@media (max-height: 414px)": {
+  //   fontSize: {
+  //     galaxyFold: "28px",
+  //     mobile: "30px",
+  //     xs: "30px",
+  //     sm: "30px",
+  //     md: "32px",
+  //     lg: "34px",
+  //   },
+  //   textShadow: `-1.5px 1.5px 0 #000, 1px -1.5px 0 #000, -1px 1.5px 0 #000, 1px 1.5px 0 #000`,
+  //   lineHeight: "1.35",
+  // },
+
+  // // max 360h
+  // "@media (max-height: 360px)": {
+  //   fontSize: {
+  //     galaxyFold: "22px",
+  //     mobile: "22px",
+  //     xs: "22px",
+  //     sm: "24px",
+  //     md: "28px",
+  //     lg: "30px",
+  //   },
+  //   textShadow: `-1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000`,
+  // },
+  // // max 340w
+  // "@media (max-width: 340px)": {
+  //   fontSize: {
+  //     galaxyFold: "26px",
+  //     mobile: "28px",
+  //   },
+  //   lineHeight: "1.35",
+  //   textShadow: `-1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000`,
+  // },
 };

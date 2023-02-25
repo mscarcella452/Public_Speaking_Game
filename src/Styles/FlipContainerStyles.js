@@ -70,8 +70,9 @@ const frontFlipSx = {
 const backFlipSx = {
   ...frontFlipSx,
   // padding: { galaxyFold: ".5rem", mobile: ".75rem", sm: "1rem" },
-  background: "transparent",
-  backgroundColor: "#fff",
+  // background: "transparent",
+  // backgroundColor: "#fff",
+  // backgroundColor: Sx.color.primary,
   transform: "rotateX(180deg)",
   position: "relative",
   zIndex: 20,

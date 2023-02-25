@@ -31,8 +31,6 @@ export default function GamePage() {
         }}
       >
         <Header />
-        {/* <MainFlipContainer active={game.flip} /> */}
-
         <Box sx={{ ...mainBoxSx }}>
           <MainFlipContainer active={game.flip} />
         </Box>
