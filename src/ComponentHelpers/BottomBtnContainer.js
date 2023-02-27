@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Paper, Box, Button } from "@mui/material";
 import { footerSx } from "../Styles/SXstyles";
 import { BtnFlipContainerOverlay } from "./FlipContainer";
-import { BottomBtnFabric } from "./BtnFabric";
+import { BottomBtnFabric, BottomResultFabric } from "./BtnFabric";
 import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
 import { timerDispatchContext } from "../Context/TimerContext";
 import { generateTopicContext } from "../Context/TopicContext";
@@ -72,6 +72,7 @@ export default function BottomBtnContainer() {
         // active={game.flip && (game.status === "speech" || game.rules)}
       >
         <BottomBtnFabric onClick={failSpeech}>Fail</BottomBtnFabric>
+
         {/* {game.rules ? (
           <Box sx={btnSx}>Rules # 2</Box>
         ) : (

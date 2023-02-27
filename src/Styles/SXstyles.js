@@ -9,10 +9,11 @@ export const Sx = {
     card: "'Neucha', cursive",
   },
   color: {
+    // fail: "#981010",
     primary: "#457b9d",
     secondary: "#be2f3a",
     success: "#0ead69",
-    fail: "#981010",
+    fail: "#9d6745",
   },
   padding: {
     main: {
@@ -151,8 +152,8 @@ export const fabricBackgroundSx = {
   // background: `url("https://www.transparenttextures.com/patterns/woven-light.png") repeat center`,
   // backgroundSize: ".5%",
 };
-export const fabricOverlaySx = {
-  ...fabricBackgroundSx,
+
+const overlaySx = {
   opacity: 0.4,
   position: "absolute",
   top: 0,
@@ -160,6 +161,17 @@ export const fabricOverlaySx = {
   left: 0,
   right: 0,
   zIndex: 7,
+};
+export const fabricOverlaySx = {
+  ...overlaySx,
+  background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
+  backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
+};
+
+export const resultFabricOverlaySx = {
+  ...overlaySx,
+  background: `url("https://www.transparenttextures.com/patterns/basketball.png") repeat center`,
+  backgroundSize: "100px",
 };
 
 export const logoImageSx = {
@@ -225,7 +237,7 @@ export const mainBoxSx = {
 // --------------------------------------------------------------------------------
 export const mainTextSx = {
   ...flexBoxSx,
-  lineHeight: 1.5,
+  fontFamily: Sx.font.card,
   color: "#fff",
   // ...flexBoxSx,
   // lineHeight: "1.75",

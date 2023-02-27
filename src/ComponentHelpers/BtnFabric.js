@@ -1,6 +1,12 @@
-import React from "react";
-import { fabricOverlaySx, Sx, flexBoxSx } from "../Styles/SXstyles";
-import { Button, Paper } from "@mui/material";
+import React, { useContext } from "react";
+import {
+  fabricOverlaySx,
+  resultFabricOverlaySx,
+  Sx,
+  flexBoxSx,
+} from "../Styles/SXstyles";
+import { Box, Button, Paper } from "@mui/material";
+import { gameContext } from "../Context/GameStatusContext";
 
 export function TopBtnFabric({ onClick, children }) {
   return (
@@ -20,6 +26,42 @@ export function BottomBtnFabric({ onClick, children }) {
         {children}
       </Paper>
     </Button>
+  );
+}
+export function BottomResultFabric() {
+  const game = useContext(gameContext);
+  return (
+    <Box
+      sx={{
+        ...bottomBtnSx,
+        backgroundColor: game.failSpeech ? "#9d6745" : Sx.color.success,
+      }}
+    >
+      <Paper sx={fabricContainerSx}>
+        <Paper sx={resultFabricOverlaySx} />
+        <Box
+          sx={{
+            opacity: 0.75,
+            fontFamily: Sx.font.display,
+          }}
+        >
+          {game.failSpeech ? "FAILED" : "100%"}
+        </Box>
+        <Box
+          sx={{
+            height: 1,
+            width: 1,
+            position: "absolute",
+            top: 0,
+            bototm: 0,
+            right: 0,
+            left: 0,
+            opacity: 0.2,
+            background: "black",
+          }}
+        />
+      </Paper>
+    </Box>
   );
 }
 

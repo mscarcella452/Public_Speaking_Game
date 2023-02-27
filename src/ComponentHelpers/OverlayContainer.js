@@ -9,6 +9,7 @@ import {
 import { MainFlipContainerOverlay } from "./FlipContainer";
 import TopBtnContainer from "./TopBtnContainer";
 import BottomBtnContainer from "./BottomBtnContainer";
+import GameCard from "../BackFlip/GameCard";
 import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
 import RulesCard from "../BackFlip/RulesCard";
 import RoundOverCard from "../BackFlip/RoundOverCard";
@@ -28,11 +29,12 @@ function OverlayContainer() {
       <TopBtnContainer />
       <Box sx={mainBoxSx}>
         <MainFlipContainerOverlay active={game.flip}>
-          {!game.rules &&
+          {/* {!game.rules &&
             (game.status === "topic" || game.status === "speech") && (
               <SpeechTopicCard />
             )}
-          {!game.rules && game.status === "result" && <RoundOverCard />}
+          {!game.rules && game.status === "result" && <RoundOverCard />} */}
+          {!game.rules && <GameCard />}
           {game.rules && <RulesCard />}
         </MainFlipContainerOverlay>
       </Box>
