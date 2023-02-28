@@ -1,20 +1,13 @@
 import React, { useContext } from "react";
 import { Paper, Box, useMediaQuery } from "@mui/material";
 import FitText from "@plutonium-js/react-fit-text";
-import {
-  flexBoxSx,
-  Sx,
-  fabricOverlaySx,
-  resultFabricOverlaySx,
-  mainTextSx,
-} from "../Styles/SXstyles";
-import { gameContext } from "../Context/GameStatusContext";
+import { flexBoxSx, Sx, mainTextSx } from "../../../Styles/SXstyles";
+import FabricOverlay from "../Helpers/FabricOverlay";
 import { topicContext } from "../Context/TopicContext";
 import { timerContext } from "../Context/TimerContext";
 import { mediaQueryContext } from "../Context/mediaQueryContext";
 
-function GameCard() {
-  const game = useContext(gameContext);
+function SpeechTopicCard() {
   const timer = useContext(timerContext);
   const currentTopic = useContext(topicContext);
   const screen = useContext(mediaQueryContext);
@@ -22,112 +15,47 @@ function GameCard() {
   //   useContext(mediaQueryContext);
 
   return (
-    <Box
-      sx={{
-        ...GameCardSx,
-        backgroundColor:
-          game.status !== "result"
-            ? "transparent"
-            : game.failSpeech
-            ? Sx.color.fail
-            : Sx.color.success,
-      }}
-    >
-      <Box
-        sx={{
-          ...ColorOverlaySx,
-          background: game.status !== "result" ? Sx.color.primary : "black",
-        }}
-      />
+    <Box sx={speechTopicCardSx}>
+      <Box sx={primaryColorOverlaySx} />
       <Box
         sx={{
           ...CardMarginSx,
-          // background: "teal",
-          ...(game.status === "result" && overlaySx),
-          paddingLeft: game.status === "result" && "1rem",
-          height:
-            game.status !== "result"
-              ? screen.lg
-                ? "70px"
-                : screen.xs
-                ? "45px"
-                : {
-                    galaxyFold: "45px",
-                    mobile: "45px",
-                    xs: "50px",
-                    // sm: "50px",
-                    md: "55px",
-                    // lg: "55px",
-                    // xl: "55px",
-                  }
-              : screen.lg || screen.md
-              ? "150px"
-              : screen.xs
-              ? "40px"
-              : {
-                  galaxyFold: "45px",
-                  mobile: "45px",
-                  xs: "60px",
-                  // sm: "50px",
-                  md: "65px",
-                  // lg: "55px",
-                  // xl: "55px",
-                },
+          height: screen.lg
+            ? "70px"
+            : screen.xs
+            ? "45px"
+            : {
+                galaxyFold: "45px",
+                mobile: "45px",
+                xs: "50px",
+                // sm: "50px",
+                md: "55px",
+                // lg: "55px",
+                // xl: "55px",
+              },
         }}
       >
-        <Box
-          sx={{
-            opacity: 0.5,
-            zIndex: -2,
-            ...marginContainerSx,
-            fontFamily:
-              game.status !== "result" ? Sx.font.card : Sx.font.display,
-            color: game.status !== "result" ? "black" : "#fff",
-          }}
-        >
+        <Box sx={{ opacity: 0.5, ...marginContainerSx }}>
           <FitText
             minSize={20}
-            maxSize={
-              game.status !== "result"
-                ? screen.lg
-                  ? 50
-                  : screen.md
-                  ? 40
-                  : screen.sm
-                  ? 30
-                  : 25
-                : 100
-            }
+            maxSize={screen.lg ? 50 : screen.md ? 40 : screen.sm ? 30 : 25}
             updateOnResize={{ delay: 0 }}
-            style={{
-              ...flexBoxSx,
-              paddingRight: ".15rem",
-              justifyContent: "flex-start",
-              alignItems: game.status === "result" ? "flex-start" : "center",
-              // background: "blue",
-            }}
+            style={{ ...flexBoxSx, justifyContent: "flex-start" }}
           >
-            {game.status !== "result"
-              ? "Prompt:"
-              : game.failSpeech
-              ? "FAIL"
-              : "100%"}
+            Prompt:
           </FitText>
         </Box>
-        {game.status !== "result" && (
-          <Paper sx={timerSx}>
-            <FitText
-              minSize={20}
-              maxSize={screen.lg ? 55 : screen.md ? 45 : screen.sm ? 35 : 30}
-              updateOnResize={{ delay: 0 }}
-              style={{ ...flexBoxSx }}
-            >
-              {timer.seconds >= 0 ? `:${timer.seconds}` : ""}
-            </FitText>
-          </Paper>
-        )}
+        <Paper sx={timerSx}>
+          <FitText
+            minSize={20}
+            maxSize={screen.lg ? 55 : screen.md ? 45 : screen.sm ? 35 : 30}
+            updateOnResize={{ delay: 0 }}
+            style={{ ...flexBoxSx }}
+          >
+            {timer.seconds >= 0 ? `:${timer.seconds}` : ""}
+          </FitText>
+        </Paper>
       </Box>
-
       <FitText
         minSize={0}
         maxSize={
@@ -135,36 +63,27 @@ function GameCard() {
         }
         updateOnResize={{ delay: 0 }}
         style={{
-          ...flexBoxSx,
-          fontFamily: Sx.font.card,
-          color: "#fff",
-          lineHeight: game.status !== "result" ? 1.5 : 1.2,
+          ...mainTextSx,
           textAlign: screen.justify ? "justify" : "center",
           textShadow:
             screen.lg || screen.md
               ? `-2px 2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000`
               : screen.sm
               ? `-1.5px 1.5px 0 #000, 1px -1.5px 0 #000, -1px 1.5px 0 #000, 1px 1.5px 0 #000`
-              : screen.xs
-              ? `-1.15px 1.15px 0 #000, 1px -1.15px 0 #000, -1px 1.15px 0 #000, 1px 1.15px 0 #000`
               : `-1.25px 1.25px 0 #000, 1px -1.25px 0 #000, -1px 1.25px 0 #000, 1px 1.25px 0 #000`,
         }}
       >
-        {game.status !== "result"
-          ? currentTopic
-          : game.failSpeech
-          ? "You don't speak too good."
-          : "You said something good with your words."}
+        {currentTopic}
       </FitText>
-      <Paper sx={fabricOverlaySx} />
+      <FabricOverlay />
       {/* <Box sx={BottomBumperSx} /> */}
     </Box>
   );
 }
 
-export default GameCard;
+export default SpeechTopicCard;
 
-const GameCardSx = {
+const speechTopicCardSx = {
   ...flexBoxSx,
   fontWeight: "bold",
   flexDirection: "column",
@@ -177,6 +96,7 @@ const GameCardSx = {
     md: "1.25rem",
     lg: "1.5rem",
   },
+  fontFamily: Sx.font.card,
   padding: {
     galaxyFold: ".75rem",
     mobile: ".75rem",
@@ -199,19 +119,16 @@ const GameCardSx = {
 };
 
 // ---------------------------------------------------------------------------------------------------
-const overlaySx = {
+const primaryColorOverlaySx = {
   height: 1,
   width: 1,
+  background: Sx.color.primary,
   position: "absolute",
   top: 0,
   bototm: 0,
   right: 0,
   left: 0,
-};
-
-const ColorOverlaySx = {
-  ...overlaySx,
-  opacity: 0.2,
+  opacity: 0.15,
   zIndex: -1,
 };
 // ---------------------------------------------------------------------------------------------------
@@ -233,6 +150,8 @@ const CardMarginSx = {
   //   lg: "green",
   //   xl: "blue",
   // },
+  fontFamily: Sx.font.card,
+  color: "black",
 };
 
 // ------------------------------------------------------------------

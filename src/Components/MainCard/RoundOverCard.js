@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import FitText from "@plutonium-js/react-fit-text";
-import { Paper, Box, useMediaQuery } from "@mui/material";
-import { flexBoxSx, fabricOverlaySx, Sx, mainTextSx } from "../Styles/SXstyles";
+import { Paper } from "@mui/material";
+import { flexBoxSx, Sx, mainTextSx } from "../../../Styles/SXstyles";
+import FabricOverlay from "../Helpers/FabricOverlay";
 import { gameContext } from "../Context/GameStatusContext";
 import { mediaQueryContext } from "../Context/mediaQueryContext";
 
@@ -18,7 +19,7 @@ function RoundOverCard() {
           : Sx.color.success,
       }}
     >
-      <Paper sx={fabricOverlaySx} />
+      <FabricOverlay />
       <FitText
         minSize={0}
         maxSize={

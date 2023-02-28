@@ -1,15 +1,21 @@
 import React, { useState, useContext } from "react";
 import { Box, Button } from "@mui/material";
-import { btnSx, HeaderSx, Sx } from "../Styles/SXstyles";
-import { SmallBtnFlipContainerOverlay } from "./FlipContainer";
-import { TopBtnFabric } from "./BtnFabric";
-import { gameContext, gameDispatchContext } from "../Context/GameStatusContext";
-import { timerContext, timerDispatchContext } from "../Context/TimerContext";
+import { btnSx, HeaderSx, Sx } from "../../Styles/SXstyles";
+import { SmallBtnFlipContainerOverlay } from "../Helpers/FlipContainer";
+import { TopBtnFabric } from "../Helpers/BtnFabric";
+import {
+  gameContext,
+  gameDispatchContext,
+} from "../../Context/GameStatusContext";
+import { timerContext, timerDispatchContext } from "../../Context/TimerContext";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import { buttonContext, buttonDispatchContext } from "../Context/ButtonContext";
+import {
+  buttonContext,
+  buttonDispatchContext,
+} from "../../Context/ButtonContext";
 
 export default function TopBtnContainer() {
   const game = useContext(gameContext);

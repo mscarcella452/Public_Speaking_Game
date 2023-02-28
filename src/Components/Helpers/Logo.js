@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper, Box } from "@mui/material";
-import { flexBoxSx, Sx } from "../Styles/SXstyles";
+import { flexBoxSx, Sx } from "../../Styles/SXstyles";
 
 function Logo() {
   return (

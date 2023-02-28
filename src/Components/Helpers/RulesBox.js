@@ -1,6 +1,7 @@
 import React from "react";
-import { btnSx, fabricOverlaySx, Sx, flexBoxSx } from "../Styles/SXstyles";
-import { Button, Paper } from "@mui/material";
+import { Sx, flexBoxSx } from "../../Styles/SXstyles";
+import { FabricOverlay } from "./Overlays";
+import { Paper } from "@mui/material";
 
 function RulesBox({ children }) {
   return (
@@ -16,7 +17,7 @@ function RulesBox({ children }) {
         // fontFamily: Sx.font.secondary,
       }}
     >
-      <Paper sx={{ ...fabricOverlaySx }} />
+      <FabricOverlay />
       {children}
     </Paper>
   );

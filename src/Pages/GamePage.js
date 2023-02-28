@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 import {
   Sx,
   flexBoxSx,
   mainBoxSx,
-  fabricOverlaySx,
   backgroundWordsOverlaySx,
 } from "../Styles/SXstyles";
-import { Paper, Box, Button, useMediaQuery } from "@mui/material";
-import Header from "../ComponentHelpers/Header";
-import Footer from "../ComponentHelpers/Footer";
-import MainBackground from "../ComponentHelpers/MainBackground";
+import { Box } from "@mui/material";
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
+import { FabricOverlay } from "../Components/Helpers/Overlays";
+import MainBackground from "../Components/Helpers/MainBackground";
 
-import { MainFlipContainer } from "../ComponentHelpers/FlipContainer";
-import OverlayContainer from "../ComponentHelpers/OverlayContainer";
+import { MainFlipContainer } from "../Components/Helpers/FlipContainer";
+import OverlayContainer from "../Components/OverlayContainer";
 
 import { gameContext } from "../Context/GameStatusContext";
 
@@ -36,20 +36,7 @@ export default function GamePage() {
         </Box>
         <Footer />
       </Box>
-      {/* <Box
-        sx={{
-          background: `url("https://clipground.com/images/anxiety-fear-clipart-1.png") repeat center`,
-          backgroundSize: "200px",
-          opacity: 0.5,
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 7,
-        }}
-      /> */}
-      <Box sx={fabricOverlaySx} />
+      <FabricOverlay />
       <Box sx={backgroundWordsOverlaySx} />
       <OverlayContainer />
     </MainBackground>

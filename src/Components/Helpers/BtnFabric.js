@@ -1,18 +1,14 @@
 import React, { useContext } from "react";
-import {
-  fabricOverlaySx,
-  resultFabricOverlaySx,
-  Sx,
-  flexBoxSx,
-} from "../Styles/SXstyles";
+import { Sx, flexBoxSx } from "../../Styles/SXstyles";
+import { FabricOverlay } from "./Overlays";
 import { Box, Button, Paper } from "@mui/material";
-import { gameContext } from "../Context/GameStatusContext";
+import { gameContext } from "../../Context/GameStatusContext";
 
 export function TopBtnFabric({ onClick, children }) {
   return (
     <Button onClick={onClick} sx={topBtnSx}>
       <Paper sx={fabricContainerSx}>
-        <Paper sx={topFabricOverlaySx} />
+        <FabricOverlay backgroundSize={"10px"} />
         {children}
       </Paper>
     </Button>
@@ -22,7 +18,7 @@ export function BottomBtnFabric({ onClick, children }) {
   return (
     <Button onClick={onClick} sx={bottomBtnSx}>
       <Paper sx={fabricContainerSx}>
-        <Paper sx={bottomFabricOverlaySx} />
+        <FabricOverlay backgroundSize={{ galaxyFold: "10px", lg: "50%" }} />
         {children}
       </Paper>
     </Button>
@@ -38,7 +34,7 @@ export function BottomResultFabric() {
       }}
     >
       <Paper sx={fabricContainerSx}>
-        <Paper sx={resultFabricOverlaySx} />
+        {/* <Paper sx={resultFabricOverlaySx} /> */}
         <Box
           sx={{
             opacity: 0.75,
@@ -112,13 +108,4 @@ const bottomBtnSx = {
     lg: "35px",
     xl: "35px",
   },
-};
-
-const topFabricOverlaySx = {
-  ...fabricOverlaySx,
-  backgroundSize: "10px",
-};
-const bottomFabricOverlaySx = {
-  ...fabricOverlaySx,
-  backgroundSize: { galaxyFold: "10px", lg: "50%" },
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import { Paper, Box } from "@mui/material";
-import { flexBoxSx, Sx, fabricOverlaySx } from "../Styles/SXstyles";
-import RulesBox from "../ComponentHelpers/RulesBox";
+import { flexBoxSx, Sx } from "../../Styles/SXstyles";
+import { FabricOverlay } from "../Helpers/Overlays";
+import RulesBox from "../Helpers/RulesBox";
 
 function RulesCard() {
   return (
     <Box sx={rulesCardSx}>
-      <Paper sx={{ ...fabricOverlaySx, zIndex: -1 }} />
       <Box sx={rulesCardContainerSx}>
         <Box sx={{ width: "100%", textAlign: "justify" }}>
           When it's your turn, you will give a 40 second improptu speech on a
@@ -43,6 +43,7 @@ function RulesCard() {
           button.
         </Box>
       </Box>
+      <FabricOverlay zIndex={-1} />
     </Box>
   );
 }

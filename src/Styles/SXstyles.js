@@ -101,6 +101,16 @@ export const flexBoxSx = {
   boxSizing: "border-box",
 };
 
+export const absolutePositionSx = {
+  height: 1,
+  width: 1,
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  right: 0,
+  left: 0,
+};
+
 export const backgroundWordsImageSx = {
   background: `url(${backgroundWords}) no-repeat center`,
   backgroundSize: "cover",
@@ -111,11 +121,7 @@ export const backgroundWordsOverlaySx = {
   ...flexBoxSx,
   justifyContent: "flex-start",
   flexDirection: "column",
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
+  ...absolutePositionSx,
   boxSizing: "border-box",
   zIndex: 7,
   height: "100vh",
@@ -141,37 +147,6 @@ export const HeaderSx = {
   height: "40px",
   minHeight: { galaxyFold: "30px", xl: "40px" },
   "@media (min-height: 1024px)": { height: "60px" },
-};
-export const fabricBackgroundSx = {
-  // background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
-  // backgroundSize: "cover",
-  // background: `url("https://www.transparenttextures.com/patterns/old-wall.png") repeat center`,
-  // backgroundSize: "1%",
-  background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
-  backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
-  // background: `url("https://www.transparenttextures.com/patterns/woven-light.png") repeat center`,
-  // backgroundSize: ".5%",
-};
-
-const overlaySx = {
-  opacity: 0.4,
-  position: "absolute",
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  zIndex: 7,
-};
-export const fabricOverlaySx = {
-  ...overlaySx,
-  background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
-  backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
-};
-
-export const resultFabricOverlaySx = {
-  ...overlaySx,
-  background: `url("https://www.transparenttextures.com/patterns/basketball.png") repeat center`,
-  backgroundSize: "100px",
 };
 
 export const logoImageSx = {
@@ -230,6 +205,40 @@ export const mainBoxSx = {
   position: "relative",
 };
 
+export const mainCardContainerSx = {
+  ...flexBoxSx,
+  fontWeight: "bold",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  gap: {
+    galaxyFold: ".75rem",
+    mobile: ".75rem",
+    xs: "1.25rem",
+    sm: "1.25rem",
+    md: "1.25rem",
+    lg: "1.5rem",
+  },
+  fontFamily: Sx.font.card,
+  padding: {
+    galaxyFold: ".75rem",
+    mobile: ".75rem",
+    xs: "1.25rem",
+    sm: "1.25rem",
+    md: "1.25rem",
+    lg: "2rem",
+  },
+
+  "@media (min-height: 1024px)": {
+    gap: "1.5rem",
+    padding: "1.5rem",
+  },
+  "@media (max-height: 414px)": {
+    gap: "1rem",
+    padding: { galaxyFold: ".5rem", sm: ".75rem" },
+  },
+  "@media (max-height: 280px)": { padding: ".35rem .75rem" },
+  zIndex: 10,
+};
 // --------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------
 // Main Text Font Size with @media screens

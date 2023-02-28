@@ -1,4 +1,5 @@
-import { flexBoxSx, Sx, fabricOverlaySx } from "./SXstyles";
+import { flexBoxSx, Sx } from "./SXstyles";
+import { fabricOverlaySx } from "../Components/Helpers/Overlays";
 
 const borderRadius = {
   main: {

@@ -7,9 +7,9 @@ import {
   HeaderSx,
   mainBoxSx,
   footerSx,
-} from "../Styles/SXstyles";
+} from "../../Styles/SXstyles";
 import { Paper, Box } from "@mui/material";
-import { timerContext } from "../Context/TimerContext";
+import { timerContext } from "../../Context/TimerContext";
 
 export default function MainBackground({ children }) {
   const timer = useContext(timerContext);

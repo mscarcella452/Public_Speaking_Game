@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Paper } from "@mui/material";
-import { flipContainerSx } from "../Styles/FlipContainerStyles";
-import Logo from "./LogoImage";
+import { flipContainerSx } from "../../Styles/FlipContainerStyles";
+import Logo from "./Logo";
 
 export function MainFlipContainer({ active, children }) {
   return (

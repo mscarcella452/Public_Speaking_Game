@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { HeaderSx, smallBtnFlipContainerSx } from "../Styles/SXstyles";
-import { SmallBtnFlipContainer } from "./FlipContainer";
-import { gameContext } from "../Context/GameStatusContext";
-import { buttonContext } from "../Context/ButtonContext";
+import { HeaderSx, smallBtnFlipContainerSx } from "../../Styles/SXstyles";
+import { SmallBtnFlipContainer } from "../Helpers/FlipContainer";
+import { gameContext } from "../../Context/GameStatusContext";
+import { buttonContext } from "../../Context/ButtonContext";
 
 export default function Header() {
   const game = useContext(gameContext);

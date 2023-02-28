@@ -6,23 +6,18 @@ import {
   mainFlipContainerSx,
   mainBoxSx,
 } from "../Styles/SXstyles";
-import { MainFlipContainerOverlay } from "./FlipContainer";
-import TopBtnContainer from "./TopBtnContainer";
-import BottomBtnContainer from "./BottomBtnContainer";
-import GameCard from "../BackFlip/GameCard";
-import SpeechTopicCard from "../BackFlip/SpeechTopicCard";
-import RulesCard from "../BackFlip/RulesCard";
-import RoundOverCard from "../BackFlip/RoundOverCard";
+import { MainFlipContainerOverlay } from "./Helpers/FlipContainer";
+import TopBtnContainer from "./Header/TopBtnContainer";
+import BottomBtnContainer from "./Footer/BottomBtnContainer";
+import GameCard from "./MainCard/GameCard";
+import RulesCard from "./MainCard/RulesCard";
+import IntermissionCard from "./MainCard/IntermissionCard";
+
 import { gameContext } from "../Context/GameStatusContext";
 
 function OverlayContainer() {
   const game = useContext(gameContext);
-
-  // const changeThirdBtnTitle = title => {
-  //   setTimeout(() => {
-  //     setThirdBtn(title);
-  //   }, 500);
-  // };
+  console.log(game);
 
   return (
     <Box sx={overlayContainerSx}>
@@ -34,7 +29,9 @@ function OverlayContainer() {
               <SpeechTopicCard />
             )}
           {!game.rules && game.status === "result" && <RoundOverCard />} */}
-          {!game.rules && <GameCard />}
+
+          {!game.rules && !game.intermission && <GameCard />}
+          {game.intermission && <IntermissionCard />}
           {game.rules && <RulesCard />}
         </MainFlipContainerOverlay>
       </Box>
