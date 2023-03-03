@@ -1,17 +1,10 @@
 import React, { useContext } from "react";
-import FitText from "@plutonium-js/react-fit-text";
 import { Textfit } from "react-textfit";
 import { Box } from "@mui/material";
 import { flexBoxSx, Sx } from "../../Styles/SXstyles";
-import { gameContext } from "../../Context/GameStatusContext";
-import { topicContext } from "../../Context/TopicContext";
-import { timerContext } from "../../Context/TimerContext";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
 function CardContent({ children }) {
-  const game = useContext(gameContext);
-  const timer = useContext(timerContext);
-  const currentTopic = useContext(topicContext);
   const screen = useContext(mediaQueryContext);
   return (
     <Box
