@@ -236,7 +236,7 @@ export const mainCardContainerSx = {
     // gap: "1rem",
     padding: { galaxyFold: ".5rem", sm: ".75rem" },
   },
-  "@media (max-height: 280px)": { padding: ".35rem .75rem" },
+  "@media (max-height: 280px)": { padding: ".35rem .5rem" },
   zIndex: 10,
 };
 // --------------------------------------------------------------------------------

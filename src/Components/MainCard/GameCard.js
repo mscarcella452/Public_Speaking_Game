@@ -25,7 +25,6 @@ function GameCard({ timer, failSpeech }) {
     <Box
       sx={{
         ...mainCardContainerSx,
-
         backgroundColor:
           game.status === "result" &&
           (failSpeech ? Sx.color.fail : Sx.color.success),

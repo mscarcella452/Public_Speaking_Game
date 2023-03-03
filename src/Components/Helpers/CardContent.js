@@ -17,7 +17,7 @@ function CardContent({ children }) {
     <Box
       sx={{
         ...flexBoxSx,
-        // background: "red",
+        // background: "teal",
         fontFamily: Sx.font.card,
         color: "#fff",
         lineHeight: screen.lg || screen.md ? 2 : 1.5,
@@ -39,8 +39,8 @@ function CardContent({ children }) {
         }
         style={{
           ...flexBoxSx,
-          // background: "teal",
-          height: screen.lg || screen.md ? "85%" : "90%",
+          // background: "red",
+          height: screen.lg || screen.md ? "85%" : "85%",
         }}
       >
         {children}
