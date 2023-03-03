@@ -1,43 +1,35 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { Sx, mainCardContainerSx } from "../../Styles/SXstyles";
+import { Sx, mainCardContainerSx, flexBoxSx } from "../../Styles/SXstyles";
 import TopCardMargin from "../Helpers/TopCardMargin";
 import CardContent from "../Helpers/CardContent";
 import { ColorOverlay, FabricOverlay } from "../Helpers/Overlays";
-import { gameContext } from "../../Context/GameStatusContext";
-import { topicContext } from "../../Context/TopicContext";
-import { timerContext } from "../../Context/TimerContext";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
-function IntermissionCard() {
-  const game = useContext(gameContext);
-  const timer = useContext(timerContext);
-  const currentTopic = useContext(topicContext);
+function IntermissionCard({ timer }) {
   const screen = useContext(mediaQueryContext);
-
   return (
     <Box
       sx={{
         ...mainCardContainerSx,
-        backgroundColor:
-          game.status !== "result"
-            ? "transparent"
-            : game.failSpeech
-            ? Sx.color.fail
-            : Sx.color.success,
+        background: Sx.color.secondary,
       }}
     >
-      <ColorOverlay />
-      <TopCardMargin
-        label={"Intermission:"}
-        time={timer.seconds >= 0 ? `:${timer.seconds}` : ""}
-      />
+      {/* <ColorOverlay /> */}
+      <TopCardMargin label={"TIMEOUT:"} timer={timer} />
+
       <CardContent>
-        {game.status !== "result"
-          ? currentTopic
-          : game.failSpeech
-          ? "You don't speak too good."
-          : "You said something good with your words."}
+        Upgrade the game to play without Timeouts!!{" "}
+        <span
+          style={{
+            textDecoration: `line-through black`,
+            textDecorationThickness: screen.lg || screen.md ? "1.75px" : "1px",
+          }}
+        >
+          Remember, I'll always love you. But a little less each time you don't
+          upgrade. You'll be like a toy I used to play with. You'll be my little
+          hammy down. Except, I will break you. Kisses. Smooch.
+        </span>
       </CardContent>
 
       <FabricOverlay />

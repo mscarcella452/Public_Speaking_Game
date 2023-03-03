@@ -6,24 +6,26 @@ import { flexBoxSx, Sx, absolutePositionSx } from "../../Styles/SXstyles";
 import { gameContext } from "../../Context/GameStatusContext";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
-function TopCardMargin({ label, time }) {
+function TopCardMargin({ label, timer }) {
   const game = useContext(gameContext);
   const screen = useContext(mediaQueryContext);
   return (
     <Box
       sx={{
         ...CardMarginSx,
+
         ...(game.status === "result" && absolutePositionSx),
         paddingLeft: game.status === "result" && "1rem",
+
         height:
           game.status !== "result"
             ? screen.lg
               ? "70px"
               : screen.xs
-              ? "45px"
-              : { galaxyFold: "45px", xs: "50px", md: "55px" }
+              ? "35px"
+              : { galaxyFold: "35px", xs: "50px", md: "55px", lg: "70px" }
             : screen.lg || screen.md
-            ? "150px"
+            ? "110px"
             : screen.xs
             ? "40px"
             : { galaxyFold: "45px", xs: "60px", md: "65px" },
@@ -31,32 +33,47 @@ function TopCardMargin({ label, time }) {
     >
       <Box
         sx={{
-          opacity: 0.5,
+          opacity: 0.35,
           zIndex: -2,
-          ...marginContainerSx,
-          fontFamily: game.status === "result" ? Sx.font.display : Sx.font.card,
-          color: game.status !== "result" ? "black" : "#fff",
+          ...labelContainerSx,
+          // height:
+          //   screen.lg || screen.md
+          //     ? "100px"
+          //     : screen.xs
+          //     ? "40px"
+          //     : { galaxyFold: "45px", xs: "60px", md: "65px" },
+          fontFamily: Sx.font.display,
+          // game.status === "result" || game.status === "intermission"
+          //   ? Sx.font.display
+          //   : Sx.font.card,
+          color:
+            game.status === "result" || game.status === "intermission"
+              ? "#fff"
+              : "black",
+          // fontFamily: game.status === "result" ? Sx.font.display : Sx.font.card,
+          // color: game.status !== "result" ? "black" : "#fff",
         }}
       >
         <FitText
           minSize={20}
           maxSize={
-            game.status !== "result"
-              ? screen.lg
-                ? 50
-                : screen.md
-                ? 40
-                : screen.sm
-                ? 35
-                : 30
-              : 100
+            100
+            // game.status !== "result"
+            //   ? screen.lg
+            //     ? 50
+            //     : screen.md
+            //     ? 40
+            //     : screen.sm
+            //     ? 35
+            //     : 30
+            //   : 100
           }
           updateOnResize={{ delay: 0 }}
           style={{
             ...flexBoxSx,
             paddingRight: ".15rem",
             justifyContent: "flex-start",
-            alignItems: game.status === "result" ? "flex-start" : "center",
+            // alignItems: "flex-start",
           }}
         >
           {label}
@@ -70,7 +87,7 @@ function TopCardMargin({ label, time }) {
             updateOnResize={{ delay: 0 }}
             style={{ ...flexBoxSx }}
           >
-            {time}
+            {timer}
           </FitText>
         </Paper>
       )}
@@ -82,19 +99,25 @@ export default TopCardMargin;
 
 const CardMarginSx = { ...flexBoxSx, justifyContent: "space-between" };
 
-const marginContainerSx = {
+const labelContainerSx = {
   ...flexBoxSx,
-  width: { galaxyFold: "70px", mobile: "75px", xs: "95px" },
+  width: {
+    galaxyFold: "70px",
+    mobile: "75px",
+    xs: "90px",
+    md: "110px",
+    lg: "130px",
+  },
   "@media (max-height: 340px)": {
     width: { galaxyFold: "70px", xs: "75px" },
   },
 };
 const timerSx = {
-  ...marginContainerSx,
-  width: { galaxyFold: "70px", mobile: "75px", xs: "95px" },
-  "@media (max-height: 340px)": {
-    width: { galaxyFold: "70px", xs: "75px" },
-  },
+  ...labelContainerSx,
+  // width: { galaxyFold: "70px", mobile: "75px", xs: "95px" },
+  // "@media (max-height: 340px)": {
+  //   width: { galaxyFold: "70px", xs: "75px" },
+  // },
   height: "90%",
   boxShadow: `-2.5px 2.5px 0 #000, 1px -2.5px 0 #000, -1px 2.5px 0 #000, 1px 2.5px 0 #000`,
   fontFamily: Sx.font.number,

@@ -100,7 +100,7 @@ const bottomBtnSx = {
   },
   fontFamily: Sx.font.display,
   fontSize: {
-    galaxyFold: "25px",
+    galaxyFold: "20px",
     mobile: "25px",
     xs: "25px",
     sm: "30px",

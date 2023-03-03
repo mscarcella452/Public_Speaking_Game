@@ -17,6 +17,12 @@ const btnReducer = (btn, action) => {
       return { ...btn, quitBtnActive: !btn.quitBtnActive };
     case "TOGGLE_RULES_BTN":
       return { ...btn, rulesBtnActive: !btn.rulesBtnActive };
+    case "TOGGLE_TOP_BTNS":
+      return {
+        ...btn,
+        rulesBtnActive: !btn.rulesBtnActive,
+        quitBtnActive: !btn.quitBtnActive,
+      };
     case "TOGGLE_PLAY_BTN":
       return { ...btn, playBtnActive: !btn.playBtnActive };
     case "THIRD_BTN_TITLE":
@@ -43,6 +49,12 @@ function ButtonContextProvider({ children }) {
       }, 200);
     }
   }, [game.status]);
+
+  // useEffect(() => {
+  //   !game.intermission.On &&
+  //     game.status === "intermission" &&
+  //     btnDisptch({ type: "TOGGLE_QUIT_BTN" });
+  // }, [game.intermission.On]);
 
   return (
     <buttonDispatchContext.Provider value={btnDisptch}>

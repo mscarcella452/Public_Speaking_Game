@@ -23,7 +23,8 @@ export default function Footer() {
         active={
           (!game.rules && btn.playBtnActive) ||
           // (game.rules && game.flip) ||
-          (game.status === "result" && game.flip)
+          (game.status === "result" && game.flip) ||
+          (game.status === "intermission" && game.flip)
         }
       />
     </Box>

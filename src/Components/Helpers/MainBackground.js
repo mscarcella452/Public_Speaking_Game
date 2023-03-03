@@ -13,6 +13,7 @@ import { timerContext } from "../../Context/TimerContext";
 
 export default function MainBackground({ children }) {
   const timer = useContext(timerContext);
+
   return (
     <Paper sx={{ ...backgroundPageSx }}>
       {/* <Box

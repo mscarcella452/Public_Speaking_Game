@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import FitText from "@plutonium-js/react-fit-text";
+import { Textfit } from "react-textfit";
+import { Box } from "@mui/material";
 import { flexBoxSx, Sx } from "../../Styles/SXstyles";
 import { gameContext } from "../../Context/GameStatusContext";
 import { topicContext } from "../../Context/TopicContext";
@@ -12,19 +14,14 @@ function CardContent({ children }) {
   const currentTopic = useContext(topicContext);
   const screen = useContext(mediaQueryContext);
   return (
-    <FitText
-      minSize={0}
-      maxSize={
-        screen.lg ? 65 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
-      }
-      updateOnResize={{ delay: 0 }}
-      style={{
+    <Box
+      sx={{
         ...flexBoxSx,
+        // background: "red",
         fontFamily: Sx.font.card,
         color: "#fff",
-        lineHeight:
-          game.status === "speech" || game.status === "topic" ? 1.5 : 1.2,
-        textAlign: screen.justify ? "justify" : "center",
+        lineHeight: screen.lg || screen.md ? 2 : 1.5,
+        textAlign: "center",
         textShadow:
           screen.lg || screen.md
             ? `-2px 2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000`
@@ -35,8 +32,20 @@ function CardContent({ children }) {
             : `-1.25px 1.25px 0 #000, 1px -1.25px 0 #000, -1px 1.25px 0 #000, 1px 1.25px 0 #000`,
       }}
     >
-      {children}
-    </FitText>
+      <Textfit
+        min={1}
+        max={
+          screen.lg ? 65 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
+        }
+        style={{
+          ...flexBoxSx,
+          // background: "teal",
+          height: screen.lg || screen.md ? "85%" : "90%",
+        }}
+      >
+        {children}
+      </Textfit>
+    </Box>
   );
 }
 

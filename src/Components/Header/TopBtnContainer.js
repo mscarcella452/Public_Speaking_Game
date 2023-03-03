@@ -12,6 +12,7 @@ import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import {
   buttonContext,
   buttonDispatchContext,
@@ -29,13 +30,13 @@ export default function TopBtnContainer() {
     <HelpCenterIcon sx={topButtonIconSx} />
   );
 
-  const toggleTimer = () => {
-    timer.On
-      ? timerDispatch({ type: "TOGGLE_TIMER" })
-      : setTimeout(() => {
-          timerDispatch({ type: "TOGGLE_TIMER" });
-        }, 1200);
-  };
+  // const toggleTimer = () => {
+  //   timer.On
+  //     ? timerDispatch({ type: "TOGGLE_TIMER" })
+  //     : setTimeout(() => {
+  //         timerDispatch({ type: "TOGGLE_TIMER" });
+  //       }, 1200);
+  // };
 
   const toggleRulesBtnIcon = () => {
     btnDispatch({ type: "TOGGLE_RULES_BTN" });
@@ -68,7 +69,7 @@ export default function TopBtnContainer() {
       }
       // if game is on-----------------------
     } else {
-      game.status === "speech" && toggleTimer();
+      // game.status === "speech" && toggleTimer();
       btnDispatch({ type: "TOGGLE_QUIT_BTN" });
       gameDispatch({ type: "LOAD" });
       setTimeout(() => {
@@ -78,24 +79,39 @@ export default function TopBtnContainer() {
     }
   };
 
-  const handleQuit = () => {
+  const quitGame = () => {
     btnDispatch({ type: "TOGGLE_RULES_BTN" });
     btnDispatch({ type: "TOGGLE_QUIT_BTN" });
     gameDispatch({ type: "LOAD" });
-    setTimeout(() => {
-      btnDispatch({ type: "THIRD_BTN_TITLE", payload: "Play" });
-    }, 500);
     setTimeout(() => {
       gameDispatch({ type: "GAME_OFF" });
       timerDispatch({ type: "RESET" });
     }, 1200);
   };
 
+  const endIntermission = () => {
+    gameDispatch({ type: "LOAD" });
+    btnDispatch({ type: "TOGGLE_QUIT_BTN" });
+    setTimeout(() => {
+      timerDispatch({ type: "RESET" });
+      gameDispatch({ type: "TOPIC_STATUS" });
+      btnDispatch({ type: "TOGGLE_TOP_BTNS" });
+      // btnDispatch({ type: "THIRD_BTN_TITLE", payload: "Next" });
+    }, 1200);
+  };
+  const handleQuit = () => {
+    game.status === "intermission" ? endIntermission() : quitGame();
+  };
+
   return (
     <Box sx={HeaderSx}>
       <SmallBtnFlipContainerOverlay active={!game.rules && btn.quitBtnActive}>
         <TopBtnFabric onClick={handleQuit}>
-          <DisabledByDefaultIcon sx={topButtonIconSx} />
+          {game.status === "intermission" ? (
+            <ChevronLeftIcon sx={topButtonIconSx} />
+          ) : (
+            <DisabledByDefaultIcon sx={topButtonIconSx} />
+          )}
           {/* <Box sx={topBtnSx}>X</Box> */}
         </TopBtnFabric>
         {/* <Button

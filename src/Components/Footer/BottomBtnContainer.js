@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { intermisisonCountTrigger } from "../../Context/GameStatusContext";
 import { Paper, Box, Button } from "@mui/material";
 import { footerSx } from "../../Styles/SXstyles";
 import { BtnFlipContainerOverlay } from "../Helpers/FlipContainer";
@@ -14,7 +15,7 @@ import {
   buttonDispatchContext,
 } from "../../Context/ButtonContext";
 
-export default function BottomBtnContainer() {
+export default function BottomBtnContainer({ setFailSpeech }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const timerDispatch = useContext(timerDispatchContext);
@@ -24,40 +25,75 @@ export default function BottomBtnContainer() {
 
   const startTimer = () => {
     timerDispatch({ type: "TOGGLE_TIMER" });
-    gameDispatch({ type: "SPEECH" });
+    gameDispatch({ type: "SPEECH_STATUS" });
   };
 
   const failSpeech = () => {
     gameDispatch({ type: "LOAD" });
+    timerDispatch({ type: "TOGGLE_TIMER" });
+    setFailSpeech(true);
     setTimeout(() => {
-      gameDispatch({ type: "FAIL" });
-      timerDispatch({ type: "TOGGLE_TIMER" });
+      gameDispatch({ type: "RESULT_STATUS" });
+      timerDispatch({ type: "RESET" });
     }, 1200);
+  };
+
+  const triggerInterMission = () => {
+    const intermissionOn = () => {
+      gameDispatch({ type: "INTERMISSION_STATUS" });
+      timerDispatch({ type: "TOGGLE_TIMER" });
+    };
+    if (game.status === "off") {
+      // intermission from homescreen
+      intermissionOn();
+      btnDispatch({ type: "TOGGLE_RULES_BTN" });
+    } else {
+      // intermission from result screen
+      btnDispatch({ type: "TOGGLE_TOP_BTNS" });
+      setTimeout(() => {
+        intermissionOn();
+      }, 1200);
+    }
   };
 
   const nextRound = () => {
     gameDispatch({ type: "LOAD" });
-    setTimeout(() => {
-      gameDispatch({ type: "TOPIC" });
-      timerDispatch({ type: "RESET" });
+    game.questionCount >= intermisisonCountTrigger
+      ? triggerInterMission()
+      : setTimeout(() => {
+          gameDispatch({ type: "TOPIC_STATUS" });
+          topicGenerator();
+        }, 1200);
+  };
+
+  const startGame = () => {
+    btnDispatch({ type: "TOGGLE_PLAY_BTN" });
+    if (game.questionCount >= intermisisonCountTrigger) {
+      setTimeout(() => triggerInterMission(), 1200);
+    } else {
+      // btnDispatch({ type: "TOGGLE_PLAY_BTN" });
+      btnDispatch({ type: "TOGGLE_QUIT_BTN" });
+      gameDispatch({ type: "TOPIC_STATUS" });
       topicGenerator();
+    }
+  };
+
+  const upgradeGame = () => {
+    gameDispatch({ type: "BUY" });
+    gameDispatch({ type: "LOAD" });
+    setTimeout(() => {
+      gameDispatch({ type: "TOPIC_STATUS" });
+      timerDispatch({ type: "RESET" });
+      btnDispatch({ type: "TOGGLE_TOP_BTNS" });
     }, 1200);
   };
+  console.log(game.thirdBtnTitle);
 
-  const handleStart = () => {
-    btnDispatch({ type: "TOGGLE_PLAY_BTN" });
-    btnDispatch({ type: "TOGGLE_QUIT_BTN" });
-    gameDispatch({ type: "GAME_ON" });
-    topicGenerator();
-    btn.thirdBtnTitle === "Play" &&
-      setTimeout(() => {
-        btnDispatch({
-          type: "THIRD_BTN_TITLE",
-          payload: "Next",
-        });
-      }, 500);
+  const handleThirdBtn = () => {
+    if (game.status === "off") {
+      startGame();
+    } else game.status !== "intermission" ? nextRound() : upgradeGame();
   };
-
   return (
     <Box sx={footerSx}>
       <BtnFlipContainerOverlay
@@ -91,13 +127,12 @@ export default function BottomBtnContainer() {
         active={
           (!game.rules && btn.playBtnActive) ||
           // (game.rules && game.flip) ||
-          (game.status === "result" && game.flip)
+          (game.status === "result" && game.flip) ||
+          (game.status === "intermission" && game.flip)
         }
       >
-        <BottomBtnFabric
-          onClick={game.status === "off" ? handleStart : nextRound}
-        >
-          {btn.thirdBtnTitle}
+        <BottomBtnFabric onClick={handleThirdBtn}>
+          {game.thirdBtnTitle}
         </BottomBtnFabric>
         {/* {game.rules ? (
           <Box sx={btnSx}>Rules # 3</Box>

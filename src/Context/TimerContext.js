@@ -15,7 +15,8 @@ const TimerReducer = (timer, action) => {
     case "SET_SECONDS":
       return {
         ...timer,
-        seconds: action.payload,
+        seconds: timer.seconds - 1,
+        // seconds: action.payload,
       };
 
     case "RESET":
@@ -53,13 +54,13 @@ function TimerContextProvider({ children }) {
   //     }, 1000))
   //   : clearInterval(interval);
 
-  useInterval(() => {
-    if (!timer.On) return;
-    timerDispatch({
-      type: "SET_SECONDS",
-      payload: timer.seconds === 0 ? 0 : timer.seconds - 1,
-    });
-  }, 1000);
+  // useInterval(() => {
+  //   if (!timer.On) return;
+  //   timerDispatch({
+  //     type: "SET_SECONDS",
+  //     payload: timer.seconds === 0 ? 0 : timer.seconds - 1,
+  //   });
+  // }, 1000);
 
   return (
     <timerContext.Provider value={timer}>
