@@ -24,7 +24,6 @@ function Logo() {
       <Textfit
         min={1}
         max={180}
-        // mode='single'
         style={{
           ...flexBoxSx,
           padding: screen.lg || screen.md ? "1.5rem" : "1.25rem",
@@ -36,7 +35,6 @@ function Logo() {
       >
         Public Speaking
       </Textfit>
-      {/* <Box sx={{ ...flexBoxSx, padding: "1rem" }}>Public Speaking</Box> */}
     </Paper>
   );
 }

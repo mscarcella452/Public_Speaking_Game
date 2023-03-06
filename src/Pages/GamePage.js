@@ -19,7 +19,6 @@ import { gameContext } from "../Context/GameStatusContext";
 
 export default function GamePage() {
   const game = useContext(gameContext);
-  console.log("render");
 
   return (
     <MainBackground>

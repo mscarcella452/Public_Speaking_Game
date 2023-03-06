@@ -18,7 +18,7 @@ import {
   buttonDispatchContext,
 } from "../../Context/ButtonContext";
 
-export default function TopBtnContainer() {
+export default function TopBtnContainer({ showTopic }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const timer = useContext(timerContext);
@@ -69,7 +69,7 @@ export default function TopBtnContainer() {
       }
       // if game is on-----------------------
     } else {
-      // game.status === "speech" && toggleTimer();
+      game.status === "speech" && timerDispatch({ type: "TOGGLE_TIMER" });
       btnDispatch({ type: "TOGGLE_QUIT_BTN" });
       gameDispatch({ type: "LOAD" });
       setTimeout(() => {
@@ -94,7 +94,7 @@ export default function TopBtnContainer() {
     btnDispatch({ type: "TOGGLE_QUIT_BTN" });
     setTimeout(() => {
       timerDispatch({ type: "RESET" });
-      gameDispatch({ type: "TOPIC_STATUS" });
+      showTopic();
       btnDispatch({ type: "TOGGLE_TOP_BTNS" });
       // btnDispatch({ type: "THIRD_BTN_TITLE", payload: "Next" });
     }, 1200);

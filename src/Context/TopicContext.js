@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { speechTopics } from "../Speech Topics/SpeechTopics";
+import { speechTopics } from "../GeneratedText/SpeechTopics";
 
 export const topicContext = createContext();
 export const generateTopicContext = createContext();
@@ -14,7 +14,6 @@ function TopicContextProvider({ children }) {
     );
 
     const randomIndex = Math.floor(Math.random() * filteredTopics.length);
-    setCurrentTopic(filteredTopics[randomIndex]);
 
     filteredTopics.length > 1
       ? speechTopics.map(
@@ -23,6 +22,8 @@ function TopicContextProvider({ children }) {
             setUsedIndex([...usedIndex, index])
         )
       : setUsedIndex([]);
+
+    setCurrentTopic(filteredTopics[randomIndex]);
   };
 
   return (

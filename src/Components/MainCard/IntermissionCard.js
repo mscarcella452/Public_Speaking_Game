@@ -28,7 +28,7 @@ function IntermissionCard({ timer }) {
         >
           Remember, I'll always love you. But a little less each time you don't
           upgrade. You'll be like a toy I used to play with. You'll be my little
-          hammy down. Except, I will break you. Kisses. Smooch.
+          hammy down. Except, I will break you. Kisses.
         </span>
       </CardContent>
 

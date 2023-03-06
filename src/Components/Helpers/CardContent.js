@@ -10,7 +10,7 @@ function CardContent({ children }) {
     <Box
       sx={{
         ...flexBoxSx,
-        // background: "teal",
+        background: "teal",
         fontFamily: Sx.font.card,
         color: "#fff",
         lineHeight: screen.lg || screen.md ? 2 : 1.5,
@@ -30,10 +30,12 @@ function CardContent({ children }) {
         max={
           screen.lg ? 65 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
         }
+        throttle={100}
+        mode={"multi"}
         style={{
           ...flexBoxSx,
-          // background: "red",
-          height: screen.lg || screen.md ? "85%" : "85%",
+          background: "red",
+          height: screen.lg || screen.md ? "82%" : "85%",
         }}
       >
         {children}

@@ -5,3 +5,9 @@ export function delay(func, time) {
     func();
   }, time);
 }
+
+export function checkIntermission() {
+  return !storage.fullVersion && storage.topicCount >= intermisisonTrigger
+    ? true
+    : false;
+}

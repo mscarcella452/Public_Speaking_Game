@@ -11,11 +11,11 @@ function TopCardMargin({ label, timer }) {
   const marginHeight = screen.lg
     ? "70px"
     : screen.md
-    ? "55px"
+    ? { galaxyFold: "50px", lg: "50px" }
     : screen.sm
-    ? "50px"
+    ? "45px"
     : screen.xs
-    ? "30px"
+    ? "35px"
     : "40px";
   const componentWidth = screen.lg
     ? "170px"
@@ -26,6 +26,15 @@ function TopCardMargin({ label, timer }) {
     : screen.xs
     ? "75px"
     : "90px";
+  const defaultFontSize = screen.lg
+    ? 75
+    : screen.md
+    ? 55
+    : screen.sm
+    ? 45
+    : screen.xs
+    ? 35
+    : 40;
   return (
     <Box
       sx={{
@@ -46,8 +55,9 @@ function TopCardMargin({ label, timer }) {
       >
         <Textfit
           min={1}
-          max={100}
-          mode='single'
+          max={game.status === "result" ? 100 : defaultFontSize}
+          mode={"single"}
+          throttle={100}
           style={{
             ...flexBoxSx,
             paddingRight: ".15rem",
@@ -60,7 +70,14 @@ function TopCardMargin({ label, timer }) {
       </Box>
       {game.status !== "result" && (
         <Paper sx={{ ...timerSx, width: componentWidth }}>
-          <Textfit min={1} max={80} style={flexBoxSx}>
+          <Textfit
+            min={1}
+            max={defaultFontSize}
+            forceSingleModeWidth={false}
+            throttle={100}
+            mode={"single"}
+            style={{ ...flexBoxSx, height: "95%" }}
+          >
             {timer}
           </Textfit>
         </Paper>

@@ -15,11 +15,11 @@ import { topicContext } from "../../Context/TopicContext";
 import { timerContext } from "../../Context/TimerContext";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
-function GameCard({ timer, failSpeech }) {
+function GameCard({ timer, failSpeech, currentTopic, currentTidbit }) {
   // const timer = useContext(timerContext);
   const game = useContext(gameContext);
-  const gameDispatch = useContext(gameDispatchContext);
-  const currentTopic = useContext(topicContext);
+  // const gameDispatch = useContext(gameDispatchContext);
+  // const currentTopic = useContext(topicContext);
 
   return (
     <Box
@@ -39,11 +39,7 @@ function GameCard({ timer, failSpeech }) {
         // time={game.timer.seconds >= 0 ? `:${game.timer.seconds}` : ""}
       />
       <CardContent>
-        {game.status !== "result"
-          ? currentTopic
-          : failSpeech
-          ? "You don't speak too good."
-          : "You said something good with your words."}
+        {game.status !== "result" ? currentTopic : currentTidbit}
       </CardContent>
 
       <FabricOverlay />

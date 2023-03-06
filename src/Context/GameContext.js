@@ -4,6 +4,7 @@ import TopicContextProvider from "./TopicContext";
 import TimerContextProvider from "./TimerContext";
 import ButtonContextProvider from "./ButtonContext";
 import MediaQueryContextProvider from "./mediaQueryContext";
+import StorageProvider from "./StorageContext";
 
 // export const gameActiveContext = createContext();
 // export const toggleGameContext = createContext();
@@ -15,16 +16,18 @@ function GameContext({ children }) {
     <MediaQueryContextProvider>
       <TimerContextProvider>
         <TopicContextProvider>
-          <GameStatusProvider>
-            <ButtonContextProvider>
-              {children}
-              {/* <toggleGameContext.Provider value={toggleGame}>
+          <StorageProvider>
+            <GameStatusProvider>
+              <ButtonContextProvider>
+                {children}
+                {/* <toggleGameContext.Provider value={toggleGame}>
             <gameActiveContext.Provider value={gameActive}>
               {children}
             </gameActiveContext.Provider>
           </toggleGameContext.Provider> */}
-            </ButtonContextProvider>
-          </GameStatusProvider>
+              </ButtonContextProvider>
+            </GameStatusProvider>
+          </StorageProvider>
         </TopicContextProvider>
       </TimerContextProvider>
     </MediaQueryContextProvider>
