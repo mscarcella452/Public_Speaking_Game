@@ -14,11 +14,10 @@ import MainBackground from "../Components/Helpers/MainBackground";
 
 import { MainFlipContainer } from "../Components/Helpers/FlipContainer";
 import OverlayContainer from "../Components/OverlayContainer";
-
-import { gameContext } from "../Context/GameStatusContext";
+import { activeContext } from "../Context/ButtonContext";
 
 export default function GamePage() {
-  const game = useContext(gameContext);
+  const active = useContext(activeContext);
 
   return (
     <MainBackground>
@@ -30,15 +29,15 @@ export default function GamePage() {
           ...Sx.gap.main,
         }}
       >
-        <Header />
-        <Box sx={{ ...mainBoxSx }}>
-          <MainFlipContainer active={game.flip} />
+        <Header active={active} />
+        <Box sx={mainBoxSx}>
+          <MainFlipContainer active={active.main.container} />
         </Box>
-        <Footer />
+        <Footer active={active} />
       </Box>
       <FabricOverlay />
       <Box sx={backgroundWordsOverlaySx} />
-      <OverlayContainer />
+      <OverlayContainer active={active} />
     </MainBackground>
   );
 }

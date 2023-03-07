@@ -1,30 +1,26 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { intermisisonTrigger } from "../../Context/StorageContext";
-import { Paper, Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { footerSx } from "../../Styles/SXstyles";
 import { BtnFlipContainerOverlay } from "../Helpers/FlipContainer";
-import { BottomBtnFabric, BottomResultFabric } from "../Helpers/BtnFabric";
+import { BottomBtnFabric } from "../Helpers/BtnFabric";
 import {
   gameContext,
   gameDispatchContext,
 } from "../../Context/GameStatusContext";
 import { timerDispatchContext } from "../../Context/TimerContext";
-import {
-  buttonContext,
-  buttonDispatchContext,
-} from "../../Context/ButtonContext";
+import { buttonDispatchContext } from "../../Context/ButtonContext";
 import {
   storageContext,
   storageDispatchContext,
 } from "../../Context/StorageContext";
 
-export default function BottomBtnContainer({ showTopic, triggerFailedSpeech }) {
+function BottomBtnContainer({ active, showTopic, triggerFailedSpeech }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const storage = useContext(storageContext);
   const storageDispatch = useContext(storageDispatchContext);
   const timerDispatch = useContext(timerDispatchContext);
-  const btn = useContext(buttonContext);
   const btnDispatch = useContext(buttonDispatchContext);
 
   const startSpeech = () => {
@@ -91,23 +87,16 @@ export default function BottomBtnContainer({ showTopic, triggerFailedSpeech }) {
   };
   return (
     <Box sx={footerSx}>
-      <BtnFlipContainerOverlay
-        active={game.flip && game.status === "topic" && !game.rules}
-      >
+      {/* leftBtn */}
+      <BtnFlipContainerOverlay active={active.bottom.leftBtn}>
         <BottomBtnFabric onClick={startSpeech}>Start</BottomBtnFabric>
       </BtnFlipContainerOverlay>
-      <BtnFlipContainerOverlay
-        active={game.flip && game.status === "speech" && !game.rules}
-      >
+      {/* middleBtn */}
+      <BtnFlipContainerOverlay active={active.bottom.middleBtn}>
         <BottomBtnFabric onClick={triggerFailedSpeech}>Fail</BottomBtnFabric>
       </BtnFlipContainerOverlay>
-      <BtnFlipContainerOverlay
-        active={
-          (!game.rules && btn.playBtnActive) ||
-          (game.status === "result" && game.flip) ||
-          (game.status === "intermission" && game.flip)
-        }
-      >
+      {/* rightBtn */}
+      <BtnFlipContainerOverlay active={active.bottom.rightBtn}>
         <BottomBtnFabric onClick={handleThirdBtn}>
           {game.thirdBtnTitle}
         </BottomBtnFabric>
@@ -115,3 +104,5 @@ export default function BottomBtnContainer({ showTopic, triggerFailedSpeech }) {
     </Box>
   );
 }
+
+export default BottomBtnContainer;

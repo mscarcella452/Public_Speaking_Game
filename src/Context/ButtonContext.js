@@ -1,6 +1,7 @@
 import React, { useReducer, createContext, useContext, useEffect } from "react";
 import { gameContext } from "./GameStatusContext";
 
+export const activeContext = createContext();
 export const buttonContext = createContext();
 export const buttonDispatchContext = createContext();
 
@@ -50,16 +51,37 @@ function ButtonContextProvider({ children }) {
     }
   }, [game.status]);
 
-  // useEffect(() => {
-  //   !game.intermission.On &&
-  //     game.status === "intermission" &&
-  //     btnDisptch({ type: "TOGGLE_QUIT_BTN" });
-  // }, [game.intermission.On]);
+  const active = {
+    main: {
+      container: game.flip,
+      gameCard: !game.rules && game.status !== "intermission",
+      rulesCard: game.rules,
+      intermissionCard: !game.rules && game.status === "intermission",
+    },
+    top: {
+      quitBtn: !game.rules && btn.quitBtnActive,
+      rulesBtn: btn.rulesBtnActive,
+    },
+    bottom: {
+      leftBtn: game.flip && game.status === "topic" && !game.rules,
+      middleBtn: game.flip && game.status === "speech" && !game.rules,
+      rightBtn:
+        (!game.rules && btn.playBtnActive) ||
+        (game.status === "result" && game.flip) ||
+        (game.status === "intermission" && game.flip),
+    },
+    timer: {
+      speech: game.status === "speech",
+      intermission: game.status === "intermission",
+    },
+  };
 
   return (
-    <buttonDispatchContext.Provider value={btnDisptch}>
-      <buttonContext.Provider value={btn}>{children}</buttonContext.Provider>
-    </buttonDispatchContext.Provider>
+    <activeContext.Provider value={active}>
+      <buttonDispatchContext.Provider value={btnDisptch}>
+        <buttonContext.Provider value={btn}>{children}</buttonContext.Provider>
+      </buttonDispatchContext.Provider>
+    </activeContext.Provider>
   );
 }
 

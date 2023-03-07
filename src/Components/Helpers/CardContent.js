@@ -10,11 +10,11 @@ function CardContent({ children }) {
     <Box
       sx={{
         ...flexBoxSx,
-        background: "teal",
         fontFamily: Sx.font.card,
+        padding: 0,
         color: "#fff",
         lineHeight: screen.lg || screen.md ? 2 : 1.5,
-        textAlign: "center",
+        textAlign: screen.justfiy ? "justfiy" : "center",
         textShadow:
           screen.lg || screen.md
             ? `-2px 2px 0 #000, 1px -2px 0 #000, -1px 2px 0 #000, 1px 2px 0 #000`
@@ -28,13 +28,12 @@ function CardContent({ children }) {
       <Textfit
         min={1}
         max={
-          screen.lg ? 65 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
+          screen.lg ? 60 : screen.md ? 45 : screen.sm ? 40 : screen.xs ? 28 : 35
         }
         throttle={100}
-        mode={"multi"}
+        // mode={"multi"}
         style={{
           ...flexBoxSx,
-          background: "red",
           height: screen.lg || screen.md ? "82%" : "85%",
         }}
       >

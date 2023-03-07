@@ -5,28 +5,21 @@ import { BtnFlipContainer } from "../Helpers/FlipContainer";
 import { gameContext } from "../../Context/GameStatusContext";
 import { buttonContext } from "../../Context/ButtonContext";
 
-export default function Footer() {
+export default function Footer({ active }) {
   const game = useContext(gameContext);
   const btn = useContext(buttonContext);
 
   return (
     <Box sx={footerSx}>
       <BtnFlipContainer
-        active={game.flip && game.status === "topic" && !game.rules}
+        active={active.bottom.leftBtn}
         // active={game.flip && (game.status === "topic" || game.rules)}
       />
       <BtnFlipContainer
-        active={game.flip && game.status === "speech" && !game.rules}
+        active={active.bottom.middleBtn}
         // active={game.flip && (game.status === "speech" || game.rules)}
       />
-      <BtnFlipContainer
-        active={
-          (!game.rules && btn.playBtnActive) ||
-          // (game.rules && game.flip) ||
-          (game.status === "result" && game.flip) ||
-          (game.status === "intermission" && game.flip)
-        }
-      />
+      <BtnFlipContainer active={active.bottom.rightBtn} />
     </Box>
   );
 }

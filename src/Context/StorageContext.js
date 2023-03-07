@@ -3,7 +3,7 @@ import { useReducer, createContext, useEffect } from "react";
 export const storageContext = createContext();
 export const storageDispatchContext = createContext();
 
-export const intermisisonTrigger = 1;
+export const intermisisonTrigger = 10;
 
 // localStorage.removeItem("PublicSpeakingStorage");
 

@@ -1,20 +1,15 @@
 import React, { useContext } from "react";
 import { Box } from "@mui/material";
-import { Sx, mainCardContainerSx, flexBoxSx } from "../../Styles/SXstyles";
+import { Sx, mainCardContainerSx } from "../../Styles/SXstyles";
 import TopCardMargin from "../Helpers/TopCardMargin";
 import CardContent from "../Helpers/CardContent";
-import { ColorOverlay, FabricOverlay } from "../Helpers/Overlays";
+import { FabricOverlay } from "../Helpers/Overlays";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
 function IntermissionCard({ timer }) {
   const screen = useContext(mediaQueryContext);
   return (
-    <Box
-      sx={{
-        ...mainCardContainerSx,
-        background: Sx.color.secondary,
-      }}
-    >
+    <Box sx={{ ...mainCardContainerSx, background: Sx.color.secondary }}>
       {/* <ColorOverlay /> */}
       <TopCardMargin label={"TIMEOUT:"} timer={timer} />
 

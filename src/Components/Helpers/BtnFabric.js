@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { Sx, flexBoxSx } from "../../Styles/SXstyles";
 import { FabricOverlay } from "./Overlays";
 import { Box, Button, Paper } from "@mui/material";
@@ -15,6 +15,7 @@ export function TopBtnFabric({ onClick, children }) {
   );
 }
 export function BottomBtnFabric({ onClick, children }) {
+  console.log("hi");
   return (
     <Button onClick={onClick} sx={bottomBtnSx}>
       <Paper sx={fabricContainerSx}>

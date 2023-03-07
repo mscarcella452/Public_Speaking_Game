@@ -1,9 +1,9 @@
-import React from "react";
+import { memo } from "react";
 import { Box, Paper } from "@mui/material";
 import { flipContainerSx } from "../../Styles/FlipContainerStyles";
 import Logo from "./Logo";
 
-export function MainFlipContainer({ active, children }) {
+export const MainFlipContainer = memo(({ active }) => {
   return (
     <Box sx={{ ...flipContainerSx.container.main, background: "#000" }}>
       {/* FlipBox Inner */}
@@ -16,11 +16,11 @@ export function MainFlipContainer({ active, children }) {
         {/* FrontFlip */}
         <Box sx={{ ...flipContainerSx.front.main, zIndex: 10 }} />
         {/* BackFlip */}
-        <Box sx={flipContainerSx.back.main}>{children}</Box>
+        <Box sx={flipContainerSx.back.main} />
       </Box>
     </Box>
   );
-}
+});
 export function MainFlipContainerOverlay({ active, children }) {
   return (
     <Box sx={{ ...flipContainerSx.container.main, background: "transparent" }}>
@@ -48,7 +48,7 @@ export function MainFlipContainerOverlay({ active, children }) {
     </Box>
   );
 }
-export function BtnFlipContainer({ active, children }) {
+export const BtnFlipContainer = memo(({ active }) => {
   return (
     <Box sx={flipContainerSx.container.btn}>
       {/* FlipBox Inner */}
@@ -61,11 +61,11 @@ export function BtnFlipContainer({ active, children }) {
         {/* FrontFlip */}
         <Box sx={flipContainerSx.front.btn} />
         {/* BackFlip */}
-        <Box sx={flipContainerSx.back.btn}>{children}</Box>
+        <Box sx={flipContainerSx.back.btn} />
       </Box>
     </Box>
   );
-}
+});
 export function BtnFlipContainerOverlay({ active, children }) {
   return (
     <Box sx={{ ...flipContainerSx.container.btn, background: "transparent" }}>
@@ -91,7 +91,7 @@ export function BtnFlipContainerOverlay({ active, children }) {
 
 // small btn-----------------------
 
-export function SmallBtnFlipContainer({ active, children }) {
+export const SmallBtnFlipContainer = memo(({ active }) => {
   return (
     <Box sx={flipContainerSx.container.smBtn}>
       {/* FlipBox Inner */}
@@ -104,11 +104,11 @@ export function SmallBtnFlipContainer({ active, children }) {
         {/* FrontFlip */}
         <Box sx={flipContainerSx.front.smBtn} />
         {/* BackFlip */}
-        <Box sx={flipContainerSx.back.smBtn}>{children}</Box>
+        <Box sx={flipContainerSx.back.smBtn} />
       </Box>
     </Box>
   );
-}
+});
 export function SmallBtnFlipContainerOverlay({ active, children }) {
   return (
     <Box sx={{ ...flipContainerSx.container.smBtn, background: "transparent" }}>

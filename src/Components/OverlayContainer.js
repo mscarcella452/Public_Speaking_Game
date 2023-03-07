@@ -1,7 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useState, memo } from "react";
 import { useGenerateText } from "../Helpers/CustomHooks";
 import { Box } from "@mui/material";
-import { Sx, flexBoxSx, mainBoxSx } from "../Styles/SXstyles";
+import {
+  Sx,
+  flexBoxSx,
+  mainBoxSx,
+  absolutePositionSx,
+} from "../Styles/SXstyles";
 import { MainFlipContainerOverlay } from "./Helpers/FlipContainer";
 import TopBtnContainer from "./Header/TopBtnContainer";
 import BottomBtnContainer from "./Footer/BottomBtnContainer";
@@ -19,7 +24,7 @@ import {
   storageDispatchContext,
 } from "../Context/StorageContext";
 
-function OverlayContainer() {
+function OverlayContainer({ active }) {
   const game = useContext(gameContext);
   const gameDispatch = useContext(gameDispatchContext);
   const btnDispatch = useContext(buttonDispatchContext);
@@ -73,18 +78,20 @@ function OverlayContainer() {
   const IntermissionTimerExpire = () =>
     btnDispatch({ type: "TOGGLE_QUIT_BTN" });
 
+  // gameCard props
+  const currentTidbit = failSpeech ? failTidbit : successTidbit;
+  const mainContent = game.status !== "result" ? currentTopic : currentTidbit;
+  const resultLabel = failSpeech ? "FAIL" : "100%";
+  const gameCardBackgroundColor =
+    game.status === "result" && (failSpeech ? Sx.color.fail : Sx.color.success);
+
   return (
     <Box sx={overlayContainerSx}>
-      <TopBtnContainer showTopic={showTopic} />
+      <TopBtnContainer active={active} showTopic={showTopic} />
       <Box sx={mainBoxSx}>
-        <MainFlipContainerOverlay active={game.flip}>
-          {/* {!game.rules &&
-            (game.status === "topic" || game.status === "speech") && (
-              <SpeechTopicCard />
-            )}
-          {!game.rules && game.status === "result" && <RoundOverCard />} */}
-
-          {!game.rules && game.status !== "intermission" && (
+        <MainFlipContainerOverlay active={active.main.container}>
+          {/* GAMECARD */}
+          {active.main.gameCard && (
             <GameCard
               timer={
                 <Timer
@@ -92,12 +99,13 @@ function OverlayContainer() {
                   expire={triggerCompleteSpeech}
                 />
               }
-              currentTopic={currentTopic}
-              failSpeech={failSpeech}
-              currentTidbit={failSpeech ? failTidbit : successTidbit}
+              mainContent={mainContent}
+              label={game.status !== "result" ? "TOPIC:" : resultLabel}
+              backgroundColor={gameCardBackgroundColor}
             />
           )}
-          {!game.rules && game.status === "intermission" && (
+          {/* INTERMISSIONCARD */}
+          {active.main.intermissionCard && (
             <IntermissionCard
               timer={
                 <Timer
@@ -107,11 +115,12 @@ function OverlayContainer() {
               }
             />
           )}
-          {/* {game.intermission && <IntermissionCard />} */}
-          {game.rules && <RulesCard />}
+          {/* RULESCARD */}
+          {active.main.rulesCard && <RulesCard />}
         </MainFlipContainerOverlay>
       </Box>
       <BottomBtnContainer
+        active={active}
         showTopic={showTopic}
         triggerFailedSpeech={triggerFailedSpeech}
       />
@@ -119,21 +128,14 @@ function OverlayContainer() {
   );
 }
 
-export default OverlayContainer;
+export default memo(OverlayContainer);
 
 const overlayContainerSx = {
   ...flexBoxSx,
-  // height: "100vh",
   flexDirection: "column",
   justifyContent: Sx.justifyContent,
-  // justifyContent: "space-between",
   zIndex: 20,
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
+  ...absolutePositionSx,
   padding: Sx.padding.main,
   ...Sx.gap.main,
-  // overflow: "scroll",
 };

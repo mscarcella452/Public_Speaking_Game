@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Paper, Box } from "@mui/material";
 import { Textfit } from "react-textfit";
-import { flexBoxSx, Sx, absolutePositionSx } from "../../Styles/SXstyles";
+import { flexBoxSx, Sx } from "../../Styles/SXstyles";
 import { gameContext } from "../../Context/GameStatusContext";
 import { mediaQueryContext } from "../../Context/mediaQueryContext";
 
 function TopCardMargin({ label, timer }) {
   const game = useContext(gameContext);
   const screen = useContext(mediaQueryContext);
+
   const marginHeight = screen.lg
     ? "70px"
     : screen.md
@@ -39,7 +40,6 @@ function TopCardMargin({ label, timer }) {
     <Box
       sx={{
         ...CardMarginSx,
-        ...(game.status === "result" && resultTagPosition),
         height: marginHeight,
       }}
     >
@@ -62,7 +62,6 @@ function TopCardMargin({ label, timer }) {
             ...flexBoxSx,
             paddingRight: ".15rem",
             justifyContent: "flex-start",
-            // alignItems: "flex-start",
           }}
         >
           {label}
@@ -72,7 +71,7 @@ function TopCardMargin({ label, timer }) {
         <Paper sx={{ ...timerSx, width: componentWidth }}>
           <Textfit
             min={1}
-            max={defaultFontSize}
+            max={30}
             forceSingleModeWidth={false}
             throttle={100}
             mode={"single"}
@@ -98,12 +97,6 @@ const timerSx = {
   fontWeight: "bold",
   background: Sx.color.primary,
   color: "#fff",
-};
-
-const resultTagPosition = {
-  ...absolutePositionSx,
-  top: "1rem",
-  left: "1rem",
 };
 
 const marginLabel = {

@@ -33,7 +33,7 @@ export function useInterval(callback, delay) {
 export function useGenerateText(initialValue, array) {
   const [usedIndex, setUsedIndex] = useState(initialValue);
   const [text, setText] = useState("");
-  array.length < 10 && console.log(array);
+
   const textGenerator = () => {
     let filteredTexts = array.filter(
       (text, index) => !usedIndex.includes(index)
