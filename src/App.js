@@ -1,15 +1,8 @@
-import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Paper, Box, useMediaQuery } from "@mui/material";
-import {
-  Sx,
-  flexBoxSx,
-  fabricOverlaySx,
-  backgroundWordsOverlaySx,
-} from "./Styles/SXstyles";
+import { Paper } from "@mui/material";
+import { Sx, flexBoxSx } from "./Styles/SXstyles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import GamePage from "./Pages/GamePage";
-import backgroundWords from "./Images/backgroundWords.png";
 
 export const theme = createTheme({
   breakpoints: {
@@ -40,11 +33,6 @@ function App() {
       >
         <Routes>
           <Route path='*' element={<GamePage />} />
-
-          {/* <Route path='/PublicSpeaking'>
-            <Route path=':Play' element={<GamePage />} />
-            <Route path=':Rules' element={<RulesPage />} />
-          </Route> */}
         </Routes>
       </Paper>
     </ThemeProvider>

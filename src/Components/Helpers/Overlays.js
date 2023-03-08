@@ -27,16 +27,16 @@ export function FabricOverlay({ zIndex, backgroundSize }) {
   return <Paper sx={{ ...fabricOverlaySx, zIndex, ...backgroundSize }} />;
 }
 
-const fabricBackgroundSx = {
-  // background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
-  // backgroundSize: "cover",
-  // background: `url("https://www.transparenttextures.com/patterns/old-wall.png") repeat center`,
-  // backgroundSize: "1%",
-  background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
-  backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
-  // background: `url("https://www.transparenttextures.com/patterns/woven-light.png") repeat center`,
-  // backgroundSize: ".5%",
-};
+// const fabricBackgroundSx = {
+//   // background: `url(https://www.transparenttextures.com/patterns/navy.png) no-repeat center`,
+//   // backgroundSize: "cover",
+//   // background: `url("https://www.transparenttextures.com/patterns/old-wall.png") repeat center`,
+//   // backgroundSize: "1%",
+//   background: `url("https://www.transparenttextures.com/patterns/navy.png") repeat center`,
+//   backgroundSize: { galaxyFold: "100%", sm: "75%", lg: "50%" },
+//   // background: `url("https://www.transparenttextures.com/patterns/woven-light.png") repeat center`,
+//   // backgroundSize: ".5%",
+// };
 
 export const fabricOverlaySx = {
   ...absolutePositionSx,

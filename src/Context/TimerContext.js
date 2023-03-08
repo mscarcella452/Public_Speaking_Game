@@ -1,5 +1,4 @@
-import React, { createContext, useReducer } from "react";
-import { useInterval } from "../Helpers/CustomHooks";
+import { createContext, useReducer } from "react";
 
 export const timerContext = createContext();
 export const timerDispatchContext = createContext();

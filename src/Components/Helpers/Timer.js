@@ -1,9 +1,6 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useInterval } from "../../Helpers/CustomHooks";
-import { Textfit } from "react-textfit";
-import { gameContext } from "../../Context/GameStatusContext";
 import { timerContext, timerDispatchContext } from "../../Context/TimerContext";
-import { flexBoxSx } from "../../Styles/SXstyles";
 
 function Timer({ active, expire }) {
   const timer = useContext(timerContext);
