@@ -33,7 +33,7 @@ function Logo() {
               : `-5px 5px 0 #000, 1px -2.5px 0 #000, -1px 2.5px 0 #000, 1px 2.5px 0 #000`,
         }}
       >
-        Public Speaking
+        Public Speaking 2.0
       </Textfit>
     </Paper>
   );
