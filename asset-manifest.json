@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Public_Speaking_Game/static/css/main.e6c13ad2.css",
-    "main.js": "/Public_Speaking_Game/static/js/main.41712c35.js",
+    "main.js": "/Public_Speaking_Game/static/js/main.b2803810.js",
     "static/js/787.8cf846df.chunk.js": "/Public_Speaking_Game/static/js/787.8cf846df.chunk.js",
     "static/media/backgroundWords.png": "/Public_Speaking_Game/static/media/backgroundWords.1ec606000bd6fcbf7522.png",
     "static/media/PublicSpeakingCropped.png": "/Public_Speaking_Game/static/media/PublicSpeakingCropped.12d0e9d21f2f9d8ab7c0.png",
     "index.html": "/Public_Speaking_Game/index.html",
     "main.e6c13ad2.css.map": "/Public_Speaking_Game/static/css/main.e6c13ad2.css.map",
-    "main.41712c35.js.map": "/Public_Speaking_Game/static/js/main.41712c35.js.map",
+    "main.b2803810.js.map": "/Public_Speaking_Game/static/js/main.b2803810.js.map",
     "787.8cf846df.chunk.js.map": "/Public_Speaking_Game/static/js/787.8cf846df.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.41712c35.js"
+    "static/js/main.b2803810.js"
   ]
 }
