@@ -1,4 +1,5 @@
 {
+  "homepage": "http://mscarcella452.github.io/Public_Speaking_Game",
   "name": "public_speaking_game",
   "version": "0.1.0",
   "private": true,
@@ -17,11 +18,12 @@
     "react-scripts": "^5.0.1",
     "react-textfit": "^1.1.1",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4",
-    "homepage": "http://publicSpeakingGame.com/"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
