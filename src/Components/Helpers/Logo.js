@@ -6,19 +6,33 @@ import { mediaQueryContext } from "../../Context/mediaQueryContext";
 function Logo() {
   const screen = useContext(mediaQueryContext);
   return (
-    <Paper elevation={0} sx={logoSx}>
+    <Paper
+      elevation={0}
+      sx={{
+        ...logoSx,
+        backgroundSize: screen.lg
+          ? "250px"
+          : screen.md
+          ? "210px"
+          : screen.sm
+          ? "170px"
+          : screen.xs
+          ? "85px"
+          : "110px",
+      }}
+    >
       <Box
         sx={{
           ...cartoonSx,
-          backgroundSize: screen.lg
-            ? "250px"
-            : screen.md
-            ? "210px"
-            : screen.sm
-            ? "170px"
-            : screen.xs
-            ? "85px"
-            : "110px",
+          // backgroundSize: screen.lg
+          //   ? "250px"
+          //   : screen.md
+          //   ? "210px"
+          //   : screen.sm
+          //   ? "170px"
+          //   : screen.xs
+          //   ? "85px"
+          //   : "110px",
         }}
       />
       <Textfit
@@ -26,6 +40,7 @@ function Logo() {
         max={180}
         style={{
           ...flexBoxSx,
+          zIndex: 1,
           padding: screen.lg || screen.md ? "1.5rem" : "1.25rem",
           textShadow:
             screen.lg || screen.md
@@ -33,7 +48,7 @@ function Logo() {
               : `-5px 5px 0 #000, 1px -2.5px 0 #000, -1px 2.5px 0 #000, 1px 2.5px 0 #000`,
         }}
       >
-        Public Speaking 2.0
+        Public Speaking Game
       </Textfit>
     </Paper>
   );
@@ -49,15 +64,18 @@ const logoSx = {
   lineHeight: "1",
   textAlign: "center",
   textDecoration: `underline ${Sx.color.secondary}`,
+  background: `url("https://clipground.com/images/anxiety-fear-clipart-1.png") repeat center`,
+  backgroundSize: "inherit",
 };
 
 const cartoonSx = {
   // background: `url("https://webstockreview.net/images/anxiety-clipart-transparent-7.png") no-repeat center`,
-  background: `url("https://clipground.com/images/anxiety-fear-clipart-1.png") repeat center`,
   // background: `url("https://easydrawingguides.com/wp-content/uploads/2020/10/Cartoon-Angry-Face-Step-10.png") repeat center`,
   // backgroundSize: "210px",
-  backgroundSize: "inherit",
-  opacity: 0.8,
+  opacity: 0.3,
+  // background: `url("https://clipground.com/images/anxiety-fear-clipart-1.png") repeat center`,
+  // backgroundSize: "inherit",
+  background: Sx.color.primary,
   ...absolutePositionSx,
-  zIndex: -1,
+  // zIndex: -1,
 };

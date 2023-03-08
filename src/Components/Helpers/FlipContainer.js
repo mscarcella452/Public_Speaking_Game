@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Box, Paper } from "@mui/material";
 import { flipContainerSx } from "../../Styles/FlipContainerStyles";
-import { Sx } from "../../Styles/SXstyles";
+// import { Sx } from "../../Styles/SXstyles";
 import Logo from "./Logo";
 
 export const MainFlipContainer = memo(({ active }) => {
@@ -24,9 +24,7 @@ export const MainFlipContainer = memo(({ active }) => {
 });
 export function MainFlipContainerOverlay({ active, children }) {
   return (
-    <Box
-      sx={{ ...flipContainerSx.container.main, background: Sx.color.primary }}
-    >
+    <Box sx={{ ...flipContainerSx.container.main, background: "transparent" }}>
       {/* FlipBox Inner */}
       <Box
         sx={{
